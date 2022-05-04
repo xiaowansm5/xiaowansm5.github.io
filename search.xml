@@ -54,6 +54,50 @@
     
     
     <entry>
+      <title>小米红米ac2100刷机教程完整版</title>
+      <link href="/2022/05/01/%E5%B0%8F%E7%B1%B3%E7%BA%A2%E7%B1%B3ac2100%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B%E5%AE%8C%E6%95%B4%E7%89%88/"/>
+      <url>/2022/05/01/%E5%B0%8F%E7%B1%B3%E7%BA%A2%E7%B1%B3ac2100%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B%E5%AE%8C%E6%95%B4%E7%89%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>小米红米ac2100刷机教程完整版</h1><h2 id="刷入breed控制台">刷入breed控制台</h2><blockquote><p>一键刷入breed请参考帖子：<a href="https://url.x-wan.top/sac2100">https://url.x-wan.top/sac2100</a></p></blockquote><p>一键刷入breed代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.31.1/cgi-bin/luci/;stok=CCCCCCCCCCC/api/misystem/set_config_iotdev?bssid=Xiaomi&amp;user_id=longdike&amp;ssid=%0A%5B%20-z%20%22%24(dmesg%20%7C%20grep%20ESMT)%22%20%5D%20%26%26%20B%3D%22Toshiba%22%20%7C%7C%20B%3D%22ESMT%22%0Auci%20set%20wireless.%24(uci%20show%20wireless%20%7C%20awk%20-F%20&#x27;.&#x27;%20&#x27;%2Fwl1%2F%20%7Bprint%20%242%7D&#x27;).ssid%3D%22%24B%20%24(dmesg%20%7C%20awk%20&#x27;%2FBad%2F%20%7Bprint%20%245%7D&#x27;)%22%0A%2Fetc%2Finit.d%2Fnetwork%20restart%0A</span><br></pre></td></tr></table></figure><blockquote><p><code>http://192.168.31.1/cgi-bin/luci/;stok=CCCCCCCCCCC</code>换成你自己的。</p></blockquote><h2 id="进入breed控制台">进入breed控制台</h2><blockquote><p>如何进breed请参考帖子：<a href="https://home.x-wan.top/archives/breed-kong-zhi-tai-shua-gu-jian-xiang-jie">https://home.x-wan.top/archives/breed-kong-zhi-tai-shua-gu-jian-xiang-jie</a></p></blockquote><h3 id="添加环境变量">添加环境变量</h3><p>点【环境变量编辑】，再点【添加】，字段为<code>xiaomi.r3g.bootfw</code>，值为<code>2</code>，再点【保存】</p><p><img src="https://img.x-wan.top/imgs/2022/04/8febc80609b4ae1a.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/9d067e93fba5b365.png" alt=""></p><h2 id="刷入底包固件">刷入底包固件</h2><p>点【固件更新】，在固件的右侧点浏览选<strong>openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-initramfs-kernel.bin</strong>，再点【上传】，再点【更新】，进度条走完后，等3分钟左右进op后台（后台地址192.168.5.1）</p><p><img src="https://img.x-wan.top/imgs/2022/04/30920c850b7a61a8.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/4f054bb0b49b2605.png" alt=""></p><h2 id="升级完整版固件">升级完整版固件</h2><p>192.168.5.1进入openwrt后台，点【系统】，再点【备份与升级】</p><p><img src="https://img.x-wan.top/imgs/2022/04/6dd01515df14b475.png" alt=""></p><p>再点【刷写固件】</p><p><img src="https://img.x-wan.top/imgs/2022/04/d88feeb02f339a8a.png" alt=""></p><p>再点【浏览】，选<strong>openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-sysupgrade.bin</strong>，再点【上传】</p><p><img src="https://img.x-wan.top/imgs/2022/04/8726ede66d1a9bdd.png" alt=""></p><p>再把保持设置配置的√去掉，再点【继续】</p><p><img src="https://img.x-wan.top/imgs/2022/04/b2e4915163918369.png" alt=""></p><h2 id="完成">完成</h2><p>等待5分钟，再进op后台即可完工</p><p><img src="https://img.x-wan.top/imgs/2022/04/3453d1f0e4739565.png" alt=""></p><h2 id="固件下载地址">固件下载地址</h2><p>网盘：<a href="http://pan.xiaowansm.top/">http://pan.xiaowansm.top/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 刷机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DOCKER  Dokcer的webui程序Portainer（openwrt群晖）</title>
       <link href="/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/"/>
       <url>/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/</url>
@@ -252,25 +296,6 @@
             <tag> Windows </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>小米CR6608固件介绍</title>
-      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 路由器 </category>
-          
-      </categories>
-      
       
     </entry>
     
