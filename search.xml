@@ -4,6 +4,75 @@
   
     
     <entry>
+      <title>YesPlayMusic部署教程</title>
+      <link href="/2022/05/04/YesPlayMusic%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/05/04/YesPlayMusic%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="YesPlayMusic部署教程"><a href="#YesPlayMusic部署教程" class="headerlink" title="YesPlayMusic部署教程"></a>YesPlayMusic部署教程</h1><h2 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h2><ul><li>项目地址：<a href="https://github.com/qier222/YesPlayMusic">https://github.com/qier222/YesPlayMusic</a></li></ul><h2 id="✨-特性"><a href="#✨-特性" class="headerlink" title="✨ 特性"></a>✨ 特性</h2><ul><li>✅ 使用 Vue.js 全家桶开发</li><li>🔴 网易云账号登录（扫码/手机/邮箱登录）</li><li>📺 支持 MV 播放</li><li>📃 支持歌词显示</li><li>📻 支持私人 FM / 每日推荐歌曲</li><li>🚫🤝 无任何社交功能</li><li>🌎️ 海外用户可直接播放（需要登录网易云账号）</li><li>🔐 支持 <a href="https://github.com/UnblockNeteaseMusic/server#音源清单">UnblockNeteaseMusic</a>，自动使用<a href="https://github.com/UnblockNeteaseMusic/server#音源清单">各类音源</a>替换变灰歌曲链接 （网页版不支持）<ul><li>「各类音源」指默认启用的音源。</li><li>YouTube 音源需自行安装 <code>yt-dlp</code>。</li></ul></li><li>✔️ 每日自动签到（手机端和电脑端同时签到）</li><li>🌚 Light/Dark Mode 自动切换</li><li>👆 支持 Touch Bar</li><li>🖥️ 支持 PWA，可在 Chrome/Edge 里点击地址栏右边的 ➕ 安装到电脑</li><li>🟥 支持 Last.fm Scrobble</li><li>☁️ 支持音乐云盘</li><li>⌨️ 自定义快捷键和全局快捷键</li><li>🎧 支持Mpris</li><li>🛠 更多特性开发中</li></ul><h2 id="📦️-安装"><a href="#📦️-安装" class="headerlink" title="📦️ 安装"></a>📦️ 安装</h2><p>Electron 版本由 <a href="https://github.com/hawtim">@hawtim</a> 和 <a href="https://github.com/qier222">@qier222</a> 适配并维护，支持 macOS、Windows、Linux。</p><p>访问本项目的 <a href="https://github.com/qier222/YesPlayMusic/releases">Releases</a><br>页面下载安装包。</p><ul><li><p>macOS 用户可以通过 Homebrew 来安装：<code>brew install --cask yesplaymusic</code></p></li><li><p>Windows 用户可以通过 Scoop 来安装：<code>scoop install extras/yesplaymusic</code></p></li></ul><h2 id="部署至-Vercel"><a href="#部署至-Vercel" class="headerlink" title="部署至 Vercel"></a>部署至 Vercel</h2><p>除了下载安装包使用，你还可以将本项目部署到 Vercel 或你的服务器上。下面是部署到 Vercel 的方法</p><ol><li><p>部署网易云 API，详情参见 <a href="https://home.x-wan.top/archives/neteasecloudmusicapi">服务器部署NeteaseCloudMusicApi方法</a> 。你也可以将 API 部署到 Vercel。</p></li><li><p>点击本仓库右上角的 Fork，复制本仓库到你的 GitHub 账号。</p><p><img src="https://t.x-wan.top/i/2022/05/02/z9hsjm.png" alt=""></p></li><li><p>打开 <a href="https://vercel.com/">Vercel.com</a>，使用 GitHub 登录。</p><p><img src="https://t.x-wan.top/i/2022/05/02/za5rzm.png" alt=""></p></li><li><p>点击 Import Git Repository 并选择你刚刚复制的仓库并点击 Import。</p><p><img src="https://t.x-wan.top/i/2022/05/02/zba82m.png" alt=""></p></li><li><p>点击 PERSONAL ACCOUNT 旁边的 Select。</p></li><li><p>点击 Environment Variables，填写 Name 为 <code>VUE_APP_NETEASE_API_URL</code>，Value 为你刚刚部署的网易云 API 地址，点击 Add。最后点击底部的 Deploy 就可以部署到 Vercel 了。</p></li></ol><p><img src="https://t.x-wan.top/i/2022/05/02/zd64hs.png" alt=""></p><h2 id="完成撒花"><a href="#完成撒花" class="headerlink" title="完成撒花"></a>完成撒花</h2><blockquote><p>点Go to Dashboard，再点Visit即可进入搭建好的网站</p><p>你也可以点View Domains绑定自己的域名</p></blockquote><p><img src="https://t.x-wan.top/i/2022/05/02/zijvbt.png" alt=""></p><ul><li>我搭建的YesPlayMusic：<a href="https://music.x-wan.top/">https://music.x-wan.top/</a></li><li>我的网易云api：<a href="https://api.x-wan.top/">https://api.x-wan.top/</a></li></ul><h2 id="支持客户端"><a href="#支持客户端" class="headerlink" title="支持客户端"></a>支持客户端</h2><blockquote><p>客户端支持解锁灰色音乐</p><p>客户端下载地址：<a href="https://github.com/qier222/YesPlayMusic/releases/tag/v0.4.5">https://github.com/qier222/YesPlayMusic/releases/tag/v0.4.5</a></p></blockquote><p><img src="https://t.x-wan.top/i/2022/05/02/10mf13i.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> YesPlayMusic </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>服务器部署NeteaseCloudMusicApi方法</title>
+      <link href="/2022/05/04/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2NeteaseCloudMusicApi%E6%96%B9%E6%B3%95/"/>
+      <url>/2022/05/04/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2NeteaseCloudMusicApi%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="服务器部署NeteaseCloudMusicApi方法"><a href="#服务器部署NeteaseCloudMusicApi方法" class="headerlink" title="服务器部署NeteaseCloudMusicApi方法"></a>服务器部署<a href="https://neteasecloudmusicapi.vercel.app/#/?id=neteasecloudmusicapi">NeteaseCloudMusicApi</a>方法</h1><blockquote><p>环境要求：</p><p>宝塔面板</p><p>安全组放行相应端口</p><p>pm2管理器</p></blockquote><h2 id="宝塔面板里新建站点"><a href="#宝塔面板里新建站点" class="headerlink" title="宝塔面板里新建站点"></a>宝塔面板里新建站点</h2><p><img src="https://t.x-wan.top/i/2022/05/02/xyywgu.png" alt=""></p><h2 id="下载源码，解压，放入站点根目录"><a href="#下载源码，解压，放入站点根目录" class="headerlink" title="下载源码，解压，放入站点根目录"></a>下载源码，解压，放入站点根目录</h2><blockquote><p>源码地址：<a href="https://github.com/Binaryify/NeteaseCloudMusicApi">https://github.com/Binaryify/NeteaseCloudMusicApi</a></p></blockquote><p><img src="https://t.x-wan.top/i/2022/05/02/yqb16s.png" alt=""></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#命令下载源码：</span><br><span class="line">cd /www/wwwroot/api.x-wan.top</span><br><span class="line">https://github.com/Binaryify/NeteaseCloudMusicApi.git</span><br></pre></td></tr></table></figure><p><img src="https://t.x-wan.top/i/2022/05/02/yqz6us.png" alt=""></p><h2 id="进入源代码根目录执行"><a href="#进入源代码根目录执行" class="headerlink" title="进入源代码根目录执行"></a>进入源代码根目录执行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install </span><br></pre></td></tr></table></figure><p><img src="https://t.x-wan.top/i/2022/05/02/ys7g6e.png" alt=""></p><h2 id="安装pm2管理器"><a href="#安装pm2管理器" class="headerlink" title="安装pm2管理器"></a>安装pm2管理器</h2><p><img src="https://t.x-wan.top/i/2022/05/02/xxeeiv.png" alt=""></p><h2 id="打开pm2管理器，添加项目"><a href="#打开pm2管理器，添加项目" class="headerlink" title="打开pm2管理器，添加项目"></a>打开pm2管理器，添加项目</h2><blockquote><p>启动文件名称为app.js</p><p>输入项目所在根目录</p><p>项目名称随意</p><p>点击保存</p></blockquote><p><img src="https://t.x-wan.top/i/2022/05/02/yu0jcq.png" alt=""></p><h2 id="添加反向代理"><a href="#添加反向代理" class="headerlink" title="添加反向代理"></a>添加反向代理</h2><blockquote><p>先放行3000端口</p></blockquote><p><img src="https://t.x-wan.top/i/2022/05/02/yw9h6d.png" alt=""></p><ul><li>至此API应该部署完成了，大家懒得部署的也可以访问我的<a href="https://api.x-wan.top/">API</a></li></ul><p><img src="https://t.x-wan.top/i/2022/05/02/yxoc4o.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MusicAPI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DOCKER  Dokcer的webui程序Portainer（openwrt群晖）</title>
       <link href="/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/"/>
       <url>/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/</url>
@@ -202,25 +271,6 @@
             <tag> Windows </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>小米CR6608固件介绍</title>
-      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 路由器 </category>
-          
-      </categories>
-      
       
     </entry>
     
