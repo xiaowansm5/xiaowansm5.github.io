@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>DOCKER  Dokcer的webui程序Portainer（openwrt群晖）</title>
+      <link href="/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/"/>
+      <url>/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>DOCKER | Dokcer的webui程序Portainer（openwrt/群晖）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer</span><br></pre></td></tr></table></figure><h2 id="扩展引用">扩展引用</h2><h4 id="设置混扎模式">设置混扎模式</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ip link set ovs_eth0 promisc on</span><br><span class="line">#其中ovs_eth0 这个需要修改，输入ifconfig 看你的IP地址在哪个位置就修改为什么</span><br></pre></td></tr></table></figure><h4 id="设置MACVLAN">设置MACVLAN</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=10.0.0.0/24 --gateway=10.0.0.252 -o parent=ovs_eth0 macvlan</span><br><span class="line"></span><br><span class="line">#其中ovs_eth0 这个需要修改，输入ifconfig 看你的IP地址在哪个位置就修改为什么,macvlan为名称可以随意修改</span><br></pre></td></tr></table></figure><h4 id="启动openwrt命令">启动openwrt命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --restart always --name vlede --network macvlan --ip=10.0.0.99 --privileged veelove/vlede:1.4.2 /sbin/init</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git 服务器搭建</title>
+      <link href="/2022/04/28/Git%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/"/>
+      <url>/2022/04/28/Git%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Git 服务器搭建</h1><p>上一章节中我们远程仓库使用了 Github，Github 公开的项目是免费的，2019 年开始 Github 私有存储库也可以无限制使用。</p><p>这当然我们也可以自己搭建一台 Git 服务器作为私有仓库使用。</p><p>接下来我们将以 Centos 为例搭建 Git 服务器。</p><h3 id="1、安装Git">1、安装Git</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</span><br><span class="line">$ yum install git</span><br></pre></td></tr></table></figure><p>接下来我们 创建一个git用户组和用户，用来运行git服务：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ groupadd git</span><br><span class="line">$ useradd git -g git</span><br></pre></td></tr></table></figure><h3 id="2、创建证书登录">2、创建证书登录</h3><p>收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。</p><p>如果没有该文件创建它：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cd /home/git/</span><br><span class="line">$ mkdir .ssh</span><br><span class="line">$ chmod 755 .ssh</span><br><span class="line">$ touch .ssh/authorized_keys</span><br><span class="line">$ chmod 644 .ssh/authorized_keys</span><br></pre></td></tr></table></figure><h3 id="3、初始化Git仓库">3、初始化Git仓库</h3><p>首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/runoob.git，在/home/gitrepo目录下输入命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cd /home</span><br><span class="line">$ mkdir gitrepo</span><br><span class="line">$ chown git:git gitrepo/</span><br><span class="line">$ cd gitrepo</span><br><span class="line"></span><br><span class="line">$ git init --bare runoob.git</span><br><span class="line">Initialized empty Git repository in /home/gitrepo/runoob.git/</span><br></pre></td></tr></table></figure><p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ chown -R git:git runoob.git</span><br></pre></td></tr></table></figure><h3 id="4、克隆仓库">4、克隆仓库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git clone git@192.168.45.4:/home/gitrepo/runoob.git</span><br><span class="line">Cloning into &#x27;runoob&#x27;...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">Checking connectivity... done.</span><br></pre></td></tr></table></figure><p>192.168.45.4 为 Git 所在服务器 ip ，你需要将其修改为你自己的 Git 服务 ip。</p><p>这样我们的 Git 服务器安装就完成。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GIT 学习</title>
+      <link href="/2022/04/28/GIT%20%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2022/04/28/GIT%20%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Windows-安装-git">Windows 安装 git</h2><p>下载 <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a> 安装无脑下一步</p><h2 id="设置名字，邮箱">设置名字，邮箱</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config –global user.name “Xpand”</span><br><span class="line">git config –global user.email “admin@qwas.top”</span><br></pre></td></tr></table></figure><span id="more"></span><blockquote><p>git config 命令的 –global 参数，用了这个参数，表示这台机器上所有仓库都会使用这个配置，当然也可以单独给每个仓库配置</p></blockquote><h2 id="创建仓库">创建仓库</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd f: 进入 f 盘</span><br><span class="line">mkdir gitxuexi 创建 gitxuexi 文件夹</span><br><span class="line">cd gitxuexi 进入 gitxuexi 文件夹</span><br><span class="line">pwd 查看当前目录</span><br></pre></td></tr></table></figure><p>$ git init 设置这个目录 Git 可以管理的仓库</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Initialized empty Git repository in F:/gitxuexi/.git/</span><br></pre></td></tr></table></figure><p>仓库创建会生成.git 目录，但目录是隐藏的，可以用 <code>ls -ah</code> 命令查看</p><blockquote><p>注意：Windows 自带的记事本会在每个文件开头添加了 0xefbbbf（十六进制）的字符</p></blockquote><h2 id="添加到仓库">添加到仓库</h2><p>编写一个 readme.txt 文件，<br>添加 <code>git add readme.txt</code> 到仓库<br>提交 <code>git commit -m</code> “提交说明”</p><h2 id="时光穿梭机">时光穿梭机</h2><p>修改文件内容<br>git status 运行查看仓库状态会提示你文件被修改过，但没有准备提交的修改。<br>git diff 查看具体被改动的地方</p><h2 id="版本回退">版本回退</h2><p><code>git log</code> 查看历史记录<br><code>git log –pretty=oneline</code> 查看简略记录<br>上个版本用 HEAD^ 表示，上上个版本用 HEAD^^ 表示，前 100 版本用 HEAD~100<br>回退命令 <code>git reset –hard HEAD^</code><br>回到最新 <code>git reset –hard</code> &lt;代表版本号的哈希值&gt;<br><code>git reflog</code> 用来记录你每一次命令</p><h2 id="工作区和暂存区">工作区和暂存区</h2><p><code>git add</code> 命令实际上就是把要提交的所有修改改到暂放区，然后，执行 <code>git commit</code> 就可以一次性把暂存区的所有修改提交到分支。</p><h2 id="管理修改">管理修改</h2><p><code>git diff HEAD – readme.txt</code><br><code>git diff HEAD –</code> &lt;需要比较的文件&gt;<br>Git 是跟踪修改的，每次修改，如果不用 git add 到暂存区，那就不会加入到 commit 中</p><h2 id="撤销修改">撤销修改</h2><p><code>git checkout – readme.txt</code><br><code>git checkout –</code> &lt;需要撤销的文件&gt;<br><code>git reset HEAD</code> &lt;需要丢弃修改文件&gt;<br>撤销修改</p><h2 id="删除文件">删除文件</h2><p>命令 <code>git rm</code> 用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</p><h2 id="远程仓库">远程仓库</h2><p>创建 SSH Key</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C “admin@qwas.top“</span><br></pre></td></tr></table></figure><h2 id="添加远程库">添加远程库</h2><p>从电脑上连接到 github 仓库上</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:xiaopengand/xpand.git</span><br></pre></td></tr></table></figure><p>把本地库推送到远程库上</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure><p>把本地库的内容推送到远程，用 <code>git push</code> 命令，实际上是把当前分支 master 推送到远程。</p><p>由于远程库是空的，我们第一次推送 master 分支时，加上了 - u 参数，Git 不但会把本地的 master 分支内容推送的远程新的 master 分支，还会把本地的 master 分支和远程的 master 分支关联起来，在以后的推送或者拉取时就可以简化命令。<br>从现在起，只要本地作了提交，就可以通过命令：</p><p><code>git push origin master</code><br>把本地 master 分支的最新修改推送至 GitHub，现在，你就拥有了真正的分布式版本库！<br>这里遇到了一个问题，花了我半天时间，<br>连不上<br>最后发现只是公司 ip 被墙了，用自己流量就行了，就这花了我半天时间。</p><h2 id="远程仓库克隆">远程仓库克隆</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone &lt;远程仓库地址&gt;</span><br></pre></td></tr></table></figure><h2 id="分支管理">分支管理</h2><p>创建与合并分支<br>查看分支：<code>git branch</code><br>创建分支：<code>git branch</code> &lt;需要创建分支名&gt;<br>切换分支：<code>git checkout</code> &lt;需要切换的分支&gt; 或 <code>git switch</code> &lt; 需要切换的分支 &gt;<br>创建 + 切换分支：<code>git checkout -b</code> 或 <code>git switch -c</code><br>合并某分支到当前分支：<code>git merge</code><br>删除分支：<code>git branch -d</code></p><h2 id="解决冲突">解决冲突</h2><p>当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。<br>解决冲突就是把 Git 合并失败的文件手动编辑为我们希望的内容，再提交。<br>用 <code>git log –graph</code> 命令可以看到分支合并图。</p><h2 id="分支管理策略">分支管理策略</h2><p><code>git merge –no-ff -m</code> “更新说明” &lt; 合并分支名 &gt;<br>合并分支时，加上<code>–no-ff</code> 参数就可以用普通模式合并，合并后的历史有分支，能看出曾经做过合并，而 fast forward 合并就看不出来曾经做过的合并。</p><h2 id="Bug-分支">Bug 分支</h2><p>但手头分支没有完成时，先把工作现场 <code>git stash</code> 一下，然后去其他分支修复，再 <code>git stash pop</code>，回到工作现场；再 master 分支上修复 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick</code> 命令，把 bug 提交的修改 “复制” 到当前分支，避免重复劳动。</p><h2 id="Feature-分支">Feature 分支</h2><p>开发一个新的 feature，最好新建一个分支<br>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D</code> &lt;需要强制删除的分支名&gt; 强行删除。</p><h2 id="多人协作">多人协作</h2><p>查看远程仓库：<code>git remote</code><br>或者用 <code>git remote -v</code> 显示更详细的信息<br>显示了 push 说明有推送权限<br>推送分支：<code>git push origin master</code><br>推送其他分支：<code>git push</code> &lt;远程仓库名称&gt; &lt; 其他分支名称 &gt;<br>抓取分支<br>远程克隆：<code>git clone</code> 仓库地址<br><code>git branch</code> 查看分支<br><code>git push origin dev</code> 推送 dev 分支到远程<br><code>git checkout -b dev origin/dev</code> 创建远程 origin 的 dev 分支到本地</p><ol><li>首先，可以试图用 <code>git push origin</code> 推送自己的修改；</li><li>如果推送失败，则因为远程分支比你的本地更新，需要先用 git pull 试图合并；</li><li>如果合并有冲突，则解决冲突，并在本地提交；</li><li>没有冲突或者解决掉冲突后，再用 <code>git push origin</code> 推送就能成功！<br>如果 git pull 提示 no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令 <code>git branch –set-upstream-to origin/</code></li></ol><h2 id="小结">小结</h2><p>查看远程库信息，使用 <code>git remote -v</code>；<br>本地新建的分支如果不推送到远程，对其他人就是不可见的；<br>从本地推送分支，使用 <code>git push origin branch-name</code>，如果推送失败，先用 git pull 抓取远程的新提交；<br>在本地创建和远程分支对应的分支，使用 <code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；<br>建立本地分支和远程分支的关联，使用 <code>git branch –set-upstream branch-name origin/branch-name</code>；<br>从远程抓取分支，使用 <code>git pull</code>，如果有冲突，要先处理冲突.</p><p>Rebase<br>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；<br>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比</p><h2 id="标签管理">标签管理</h2><h3 id="创建标签">创建标签</h3><p>创建标签：<code>git tag</code><br>查看标签：<code>git tag</code><br>给历史记录打上标签：<code>git tag</code><br>查看标签信息：<code>git show</code><br>创建带有说明的标签，用 - a 指定标签名，-m 指定说明文字：<br><code>git tag -a v0.1 -m</code> ” 标签说明 “</p><h3 id="操作标签">操作标签</h3><p>删除标签：<code>git tag -d</code><br>推送标签到远程仓库：<code>git push origin v1.0</code><br>一次性推送全部标签：<code>git push origin –tags</code><br>如果删除远程标签：<br>先删除本地 <code>git tag -d</code><br>然后从远程删除，删除命令也是 push，但格式如下：<br><code>git push origin :refs/tags/</code></p><h2 id="使用-GitHub">使用 GitHub</h2><h3 id="使用-Gitee">使用 Gitee</h3><p>使用命令 <code>git remote add origin</code> &lt;仓库地址&gt;<br>使用 <code>gir remote add</code> 时报错<br>说明本地库已经关联了一个名叫 origin 的远程库，此时，可以先用 <code>git remote -v</code> 查看远程信息<br>删除已有的 github 远程库：<code>git remote rm origin</code><br>再关联 Gitee 的远程库<br><code>git remote add origin</code> &lt;gitee 仓库地址&gt;<br>通过 git push 命令就可以把本地库推送到 Gitee 上。<br>一个本地库同时关联到 GitHub，又关联 Gitee</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add github` &lt;github 仓库地址&gt;</span><br><span class="line">git remote add gitee` &lt;gitee 仓库地址&gt;</span><br><span class="line">git push github master</span><br><span class="line">git push gitee master`</span><br></pre></td></tr></table></figure><h3 id="自定义-Git">自定义 Git</h3><p><code>git config –global color.ui true</code><br>这样，Git 会适当地显示不同的颜色。</p><h3 id="忽略特殊文件">忽略特殊文件</h3><p>忽略文件的原则是：</p><ol><li>忽略操作系统自动生成的文件，如缩略图等；</li><li>忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没有必要放进版本库，比如 Java 生成的.class 文件；</li><li>忽略你自己带有敏感信息的配置文件，如存放口令的配置文件。<br>在 Git 工作区下的根目录创建一个特权的.gitignore 文件，然后把要忽略的文件名填进去，Git 就会自动忽略这些文件。GitHub 上有各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：配置文件地址 <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a><br>如果你确实添加该文件，可以用 - f 强制添加到 git：<br><code>git add -f</code><br>或者你发现，可能是.gitignore 写的有问题，需要找出来到底哪个规则写错了，可以用 <code>git check-ignore</code> 命令检查，-v 参数查看具体：<br><code>git check-ignore -v</code><br>把指定文件排除在.gitignore 规则外的写法就是！+ 文件名。</li></ol><h3 id="配置别名">配置别名</h3><p><code>git config –global alias.st status</code><br>输入 <code>git st</code> 表示 git status<br><code>–global</code> 参数是全局参数，也就是这些命令在这台电脑的所有 Git 仓库下都有用。<br>甚至还有人丧心病狂地把 lg 配置成了：</p><p>配置 Git 的时候，加上–global 是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。<br>配置文件放哪了？每个仓库的 Git 配置文件都放在.git/config 文件中：<br>别名就在 [alias] 后面，要删除别名，直接把对应的行删掉即可。<br>而当前用户的 Git 配置文件放在用户主目录下的一个隐藏文件.gitconfig 中：</p><h3 id="搭建-Git-服务器">搭建 Git 服务器</h3><p>文章参考 <a href="https://home.x-wan.top/archives/git-server">https://home.x-wan.top/archives/git-server</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OPENWRT | 突发openwrt无法进入后台，空白一片，但是网络正常的解决方案</title>
+      <link href="/2022/04/28/OPENWRT%20%20%E7%AA%81%E5%8F%91openwrt%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E7%A9%BA%E7%99%BD%E4%B8%80%E7%89%87%EF%BC%8C%E4%BD%86%E6%98%AF%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2022/04/28/OPENWRT%20%20%E7%AA%81%E5%8F%91openwrt%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E7%A9%BA%E7%99%BD%E4%B8%80%E7%89%87%EF%BC%8C%E4%BD%86%E6%98%AF%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>OPENWRT | 突发openwrt无法进入后台，空白一片，但是网络正常的解决方案</h1><p>最近有很多朋友反应突然openwrt无法进入后台，空白一片，但是网络正常，这个问题主要是openwrt使用的主题存在某方面的BUG导致的。下面来看如何解决急救方法。</p><p>方法一：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/config</span><br><span class="line">ls</span><br></pre></td></tr></table></figure><p>可以看到argon文件，然后输入以下命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi argon</span><br><span class="line">把里面的的1改为0即可</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-18-%E4%B8%8A%E5%8D%8811.50.45.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-18-%E4%B8%8A%E5%8D%8811.50.45.png" alt="OPENWRT | "></a></p><p>方法二：</p><h2 id="一、首先下载一个临时的主题使用">一、首先下载一个临时的主题使用</h2><p>这里为大家提供的是material主题，BUG相对较少</p><p><a href="https://veework.i234.me:8001/sharing/VQfY2WB1O">下载主题文件</a></p><h2 id="二、把下载好的主题文件上传到openwrt的tmp临时文件目录。">二、把下载好的主题文件上传到openwrt的tmp临时文件目录。</h2><p>这里电脑是苹果电脑直接使用终端，win电脑使用CMD命令调出终端。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp /电脑所在的路径（直接把主题拖进来就会自动生成路径）/luci-theme-material_0.2.19-1_all.ipk root@10.10.10.252:/tmp      </span><br><span class="line"></span><br><span class="line">#root@10.10.10.252:/tmp 这里面的IP地址更改为你的openwrt路由器的地址</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.35.56-1024x272.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.35.56-1024x272.png" alt="OPENWRT | "></a></p><h2 id="三、登录openwrt的ssh-去安装这个主题">三、登录openwrt的ssh 去安装这个主题</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg install /tmp/luci-theme-XXXX.ipk      </span><br><span class="line"></span><br><span class="line">#xxxx的地方换为主题的名称，luci-theme-material_0.2.19-1_all.ipk</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.39.30-1024x461.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.39.30-1024x461.png" alt="OPENWRT | "></a></p><h2 id="四、选择新主题，由于进不了后台，所以也只能用命令来更换新主题">四、选择新主题，由于进不了后台，所以也只能用命令来更换新主题</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/config/luci</span><br></pre></td></tr></table></figure><p>找到里面这行内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">option mediaurlbase &#x27;/luci-static/argon&#x27;</span><br><span class="line"></span><br><span class="line">替换为</span><br><span class="line"></span><br><span class="line">option mediaurlbase &#x27;/luci-static/material&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#material 就是新主题的名称</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.42.48-1024x932.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.42.48-1024x932.png" alt="OPENWRT |"></a></p><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.43.43-1024x735.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.43.43-1024x735.png" alt="OPENWRT | "></a></p><p>替换完后无需从起 从新刷新openwrt的页面 就可以进入并看到替换的主题了</p><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.46.04-1024x458.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.46.04-1024x458.png" alt="OPENWRT | "></a></p><h2 id="五、如果想卸载主题">五、如果想卸载主题</h2><p>1.查看已经安装的主题</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg list-installed|grep luci-theme</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.47.49-1024x144.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.47.49-1024x144.png" alt="OPENWRT | "></a></p><p>这里查询安装了两个主题 一个 argon 一个material，现在我们卸载新主题material</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg remove luci-theme-material     #luci-theme-argon-material主题我们上面查询到的</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.52.47.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.52.47.png" alt="OPENWRT | "></a></p><p>注意：卸载完后，后台图形界面还在会有该主题的名称选项</p><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.53.11-1024x451.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.53.11-1024x451.png" alt="OPENWRT | "></a></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/config/luci</span><br></pre></td></tr></table></figure><p>在里面找到这个位置，把option Material ‘/luci-static/material’ 这行删除，无需从起</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config internal &#x27;themes&#x27;</span><br><span class="line">        option Argon &#x27;/luci-static/argon&#x27;</span><br><span class="line">        option Material &#x27;/luci-static/material&#x27;</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.55.10-1024x876.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/12/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%889.55.10-1024x876.png" alt="OPENWRT | "></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OPENWRT | 端口如何转发小白篇</title>
+      <link href="/2022/04/28/OPENWRT%20%20%E7%AB%AF%E5%8F%A3%E5%A6%82%E4%BD%95%E8%BD%AC%E5%8F%91%E5%B0%8F%E7%99%BD%E7%AF%87/"/>
+      <url>/2022/04/28/OPENWRT%20%20%E7%AB%AF%E5%8F%A3%E5%A6%82%E4%BD%95%E8%BD%AC%E5%8F%91%E5%B0%8F%E7%99%BD%E7%AF%87/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>OPENWRT | 端口如何转发小白篇</h1><h2 id="一、网络—-防火墙，把红框里面的都改为接受">一、网络—-防火墙，把红框里面的都改为接受</h2><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.42.34-1024x481.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.42.34-1024x481.png" alt="OPENWRT | "></a></p><h2 id="二、在端口转发页面配置端口转发">二、在端口转发页面配置端口转发</h2><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.45.30-1024x312.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.45.30-1024x312.png" alt="OPENWRT | "></a></p><h2 id="三、通过以上两个步骤配置后，端口转发不通的，把第二步配置的端口转发删除，手动进行转发配置">三、<strong>通过以上两个步骤配置后，端口转发不通的，把第二步配置的端口转发删除，手动进行转发配置</strong></h2><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.50.58-1024x289.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/09/%E6%88%AA%E5%B1%8F2021-09-05-%E4%B8%8B%E5%8D%884.50.58-1024x289.png" alt="OPENWRT | "></a></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -t nat -I PREROUTING -i pppoe-wan -p tcp --dport 8000 -j DNAT --to-destination 10.10.10.252:80</span><br></pre></td></tr></table></figure><p>以上命令中：8000是自定的外网端口，10.10.10.252:80是内网IP+端口</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 端口转发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IPTV | 关于IPTV的一些常用命令</title>
+      <link href="/2022/04/28/IPTV%20%20%E5%85%B3%E4%BA%8EIPTV%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2022/04/28/IPTV%20%20%E5%85%B3%E4%BA%8EIPTV%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>IPTV | 关于IPTV的一些常用命令</h1><h4 id="获取root权限">获取root权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su      #不一定适用每一个设备</span><br></pre></td></tr></table></figure><h4 id="给予system读写权限">给予system读写权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount -o remount -o rw /system</span><br><span class="line">#以上方式无法给予读写权限，用下面的方法：</span><br><span class="line">su</span><br><span class="line">echo 1 &gt; /sys/class/remount/need_remount</span><br><span class="line">mount -o rw,remount /system</span><br></pre></td></tr></table></figure><h4 id="备份各分区文件">备份各分区文件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /dev/block/platform/.......       #/......的具体具体根据不同盒子进入分区备份</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/07/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-07-05-101635.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/07/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-07-05-101635.png" alt="IPTV | "></a></p><h4 id="举例：">举例：</h4><p>插入U盘到IPTV盒子，输入命令列出U盘目录</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure><p><a href="https://www.vediotalk.com/wp-content/uploads/2021/07/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-07-05-101734.png"><img src="https://www.vediotalk.com/wp-content/uploads/2021/07/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-07-05-101734.png" alt="IPTV | "></a></p><p><strong>备份</strong></p><p>这里举例把boot分区备份到U盘</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dd if=/dev/block/boot of=/storage/external_storage/sda1/boot</span><br><span class="line"></span><br><span class="line">#/dev/block/boot为分区路径   /storage/external_storage/sda1/为U盘路径，后面的boot按分区名称自定义一个备份的名称</span><br></pre></td></tr></table></figure><p><strong>还原</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dd if=/storage/external_storage/sda1/boot of=/dev/block/boott</span><br><span class="line"></span><br><span class="line">#/dev/block/boot为分区路径   /storage/external_storage/sda1/为U盘路径，后面的boot按分区名称自定义一个备份的名称</span><br></pre></td></tr></table></figure><h4 id="开机画面">开机画面</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /system/media</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 电视盒子 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IPTV </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TinyFileManager - PHP轻量文件管理器</title>
+      <link href="/2022/04/28/TinyFileManager%20-%20PHP%E8%BD%BB%E9%87%8F%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8/"/>
+      <url>/2022/04/28/TinyFileManager%20-%20PHP%E8%BD%BB%E9%87%8F%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>TinyFileManager - PHP轻量文件管理器</h1><p>Tiny File Manager 正如他名字一样，轻量文件管理器，主要文件就三个文件。安装<code>pecl-rar</code>和<code>pecl-zip</code>扩展后可在线 读取/解压/生成 压缩文件。</p><h2 id="项目地址">项目地址</h2><p><a href="https://github.com/prasathmani/tinyfilemanager">https://github.com/prasathmani/tinyfilemanager</a></p><p>本站下载<br>链接：<a href="https://p.x-wan.top/d/PC%E8%BD%AF%E4%BB%B6%E3%80%90%E8%93%9D%E5%A5%8F%E4%BA%91%E3%80%91/Linux/tinyfilemanager-2.4.7.zip">下载</a><br>注意：本站下载链接为本文章发布时软件的最高版本，可能与当前时间提供版本有较大差距</p><h2 id="使用">使用</h2><p>git下载文件后，上传到服务器，解压，访问<code>网站/文件夹/tinyfilemanager.php</code>，默认账号：<code>admin</code>，默认密码：<code>admin@123</code>。<code>config.php</code>、<code>translation.json</code>、<code>tinyfilemanager.php</code>分别是配置文件、语言文件、主文件，保存这三项即可。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/1.3jhmc2cqznk0.webp" alt="tiny file manager"></p><p>tiny file manager</p><p>登陆后，可以在右上角设置，设置语言、显示错误、显示隐藏文件、隐藏权限和文件夹大小，通过右上角帮助，生成hash密码，可以生成密码替换<code>config.php</code>文件内数组<code>$auth_users</code>，第一项账号，第二项密码hash。通过修改<code>$readonly_users</code>可以设置哪个账号为用户账号。用户账号只能读取文件，管理员账号可以上传，修改，删除等操作。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/2.3g09xd35v1c0.webp" alt="管理员账号"></p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/3.6wout60tgjw0.webp" alt="用户账号"></p><p>读取压缩文件</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 文件管理 </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Windows OpenSSH配置多密钥登录Linux</title>
+      <link href="/2022/04/28/Windows%20OpenSSH%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95Linux/"/>
+      <url>/2022/04/28/Windows%20OpenSSH%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95Linux/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>vscode连接远程服务器需要输入密码，搜索了一下基本都是客户端生成密钥后，将公钥上传到服务器，但是个人觉得多台服务器同个公钥不太安全。</p><h2 id="服务器生成密钥">服务器生成密钥</h2><p>切换到<code>.ssh</code>文件夹，输入<code>ssh-keygen</code>，第一个是备注名，后面是私钥密码，理论默认就行。生成后将*.pub写入到<code>authorized_keys</code>内。使用sftp等工具将私钥文件下载并保存到本地。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/1.6u5oewr02740.webp" alt="配置服务器"></p><p>配置服务器</p><h2 id="修改本地配置文件">修改本地配置文件</h2><p>打开本地config文件，路径在<code>C:\Users\用户名\.ssh\config</code>内。IdentityFile填写得是你下载的私钥的路径，我是保存在同意文件夹内。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/2.3rlyk826f7g0.webp" alt="私钥路径"></p><p>私钥路径</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/3.4i1f1d8drrs0.webp" alt="配置文件"></p><p>配置文件</p><p>最后连接只需要填写连接的备注名，使用IP连接是无法免密码连接的。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/4.56oa6s0baes0.webp" alt="连接"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo常用命令笔记</title>
+      <link href="/2022/04/27/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/"/>
+      <url>/2022/04/27/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="hexo">hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo -g <span class="comment">#安装  </span></span><br><span class="line">npm update hexo -g <span class="comment">#升级  </span></span><br><span class="line">hexo init <span class="comment">#初始化</span></span><br></pre></td></tr></table></figure><h2 id="简写">简写</h2><p><code>hexo n &quot;我的博客&quot;</code> == <code>hexo new &quot;我的博客&quot;</code> #新建文章<br><code>hexo p</code> == <code>hexo publish</code><br><code>hexo g</code> == <code>hexo generate</code>#生成<br><code>hexo s</code> == <code>hexo server</code> #启动服务预览<br><code>hexo d</code> == <code>hexo deploy</code>#部署</p><h2 id="服务器">服务器</h2><p><code>hexo server</code> #Hexo 会监视文件变动并自动更新，您无须重启服务器。<br><code>hexo server -s</code> #静态模式<br><code>hexo server -p 5000</code> #更改端口<br><code>hexo server -i 192.168.1.1</code> #自定义 IP</p><p><code>hexo clean</code> #清除缓存 网页正常情况下可以忽略此条命令<br><code>hexo g</code> #生成静态网页<br><code>hexo d</code> #开始部署</p><h3 id="监视文件变动">监视文件变动</h3><p><code>hexo generate</code> #使用 Hexo 生成静态文件快速而且简单<br><code>hexo generate --watch</code> #监视文件变动</p><h3 id="完成后部署">完成后部署</h3><blockquote><p>两个命令的作用是相同的<br><code>hexo generate --deploy</code><br><code>hexo deploy --generate</code></p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo deploy -g`</span><br><span class="line">`hexo server -g</span><br></pre></td></tr></table></figure><h2 id="草稿">草稿</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure><h2 id="模版">模版</h2><p><code>hexo new &quot;postName&quot;</code> #新建文章<br><code>hexo new page &quot;pageName&quot;</code> #新建页面<br><code>hexo generate</code> #生成静态页面至public目录<br><code>hexo server</code> #开启预览访问端口（默认端口4000，'ctrl + c’关闭server）<br><code>hexo deploy</code> #将.deploy目录部署到GitHub</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;`</span><br><span class="line">`hexo new photo &quot;My Gallery&quot;`</span><br><span class="line">`hexo new &quot;Hello World&quot; --lang tw</span><br></pre></td></tr></table></figure><table><thead><tr><th>变量</th><th>描述</th></tr></thead><tbody><tr><td>layout</td><td>布局</td></tr><tr><td>title</td><td>标题</td></tr><tr><td>date</td><td>文件建立日期</td></tr></tbody></table><figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">title: 使用Hexo搭建个人博客</span><br><span class="line">layout: post</span><br><span class="line">date: 2014<span class="string">-03</span><span class="string">-03</span> 19:07:43</span><br><span class="line">comments: true</span><br><span class="line">categories: Blog</span><br><span class="line"><span class="keyword">tags:</span> [Hexo]</span><br><span class="line">keywords: Hexo, Blog</span><br><span class="line">description: 生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</span><br></pre></td></tr></table></figure><h2 id="模版（Scaffold）">模版（Scaffold）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new photo &quot;My Gallery&quot;</span><br></pre></td></tr></table></figure><table><thead><tr><th>变量</th><th>描述</th></tr></thead><tbody><tr><td>layout</td><td>布局</td></tr><tr><td>title</td><td>标题</td></tr><tr><td>date</td><td>文件建立日期</td></tr></tbody></table><h2 id="设置文章摘要">设置文章摘要</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">以上是文章摘要 <span class="comment">&lt;!--more--&gt;</span> 以下是余下全文 </span><br></pre></td></tr></table></figure><h2 id="写作">写作</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page &lt;title&gt;`</span><br><span class="line">`hexo new post &lt;title&gt;</span><br></pre></td></tr></table></figure><table><thead><tr><th>变量</th><th>描述</th></tr></thead><tbody><tr><td>:title</td><td>标题</td></tr><tr><td>:year</td><td>建立的年份（4 位数）</td></tr><tr><td>:month</td><td>建立的月份（2 位数）</td></tr><tr><td>:i_month</td><td>建立的月份（去掉开头的零）</td></tr><tr><td>:day</td><td>建立的日期（2 位数）</td></tr><tr><td>:i_day</td><td>建立的日期（去掉开头的零）</td></tr></tbody></table><h3 id="推送到服务器上">推送到服务器上</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n` #写文章</span><br><span class="line">`hexo g` #生成</span><br><span class="line">`hexo d` #部署 #可与`hexo g`合并为 `hexo d -g</span><br></pre></td></tr></table></figure><h2 id="报错">报错</h2><h3 id="1-找不到git部署">1.找不到git部署</h3><figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR </span>Deployer not found: git</span><br></pre></td></tr></table></figure><p><strong>解决方法</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><h3 id="3-部署类型设置git">3.部署类型设置git</h3><p>hexo 3.0 部署类型不再是<code>github</code>，<code>_config.yml</code> 中修改</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: git@***.github.com:***/***.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><h3 id="4-xcodebuild">4. xcodebuild</h3><p>xcode-select: error: tool ‘xcodebuild’ requires Xcode, but active developer directory ‘/Library/Developer/CommandLineTools’ is a command line tools instance</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install bcrypt</span><br></pre></td></tr></table></figure><h3 id="5-RSS不显示">5. RSS不显示</h3><h4 id="安装RSS插件">安装RSS插件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure><h4 id="开启RSS功能">开启RSS功能</h4><p>编辑hexo/_config.yml，添加如下代码：</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">rss: /atom.<span class="keyword">xml</span> <span class="title">#rss</span>地址  默认即可</span><br></pre></td></tr></table></figure><h4 id="开启评论">开启评论</h4><p>1.我使用多说代替自带的评论，在<a href="http://duoshuo.com/">多说</a> 网站注册 &gt; 后台管理 &gt; 添加新站点 &gt; 工具 === 复制通用代码 里面有 short_name</p><ol><li>在根目录 <code>_config.yml</code> 添加一行 <code>disqus_shortname: jslite</code> 是在多说注册时产生的</li><li>复制到 <code>themes\landscape\layout\_partial\article.ejs</code><br>把</li></ol><figure class="highlight mojolicious"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">&lt;%</span><span class="language-perl"> <span class="keyword">if</span> (!<span class="keyword">index</span> &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; </span><span class="language-xml">%&gt;</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;comments&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;disqus_thread&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;//disqus.com/?ref_noscript&quot;</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">&lt;%</span><span class="language-perl"> &#125; </span><span class="language-xml">%&gt;</span></span><br></pre></td></tr></table></figure><p>改为</p><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;% if (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;comments&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ds-thread&quot;</span> <span class="attr">data-thread-key</span>=<span class="string">&quot;&lt;%= post.layout %&gt;-&lt;%= post.slug %&gt;&quot;</span> <span class="attr">data-title</span>=<span class="string">&quot;&lt;%= post.title %&gt;&quot;</span> <span class="attr">data-url</span>=<span class="string">&quot;&lt;%= page.permalink %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> duoshuoQuery = &#123;<span class="attr">short_name</span>:<span class="string">&#x27;&lt;%= config.disqus_shortname %&gt;&#x27;</span>&#125;;</span></span><br><span class="line"><span class="language-javascript">      (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> ds = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        ds.<span class="property">type</span> = <span class="string">&#x27;text/javascript&#x27;</span>;ds.<span class="property">async</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        ds.<span class="property">src</span> = (<span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">protocol</span> == <span class="string">&#x27;https:&#x27;</span> ? <span class="string">&#x27;https:&#x27;</span> : <span class="string">&#x27;http:&#x27;</span>) + <span class="string">&#x27;//static.duoshuo.com/embed.js&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        ds.<span class="property">charset</span> = <span class="string">&#x27;UTF-8&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        (<span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>] </span></span><br><span class="line"><span class="language-javascript">         || <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;body&#x27;</span>)[<span class="number">0</span>]).<span class="title function_">appendChild</span>(ds);</span></span><br><span class="line"><span class="language-javascript">      &#125;)();</span></span><br><span class="line"><span class="language-javascript">      </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt和Padavan固件pppoe拨号上网设置</title>
+      <link href="/2022/04/27/openwrt%E5%92%8CPadavan%E5%9B%BA%E4%BB%B6pppoe%E6%8B%A8%E5%8F%B7%E4%B8%8A%E7%BD%91%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/04/27/openwrt%E5%92%8CPadavan%E5%9B%BA%E4%BB%B6pppoe%E6%8B%A8%E5%8F%B7%E4%B8%8A%E7%BD%91%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="OpenWrt固件">OpenWrt固件</h2><p>1、进OP后台，点【网络】–【接口】–【WAN】–【修改】</p><blockquote><p>**注意：**是点WAN的修改，不是LAN，很多小白搞错</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/3ee093aee70682ea.png" alt=""></p><p>2、传输协议选【pppoe】，再点【切换协议】</p><p><img src="https://img.x-wan.top/imgs/2022/04/c416dd04595967fc.png" alt=""></p><p>3、填入你的宽带账号和密码，再点【保存应用】</p><p><img src="https://img.x-wan.top/imgs/2022/04/0336282b0c61b6e9.png" alt=""></p><p>4、稍等片刻ipv4地址有了就可以上网了，如果无法上网，重启光猫和路由器。</p><p><img src="https://img.x-wan.top/imgs/2022/04/c7d199e66de3d94f.png" alt=""></p><h2 id="Padavan固件">Padavan固件</h2><blockquote><p>padavan比较简单，下图都能看懂了吧</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/9a0bb783f4857c23.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> pppoe </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Windows 远程桌面连接提示“出现了内部错误”的解决办法</title>
+      <link href="/2022/04/27/Windows%20%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E6%8F%90%E7%A4%BA%E2%80%9C%E5%87%BA%E7%8E%B0%E4%BA%86%E5%86%85%E9%83%A8%E9%94%99%E8%AF%AF%E2%80%9D%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+      <url>/2022/04/27/Windows%20%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E6%8F%90%E7%A4%BA%E2%80%9C%E5%87%BA%E7%8E%B0%E4%BA%86%E5%86%85%E9%83%A8%E9%94%99%E8%AF%AF%E2%80%9D%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="远程桌面提示内部错误">远程桌面提示内部错误</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/1.5as9vmorh0s0.webp" alt="img"></p><h2 id="修改被控电脑参数">修改被控电脑参数</h2><p>在被远程桌面的服务器或电脑里；</p><ol><li>开始“<code>运行</code>”（win+r）；</li><li>输入：<code>gpedit.msc</code>回车；</li><li>找到<code>计算机配置</code>→<code>管理模板</code>→<code>Windows 组件</code>→<code>远程桌面服务</code>→<code>远程桌面会话主机</code>→<code>安全</code></li></ol><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/2.3epwdcyi9zo0.webp" alt="img"></p><p>找到<code>远程（RDP）链接要求使用制定的安全层</code>→选择<code>已启用</code>，安全层选择：<code>RDP</code>，点击<code>确定</code>保存。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/3.38v35qqo3ww0.webp" alt="img"></p><p>然后，重启下该电脑即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>AdGuardHome食用教程</title>
+      <link href="/2022/04/26/AdGuardHome%E9%A3%9F%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/04/26/AdGuardHome%E9%A3%9F%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>使用教程</strong><br>1、点击服务 -&gt; AdGuard Home，更新核心版本，等待核心更新完成并启用 AdguardHome 插件，点击日志，如果有运行记录，则表示AdGuardHome已正常运行，如下图：<br><img src="https://img.x-wan.top/imgs/2022/04/fa3c10dc248fbd8e.png" alt="image.png"><br>2、点击按钮进入 AdGuardHome，或在地址栏中输入 192.168.8.1:3000，进入后配置 AdGuardHome，配置用户名和密码。</p><blockquote><p>**注意：**配置 AdGuardHome 时，设置端口环节，建议手动修改，比如默认80，53，我就修改成了3000，55</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/dc82a1709a0e7ad4.png" alt="image.png"><br>3、进入 AdGuardHome 控制台后，点击设置进入 DNS设置，如下图：<br><img src="https://img.x-wan.top/imgs/2022/04/0cf96c1ca3bf7f02.png" alt="image.png"><br>4、进入 DNS设置后，填写 上游 DNS 服务器，选择并行请求，填写 Bootstrap DNS 服务器，上游 DNS 服务器和 Bootstrap DNS 服务器已经列举在下面了，如下图：<br><img src="https://img.x-wan.top/imgs/2022/04/597f6fc60a6331b3.png" alt="image.png"></p><blockquote><p>**特别注意：**Bootstrap DNS 用于解析上游DNS，所以尽可能将 Bootstrap DNS 的第一条设置为当地运营商的DNS地址（支持IPV6），当地运营商的DNS地址可通过直接命令框内使用 ipconfig /all 查询，前提是必须网线直接插在光猫上</p></blockquote><p><strong>上游 DNS 服务器：</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">114.114.114.114</span><br><span class="line">114.114.115.115</span><br><span class="line">223.5.5.5</span><br><span class="line">223.6.6.6</span><br><span class="line">119.29.29.29</span><br><span class="line">101.226.4.6</span><br><span class="line">123.125.81.6</span><br><span class="line">101.226.4.6</span><br><span class="line">101.226.4.6</span><br><span class="line">https://dns.google/dns-query</span><br><span class="line">https://dns.quad9.net/dns-query</span><br><span class="line">https://doh.opendns.com/dns-query</span><br><span class="line">https://1.1.1.1/dns-query</span><br><span class="line">tls://dns.rubyfish.cn</span><br><span class="line">tls://8.8.8.8</span><br><span class="line">tls://8.8.4.4</span><br><span class="line">tls://dns.google:853</span><br></pre></td></tr></table></figure><p><strong>Bootstrap DNS 服务器：</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">180.76.76.76</span><br><span class="line">119.29.29.29</span><br><span class="line">223.5.5.5</span><br><span class="line">8.8.8.8</span><br><span class="line">8.8.4.4</span><br><span class="line">208.67.222.222</span><br></pre></td></tr></table></figure><p>5、点击 过滤器 ，选择 DNS封锁清单，添加下方合适的规则并将对应规则打钩，软后点击检查更新，如下图：<br><img src="https://img.x-wan.top/imgs/2022/04/985bd00701907d1f.png" alt="image.png"><br><strong>添加规则</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-easylist.txt</span><br></pre></td></tr></table></figure><p><img src="https://img.x-wan.top/imgs/2022/04/834c4d3e227852f6.png" alt="image.png"><br>6、返回 OpenWrt 的 AdGuard Home 插件设置内将重定向设置为 【重定向53端口到AdGuardHome】即可，这样我就让 AdGuardHome 生效了，如下图：<br><img src="https://img.x-wan.top/imgs/2022/04/5aad9222484bb788.png" alt="image.png"><br>7、点开网络–防火墙设置，自定义规则，将下图的端口改成AdGuardHome的端口，我设置的是55，再点重启防火墙即可。<br><img src="https://img.x-wan.top/imgs/2022/04/a06326c9784dd571.png" alt="image.png"></p><p>8、设置到此完成了，可以进AdGuardHome管理页面看效果</p><p><img src="https://img.x-wan.top/imgs/2022/04/d3fb5fa3b9a82d83.png" alt="image.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github Pages + Hexo 搭建个人博客</title>
+      <link href="/2022/04/26/Github%20Pages%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+      <url>/2022/04/26/Github%20Pages%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Github Pages + Hexo 搭建个人博客</h1><ol><li>修改配置文件：（不要用windows的记事本），推荐使用<a href="https://www.sublimetext.com/">Sublime Text3</a></li><li>下载Git：<a href="https://git-scm.com/downloads">Git</a></li><li>下载Node.js：<a href="https://nodejs.org/en/download/">Node.js</a></li><li>查看环境安装是否成功：node -v 出现版本号，npm -v 出现版本号，git --version 出现版本号</li><li>如果node -v 报错的话，那么将Node.js的安装路径加到环境变量中。</li><li>设置npm的镜像源：查看npm的配置</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看npm的配置</span><br><span class="line">npm config list</span><br><span class="line">#默认源</span><br><span class="line">npm config set registry https://registry.npmjs.org</span><br><span class="line">#临时改变镜像源</span><br><span class="line">npm --registry=https://registry.npm.taobao.org</span><br><span class="line">#永久设置为淘宝镜像源</span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">#另一种方式，编辑 ~/.npmrc 加入下面内容</span><br><span class="line">registry = https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure><h2 id="本地安装hexo静态博客框架">本地安装hexo静态博客框架</h2><h2 id="hexo框架安装初始化">hexo框架安装初始化</h2><p>新建一个文件夹，比如BolgTest的文件夹，创建完后，先不要点进去，在此处点击鼠标右键，选择Git Bash Here，然后依次输入如下命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hexo框架的安装</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 等上一个命令完成后，在输入下面的命令</span><br><span class="line">hexo init &lt;新建文件夹的名称&gt;  #初始化文件夹</span><br><span class="line">cd &lt;新建文件夹的名称&gt;</span><br><span class="line">npm install  # 安装博客所需要的依赖文件  </span><br></pre></td></tr></table></figure><h2 id="生成运行">生成运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#生成Hexo页面</span><br><span class="line">hexo g</span><br><span class="line">#启动服务</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>浏览器中打开<code>http://localhost:4000</code>或者<code>127.0.0.1:4000</code>，可以看到一个网页，说明Hexo博客已经成功在本地运行。</p><h2 id="主题选择个性化修改">主题选择个性化修改</h2><p>选择主题：在github上找套自己喜欢的主题，下在完解压到&lt;blog安装路径&gt;/themes/下。</p><p>站点配置修改在&lt;blog安装路径&gt;/_config.yml，主题配置文件在&lt;blog安装路径&gt;/themes/&lt;&gt;</p><h2 id="本博客采用-butterfly-主题">本博客采用 butterfly 主题</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line">#或者</span><br><span class="line">git clone -b master https://gitee.com/immyw/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure><h2 id="应用站点">应用站点</h2><p>修改站点配置文件<code>_config.yml</code>，把主题改为 butterfly <code>theme: butterfly</code></p><h2 id="个性化修改前安装插件">个性化修改前安装插件</h2><p>个性化修改前安装插件</p><p>安装 pug 以及 stylus 渲染器插件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure><p>安装将要用到的插件插件</p><p>注脚插件（可选）： hexo-reference，reference 插件说明。</p><p>部署插件 (必要)： hexo-deployer-git</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-wordcount hexo-wordcount hexo-generator-search hexo-reference hexo-deployer-git --save</span><br></pre></td></tr></table></figure><h1>美化参考</h1><p><a href="https://www.qwas.top/p/hexo.html/">Xpand的hexo主题配置</a></p><blockquote><p>感谢以下博客提供的学习参考</p><p><a href="https://butterfly.js.org/posts/21cfbf15/#%E5%AE%89%E8%A3%9D">Butterfly 安裝文檔(一) 快速開始</a></p><p><a href="https://butterfly.js.org/posts/dc584b87/">Butterfly 安裝文檔(二) 主題頁面</a></p><p><a href="https://butterfly.js.org/posts/4aa8abbe/#%E7%B6%B2%E7%AB%99%E8%B3%87%E6%96%99">Butterfly 安装文档(三) 主题配置</a></p><p><a href="https://butterfly.js.org/posts/ceeb73f">Butterfly 安装文档(四) 主题配置</a></p><p><a href="https://xiabor.com/4215.html">Butterfly 主题更新总结</a></p><p><a href="https://www.antmoe.com/posts/a811d614/index.html">Hexo博客之butterfly主题优雅魔改系列</a></p><p><a href="https://xiabor.com/714f.html">Hexo 大结局</a></p></blockquote><h1>推送到GitHub</h1><h2 id="注册GitHub账号">注册GitHub账号</h2><ol><li>注册GitHub账号</li><li>新建仓库，仓库名为<code>你的用户名.github.io</code></li></ol><h2 id="git配置">git配置</h2><ol><li><ol><li>配置个人信息</li></ol></li><li><pre><code>git config --global user.name &quot;XXXX&quot;git config --global user.email &quot;XXXXXXXXX@XXX.com&quot;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">3. 生成密钥,一路回车</span><br><span class="line"></span><br><span class="line">4. ```</span><br><span class="line">   ssh-keygen -t rsa -C &quot;XXXXXXXXX@XXX.com&quot;</span><br></pre></td></tr></table></figure></code></pre></li><li><p>复制公钥<code>id_rsa.pub</code></p></li><li><p>在GitHub中添加ssh key <a href="https://github.com/settings/keys">https://github.com/settings/keys</a></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C xxx@gmail.com</span><br><span class="line">#按3个回车，密码为空。</span><br></pre></td></tr></table></figure><p>c盘得到的id_rsa.pub文件就是key，登了github添加即可</p></li><li><p>改 hexo 根目录下的文件<code>_config.yml</code> 中的 deploy，添加仓库地址</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">      github: git@github.com:xiaopengand/xiaopengand.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li><li><p>生成并上传仓库</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo clean  //清除缓存文件db.json和已生成的静态文件public</span><br><span class="line">$ hexo g   //生成网站静态文件到默认设置的public文件夹</span><br><span class="line">$ hexo d   //部署网站到设定的仓库</span><br></pre></td></tr></table></figure></li><li><p>如果没有 hexo-deployer-git，安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li></ol><h1>域名解析</h1><h2 id="域名解析成功，但显示404">域名解析成功，但显示404</h2><p><img src="https://image.kejiwanjia.com/wp-content/uploads/2022/04/1d0c2dfc74919c780e1ff77046d6dfa7.png?imageMogr2/format/webp/quality/75" alt="404"><br>在博客目录下<code>/soure/</code>文件下创建一个CNAME的文件，文件内容填你的域名地址 例如我的：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xxx.top</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTML添加网页背景音乐</title>
+      <link href="/2022/04/26/HTML%E6%B7%BB%E5%8A%A0%E7%BD%91%E9%A1%B5%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90/"/>
+      <url>/2022/04/26/HTML%E6%B7%BB%E5%8A%A0%E7%BD%91%E9%A1%B5%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="一、不显示播放器">一、不显示播放器</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;audio autoplay=&quot;&quot; loop=&quot;&quot;&gt; &lt;source src=&quot;https://h.x-wan.top/%FB5music/%B2%A4.mp3&quot;&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure><h2 id="二、显示播放器">二、显示播放器</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;audio autoplay=&quot;autoplay&quot; controls=&quot;controls&quot;loop=&quot;loop&quot; preload=&quot;auto&quot;src=&quot;https://h.x-wan.top/%Fmusic/%%E7%B2%A4.mp3&quot;&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure><h2 id="三、本地兼容模式">三、本地兼容模式</h2><p>在中的title标签之下添加以下这行代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;embed src=&quot;music/We Don&#x27;t Talk Anymore.mp3&quot; autostart=&quot;true&quot; loop=&quot;true&quot; hidden=&quot;true&quot;&gt;&lt;/embed&gt;</span><br></pre></td></tr></table></figure><p>这个方式主要是支持的播放器多。一定程度上解决了浏览器兼容的问题。</p><blockquote><p>说明：<br>1、src=“”,在&quot;&quot;内添加你音乐的保存路径。<br>2、使用hidden=&quot;true&quot;表示隐藏音乐播放按钮，相反使用hidden=&quot;false&quot;表示开启音乐播放按钮。<br>3、使用autostart=“true” 表示是打开网页加载完后自动播放。<br>4、使用loop=&quot;true&quot;表示 循环播放 如仅想播放一次则为：loop=“false”</p></blockquote><h2 id="四、url兼容模式">四、url兼容模式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;video controls=&quot;true&quot; autoplay=&quot;true&quot; name=&quot;media&quot; loop=&quot;true&quot; hidden=&quot;true&quot;&gt;</span><br><span class="line">&lt;source src=&quot;http://music.163.com/song/media/outer/url?id=447925558.mp3&quot; type=&quot;audio/mpeg&quot;&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure><p>这个方式主要是支持的播放器多。一定程度上解决了浏览器兼容的问题。</p><blockquote><p>说明：<br>1、src=“”,音乐地址<br>2、hidden=&quot;true&quot;隐藏音乐播放按钮，相反使用hidden=&quot;false&quot;表示开启音乐播放按钮。<br>3、autostart=“true” 表示是打开网页加载完后自动播放。<br>4、loop=&quot;true&quot;是否循环播放 如仅想播放一次则为：loop=“false”</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> html </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OpenWrt固件USB网络共享设置</title>
+      <link href="/2022/04/26/OpenWrt%E5%9B%BA%E4%BB%B6USB%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/04/26/OpenWrt%E5%9B%BA%E4%BB%B6USB%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言">前言</h2><p>固件下载地址:</p><p><a href="http://pan.xiaowansm.top/">http://pan.xiaowansm.top/</a></p><blockquote><p>集成USB网络共享相关驱动，默认ip是192.168.5.1，密码 password</p></blockquote><h2 id="准备工作">准备工作</h2><ol><li>刷好openwrt固件带usb接口的路由器，并且固件集成相关驱动。</li><li>手机的原装数据线。</li><li>路由器插电开机 ，并要完全启动（有wifi能进后台了就启动好了）。</li></ol><h2 id="连接">连接</h2><p>用手机数据线连接路由器usb接口和手机，再开启手机的USB网络共享</p><blockquote><p>如果是灰色的无法开启，插拔数据线再尝试开启</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/172bc4bc9869de65.png" alt=""></p><h2 id="设置">设置</h2><p>1、进OP系统后台（后台地址192.168.5.1），点开【网络】–【接口】–【添加新接口】</p><p><img src="https://img.x-wan.top/imgs/2022/04/3c7d6adab57373e8.png" alt=""></p><p>2、新接口的名称填 <strong>USBW</strong>，协议选【DHCP客户端】，接口【选以太网适配器: “usb0”】，再点【提交】</p><p><img src="https://img.x-wan.top/imgs/2022/04/3576b6f1db223ad1.png" alt=""></p><p>3、防火墙选择<strong>WAN</strong>，再点【保存应用】</p><p><img src="https://img.x-wan.top/imgs/2022/04/a8ffda26407434fb.png" alt=""></p><p>4、【USBW】有ipv4和数据包了，就OK了。</p><p><img src="https://img.x-wan.top/imgs/2022/04/078b1530327b19a2.png" alt=""></p><h2 id="注意事项">注意事项</h2><ul><li>每次重启路由器和手机或者是插拔数据线都要重新开启手机的【USB共享网络】。</li><li>有些手机会自动关闭【USB共享网络】，可能是开启了某项省点功能造成的。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> usb上网 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt固件无线桥接中继设置</title>
+      <link href="/2022/04/26/openwrt%E5%9B%BA%E4%BB%B6%E6%97%A0%E7%BA%BF%E6%A1%A5%E6%8E%A5%E4%B8%AD%E7%BB%A7%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/04/26/openwrt%E5%9B%BA%E4%BB%B6%E6%97%A0%E7%BA%BF%E6%A1%A5%E6%8E%A5%E4%B8%AD%E7%BB%A7%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言-2">前言</h2><p>总体来说openwrt相对原厂和老毛子系统，无线信号会差些，无线桥接也可能成在不稳定的情况，有条件首选网线进行联网。</p><blockquote><p>固件下载地址:</p><p><a href="http://pan.xiaowansm.top/">http://pan.xiaowansm.top/</a></p></blockquote><h2 id="设置-2">设置</h2><p>1、进openwrt后台，点开【网络】–【接口】，【LAN】–【修改】，【IPv4 地址】改成不要和主路由一样的ip即可（比如改成192.168.100.1），改完再点【保存应用】，再插拔电源重启。</p><blockquote><p>如果两台路由器的ip不同，跳过这步即可。</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/203371e2b4d57847.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/4abe603a48caca16.png" alt=""></p><p>2、点开【网络】–【无线】–【扫描】，找到你家路由器的WiFi名称，再点【加入】</p><p><img src="https://img.x-wan.top/imgs/2022/04/8b56ec5258a74c6d.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/89b56a3e0835e423.png" alt=""></p><p>3、输入被桥接路由器的WiFi密码，再点【提交】</p><p><img src="https://img.x-wan.top/imgs/2022/04/890db51cce8ad02d.png" alt=""></p><p>4、跳转到下图页面，再点【保存应用】</p><p><img src="https://img.x-wan.top/imgs/2022/04/47af631691173f42.png" alt=""></p><h2 id="完成">完成</h2><p>看下图，设置到此完成了，连接openwrt测试吧</p><p><img src="https://img.x-wan.top/imgs/2022/04/84ba1fa405fccbcf.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/822b526bf3b626f3.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/2186f9559fa06d7d.jpg" alt=""></p><h2 id="注意事项-2">注意事项</h2><p>如果需要桥接5GWiFi，先移除已添加的，近距离桥接5Gwifi速度会好很多。</p><p><img src="https://img.x-wan.top/imgs/2022/04/1c82840244eeebf2.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/3e36794a63679f2b.jpg" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 无线桥接 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>定时重启设置</title>
+      <link href="/2022/04/26/%E5%AE%9A%E6%97%B6%E9%87%8D%E5%90%AF%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/04/26/%E5%AE%9A%E6%97%B6%E9%87%8D%E5%90%AF%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="openwrt固件">openwrt固件</h2><p><img src="https://img.x-wan.top/imgs/2022/04/66d05ff4bac3d6c6.png" alt=""></p><h2 id="Padavan固件-2">Padavan固件</h2><p><img src="https://img.x-wan.top/imgs/2022/04/a25562dd424d3ab3.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 定时重启 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt旁路由设置</title>
+      <link href="/2022/04/26/openwrt%E6%97%81%E8%B7%AF%E7%94%B1%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/04/26/openwrt%E6%97%81%E8%B7%AF%E7%94%B1%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="示例：">示例：</h2><ul><li>主路由是Padavan固件，后台ip：192.168.6.1</li><li>OpenWrt旁路由的后台ip：192.168.6.2</li></ul><h2 id="第一步旁路由的LAN口和电脑连接，进后台进行设置">第一步旁路由的LAN口和电脑连接，进后台进行设置</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/1.5tt3anl66lg0.webp" alt="img"></p><h2 id="主路由设置">主路由设置</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/2.2e9dgqc0sce8.webp" alt="img"></p><h2 id="网线连接">网线连接</h2><p>最后把旁路由的LAN口连到主路由的LAN口，再插拔电源重启两个设备，完结。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 旁路由 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米3G R4A C2100等路由刷固件无法启动的解决办法</title>
+      <link href="/2022/04/26/%E5%B0%8F%E7%B1%B33G%20R4A%20C2100%E7%AD%89%E8%B7%AF%E7%94%B1%E5%88%B7%E5%9B%BA%E4%BB%B6%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+      <url>/2022/04/26/%E5%B0%8F%E7%B1%B33G%20R4A%20C2100%E7%AD%89%E8%B7%AF%E7%94%B1%E5%88%B7%E5%9B%BA%E4%BB%B6%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言-3">前言</h2><blockquote><p>在给小米的部分型号刷固件时，偶尔会遇到无法启动的情况，具体型号有：小米3G、R4、Pro、AC2100，尤其是小米3G时常遇到。</p></blockquote><h2 id="解决办法">解决办法</h2><p>进入breed控制台，点开【小米3G设置】，删除<code>normal_firmware_md5</code>这一行，再点保存即可。</p><blockquote><p>也可以不删除它，把配置改了个名字（方便后续刷原厂固件）。</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/163cf97cb315a483.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 路由器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米3GV2和4A千兆版breed刷固件教程</title>
+      <link href="/2022/04/26/%E5%B0%8F%E7%B1%B33GV2%E5%92%8C4A%E5%8D%83%E5%85%86%E7%89%88breed%E5%88%B7%E5%9B%BA%E4%BB%B6%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/04/26/%E5%B0%8F%E7%B1%B33GV2%E5%92%8C4A%E5%8D%83%E5%85%86%E7%89%88breed%E5%88%B7%E5%9B%BA%E4%BB%B6%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>小米3GV2和4A千兆版breed刷固件教程</h1><h2 id="进入breed控制台">进入breed控制台</h2><blockquote><p>如何进breed请参考帖子：<a href="https://home.x-wan.top/archives/breed-kong-zhi-tai-shua-gu-jian-xiang-jie">https://home.x-wan.top/archives/breed-kong-zhi-tai-shua-gu-jian-xiang-jie</a></p></blockquote><h2 id="备份EEPROM">备份EEPROM</h2><p>点【固件备份】，再点【EEPROM】下载文件保存即可</p><blockquote><p>首次刷固件需要刷入EEPROM文件，不然无线信号很差，之前刷过固件的可以忽略这步</p></blockquote><blockquote><p>所以刷好breed后，一定要记得备份EEPROM文件，如忘记备份用我网盘的也行</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/04/82569e81921ead39.png" alt=""></p><h2 id="刷入固件和EEPROM文件">刷入固件和EEPROM文件</h2><p>点【固件更新】，再选对应的固件和EEPROM，再点【上传】，再点【更新】</p><p><img src="https://img.x-wan.top/imgs/2022/04/1decc2125ea6c8fd.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/04/7aeb15c5a70fd039.png" alt=""></p><h2 id="完成-2">完成</h2><p>等待进度条走完，再等5分钟左右即可进后台</p><p><img src="https://img.x-wan.top/imgs/2022/04/4f054bb0b49b2605.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 刷机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>梅林固件离线安装小飞机插件提示非法关键词</title>
+      <link href="/2022/04/26/%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%B0%8F%E9%A3%9E%E6%9C%BA%E6%8F%92%E4%BB%B6%E6%8F%90%E7%A4%BA%E9%9D%9E%E6%B3%95%E5%85%B3%E9%94%AE%E8%AF%8D/"/>
+      <url>/2022/04/26/%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%B0%8F%E9%A3%9E%E6%9C%BA%E6%8F%92%E4%BB%B6%E6%8F%90%E7%A4%BA%E9%9D%9E%E6%B3%95%E5%85%B3%E9%94%AE%E8%AF%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>开启路由器的SSH功能，登录并输入以下命令后，再进行离线安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/\tdetect_package/\t# detect_package/g&#x27; /koolshare/scripts/ks_tar_install.sh   </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 梅林 </tag>
+            
+            <tag> 纸飞机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
