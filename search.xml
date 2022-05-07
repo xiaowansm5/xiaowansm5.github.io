@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>Docker常用命令</title>
+      <link href="/2022/05/07/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2022/05/07/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Docker常用命令</h1><h3 id="列出所有容器ID">列出所有容器ID</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps -aq</span><br></pre></td></tr></table></figure><h3 id="查看所有运行或者不运行容器">查看所有运行或者不运行容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure><h3 id="停止所有的container（容器），这样才能够删除其中的images：">停止所有的container（容器），这样才能够删除其中的images：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop $(docker ps -a -q) 或者 docker stop $(docker ps -aq) </span><br></pre></td></tr></table></figure><h3 id="如果想要删除所有container（容器）的话再加一个指令：">如果想要删除所有container（容器）的话再加一个指令：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rm $(docker ps -a -q) 或者 docker rm $(docker ps -aq) </span><br></pre></td></tr></table></figure><h3 id="查看当前有些什么images">查看当前有些什么images</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><h3 id="删除images（镜像），通过image的id来指定删除谁">删除images（镜像），通过image的id来指定删除谁</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi &lt;image id&gt;</span><br></pre></td></tr></table></figure><h3 id="想要删除untagged-images，也就是那些id为的image的话可以用">想要删除untagged images，也就是那些id为的image的话可以用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi $(docker images | grep &quot;^&lt;none&gt;&quot; | awk &quot;&#123;print $3&#125;&quot;)</span><br></pre></td></tr></table></figure><h3 id="要删除全部image（镜像）的话">要删除全部image（镜像）的话</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure><h3 id="强制删除全部image的话">强制删除全部image的话</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi -f $(docker images -q)</span><br></pre></td></tr></table></figure><h3 id="从容器到宿主机复制">从容器到宿主机复制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp tomcat：/webapps/js/text.js /home/admin</span><br><span class="line">docker  cp 容器名:  容器路径 宿主机路径</span><br></pre></td></tr></table></figure><h3 id="从宿主机到容器复制">从宿主机到容器复制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /home/admin/text.js tomcat：/webapps/js</span><br><span class="line">docker cp 宿主路径中文件      容器名  容器路径</span><br></pre></td></tr></table></figure><h3 id="删除所有停止的容器">删除所有停止的容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker container prune</span><br></pre></td></tr></table></figure><h3 id="删除所有不使用的镜像">删除所有不使用的镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker image prune --force --all或者docker image prune -f -a</span><br></pre></td></tr></table></figure><h3 id="停止、启动、杀死、重启一个容器">停止、启动、杀死、重启一个容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop Name或者ID  </span><br><span class="line">docker start Name或者ID  </span><br><span class="line">docker kill Name或者ID  </span><br><span class="line">docker restart name或者ID</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux 一键测速脚本 SuperSpeed 修复版</title>
+      <link href="/2022/05/07/Linux%20%E4%B8%80%E9%94%AE%E6%B5%8B%E9%80%9F%E8%84%9A%E6%9C%AC%20SuperSpeed%20%E4%BF%AE%E5%A4%8D%E7%89%88/"/>
+      <url>/2022/05/07/Linux%20%E4%B8%80%E9%94%AE%E6%B5%8B%E9%80%9F%E8%84%9A%E6%9C%AC%20SuperSpeed%20%E4%BF%AE%E5%A4%8D%E7%89%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Linux 一键测速脚本 SuperSpeed 修复版</h1><p>用来检测服务器到国内三网运营商速度的一键脚本 <a href="https://www.dujin.org/tag/superspeed">SuperSpeed</a> 修复版，很方便，可以测速你的服务器到国内各大节点的速度。如果单纯想测试服务器速度的话，这个脚本十分不错，这里上个今天测试的截图，共小伙伴们参考：</p><p><img src="https://img.dujin.org/uploads/2022/05/20220504113538.png" alt="img"></p><h2 id="执行代码">执行代码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -Lso- https://git.io/superspeed_uxh)</span><br></pre></td></tr></table></figure><p><strong>备用代码</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -Lso- https://raw.githubusercontent.com/uxh/superspeed/master/superspeed.sh)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测速 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>YesPlayMusic部署教程</title>
       <link href="/2022/05/04/YesPlayMusic%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/"/>
       <url>/2022/05/04/YesPlayMusic%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/</url>
