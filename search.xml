@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>红米AX6S刷机教程</title>
+      <link href="/2022/05/12/%E7%BA%A2%E7%B1%B3AX6S%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/05/12/%E7%BA%A2%E7%B1%B3AX6S%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>红米AX6S刷机教程</h1><blockquote><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E7%BA%A2%E7%B1%B3AX6S">全套刷机工具和固件</a></p></blockquote><h2 id="一、升级miwifi-rb03-firmware-stable-1-2-7-bin固件">一、升级miwifi_rb03_firmware_stable_1.2.7.bin固件</h2><p><img src="https://img.x-wan.top/imgs/2022/05/8f1b3ec1f0f5cf2c.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/94e2bf62851751bc.png" alt=""></p><h2 id="二、打开https-www-oxygen7-cn-miwifi-这个网站输入SN码，算出自己的密码">二、打开https://www.oxygen7.cn/miwifi/ 这个网站输入SN码，算出自己的密码</h2><p><img src="https://img.x-wan.top/imgs/2022/05/e72b64156f891def.png" alt=""></p><h2 id="三、telnet连接路由器，用户名root，密码是上面算出来的密码，执行以下命令">三、telnet连接路由器，用户名root，密码是上面算出来的密码，执行以下命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nvram set ssh_en=1 &amp; nvram set uart_en=1 &amp; nvram set boot_wait=on &amp; nvram set bootdelay=3 &amp; nvram set flag_try_sys1_failed=0 &amp; nvram set flag_try_sys2_failed=1</span><br><span class="line"></span><br><span class="line">nvram set flag_boot_rootfs=0 &amp; nvram set &quot;boot_fw1=run boot_rd_img;bootm&quot;</span><br><span class="line"></span><br><span class="line">nvram set flag_boot_success=1 &amp; nvram commit &amp; /etc/init.d/dropbear enable &amp; /etc/init.d/dropbear start</span><br></pre></td></tr></table></figure><p><img src="https://img.x-wan.top/imgs/2022/05/6d1ccf294b08b9cd.png" alt=""></p><h2 id="四、刷入底包固件">四、刷入底包固件</h2><p>ssh连接路由器，用户名root，密码还是刚才算出来的密码，windows用winscp这个软件连接路由器，将压缩包里的factory固件上传到tmp目录</p><blockquote><p>执行命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd -r write /tmp/openwrt-mediatek-mt7622-xiaomi_redmi-router-ax6s-squashfs-factory.bin firmware</span><br></pre></td></tr></table></figure><p>路由器会自动重启进入op，默认ip 192.168.5.1，用户名root，密码password</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/05/f58f342f9c4d5514.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/73ca13631e690a52.png" alt=""></p><h2 id="五、升级更新包sysupgrade-bin">五、升级更新包sysupgrade.bin</h2><p><img src="https://img.x-wan.top/imgs/2022/05/068c28034eb05a4e.png" alt=""></p><p>按照上图刷入sysupgrade.bin固件，再点执行，然后等待几分钟即可，默认ip 192.168.5.1，用户名root，密码password。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 红米AX6S </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>O红米AX6S救砖教程</title>
+      <link href="/2022/05/12/%E7%BA%A2%E7%B1%B3AX6S%E6%95%91%E7%A0%96%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/05/12/%E7%BA%A2%E7%B1%B3AX6S%E6%95%91%E7%A0%96%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>红米AX6S救砖教程</h1><p>准备工作：电脑、网线、牙签或者卡针、小米救砖工具包、红米ax6s原厂固件</p><blockquote><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E7%BA%A2%E7%B1%B3AX6S">小米救砖工具包</a></p></blockquote><h2 id="一、固定电脑的网口ip地址">一、固定电脑的网口ip地址</h2><p><img src="https://img.x-wan.top/imgs/2022/05/330497f553bad162.png" alt=""></p><h2 id="二、准备一根网线，一头插电脑，另外一头查到路由器的LAN口">二、准备一根网线，一头插电脑，另外一头查到路由器的LAN口</h2><h2 id="三、解压小米救砖工具包，打开MIWIFIRepairTool-x86-exe">三、解压小米救砖工具包，打开MIWIFIRepairTool.x86.exe</h2><h3 id="1、点浏览，选miwifi-rb03-firmware-stable-1-2-7-bin，再点下一步">1、点浏览，选miwifi_rb03_firmware_stable_1.2.7.bin，再点下一步</h3><p><img src="https://img.x-wan.top/imgs/2022/05/4b6f9bad8044f84e.png" alt=""></p><h3 id="2、再选网口，我这里是以太网5，根据实际情况选择，再点下一步">2、再选网口，我这里是以太网5，根据实际情况选择，再点下一步</h3><p><img src="https://img.x-wan.top/imgs/2022/05/c5b8ad778c5a5e92.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/0d7e5e8421e7fac3.png" alt=""></p><h3 id="3、拔掉路由器电源，再按住RESET键不要松手，再插上电源，等到黄灯闪烁后再松开，救砖工具会跳出进度条，等到路由器蓝灯闪烁，则刷机成功，插拔电源重启即可。">3、拔掉路由器电源，再按住RESET键不要松手，再插上电源，等到黄灯闪烁后再松开，救砖工具会跳出进度条，等到路由器蓝灯闪烁，则刷机成功，插拔电源重启即可。</h3><p><img src="https://img.x-wan.top/imgs/2022/05/f6ffb80049a8553d.png" alt=""></p><h2 id="四、把电脑网卡改成自动获取，稍等几分钟即可进小米后台了">四、把电脑网卡改成自动获取，稍等几分钟即可进小米后台了</h2><p><img src="https://img.x-wan.top/imgs/2022/05/d2fa7ceaf5b4c3b6.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/61c54965714e9797.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 红米AX6S </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OpenClash 使用教程</title>
       <link href="/2022/05/08/OpenClash%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
       <url>/2022/05/08/OpenClash%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
@@ -173,25 +223,6 @@
             <tag> 刷机 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>小米CR6608固件介绍</title>
-      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 路由器 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -396,6 +427,25 @@
             <tag> Linux </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
       
     </entry>
     
