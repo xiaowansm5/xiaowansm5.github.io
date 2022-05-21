@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>华硕ACRH17刷机教程</title>
+      <link href="/2022/05/21/%E5%8D%8E%E7%A1%95ACRH17%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/05/21/%E5%8D%8E%E7%A1%95ACRH17%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>华硕ACRH17刷机教程</h1><blockquote><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E5%8D%8E%E7%A1%95ACRH17">全套刷机工具和固件</a></p></blockquote><h2 id="刷入解锁固件">刷入解锁固件</h2><p>在原厂固件升级页面上传【oopenwrt-ipq806x-asus_rt-acrh17-squashfs-flash-factory.trx】</p><p><img src="https://img.x-wan.top/imgs/2022/05/6bce5bc0d3f41805.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/06c1fcb4ba09f5c9.png" alt=""></p><h2 id="刷入opboot">刷入opboot</h2><p>进度条走完后，192.168.1.1进入解锁固件后台，用户名root，密码password</p><ol><li><p>使用winscp上传opboot-rt-acrh17-flash-v1.0.6.bin文件至/tmp目录下</p><p><img src="https://img.x-wan.top/imgs/2022/05/896125537beec483.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/a7bd451ecd77f49c.png" alt=""></p></li><li><p>使用xshell或者putty，通过ssh进入路由后台，解锁Bootloader分区（命令为：<code>mtd unlock /dev/mtd0</code>）</p></li><li><p>将opboot刷入Bootloader分区<br>命令： <code>mtd -r write /tmp/opboot-rt-acrh17-flash-v1.0.6.bin Bootloader</code></p></li></ol><p><img src="https://img.x-wan.top/imgs/2022/05/4ec42408038758a9.png" alt=""></p><h2 id="进入opboot刷固件">进入opboot刷固件</h2><p>按住wps键再通电，20秒后松开，192.168.1.1进入opboot控制台，选择固件点更新刷入即可</p><p><img src="https://img.x-wan.top/imgs/2022/05/cff4519d91769a3c.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/74932a4b79918cdb.png" alt=""></p><blockquote><p>opboot控制台支持刷入原厂、梅林、openwrt、潘多拉等固件</p><p>openwrt固件文件过大会刷不进，解决方法是先刷20M以内的固件，再升级全功能版固件。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 华硕acrh17 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小米路由器R3刷机教程</title>
       <link href="/2022/05/19/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8R3%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"/>
       <url>/2022/05/19/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8R3%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</url>
@@ -279,6 +304,25 @@
     
     
     <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DOCKER  Dokcer的webui程序Portainer（openwrt群晖）</title>
       <link href="/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/"/>
       <url>/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/</url>
@@ -477,25 +521,6 @@
             <tag> Linux </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>小米CR6608固件介绍</title>
-      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 路由器 </category>
-          
-      </categories>
-      
       
     </entry>
     
