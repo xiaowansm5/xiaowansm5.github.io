@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>极路由系列刷老毛子固件后搜不到WiFi的解决办法</title>
+      <link href="/2022/06/01/%E6%9E%81%E8%B7%AF%E7%94%B1%E7%B3%BB%E5%88%97%E5%88%B7%E8%80%81%E6%AF%9B%E5%AD%90%E5%9B%BA%E4%BB%B6%E5%90%8E%E6%90%9C%E4%B8%8D%E5%88%B0WiFi%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+      <url>/2022/06/01/%E6%9E%81%E8%B7%AF%E7%94%B1%E7%B3%BB%E5%88%97%E5%88%B7%E8%80%81%E6%AF%9B%E5%AD%90%E5%9B%BA%E4%BB%B6%E5%90%8E%E6%90%9C%E4%B8%8D%E5%88%B0WiFi%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote><p>进入breed控制台，修改MAC地址</p></blockquote><blockquote><p><strong>把第一行和第四行都修改成和第二行一样</strong>，再点修改即可</p></blockquote><p><img src="https://home.x-wan.top/upload/2022/05/Snipaste_2022-05-26_14-20-57.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 极路由 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米路由器CR660X全系列开SSH刷OpenWrt教程</title>
+      <link href="/2022/06/01/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8CR660X%E5%85%A8%E7%B3%BB%E5%88%97%E5%BC%80SSH%E5%88%B7OpenWrt%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/06/01/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8CR660X%E5%85%A8%E7%B3%BB%E5%88%97%E5%BC%80SSH%E5%88%B7OpenWrt%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>小米路由器CR660X全系列开SSH刷OpenWrt教程</h1><h2 id="路由器硬件配置">路由器硬件配置</h2><p>SoC: MediaTek MT7621AT</p><p>RAM: 256MB DDR3 (ESMT M15T2G16128A)</p><p>Flash: 128MB NAND (ESMT F59L1G81MB)</p><p>网口: 1个千兆WAN 3个千兆LAN (MT7530 SoC)</p><p>无线: 2x2 2.4GHz 574Mbps + 2x2 5GHz 1201Mbps (MT7905DAN + MT7975DN)</p><h2 id="准备工作">准备工作</h2><p>1、一台刷好openwrt的路由器（无线名称改为OpenWrt，无线密码改为password）</p><p>2、电脑一台，需要用网线的方式连接路由器</p><p>3、准备一个牙签或卡针</p><p>本方法支持小米CR660X的全部机型，我用的是小米CR6608。</p><h2 id="配置openwrt路由器">配置openwrt路由器</h2><p>电脑用网线连接openwrt路由器</p><ul><li>用winscp把文件<code>xqsystem.lua</code>上传到<code>/usr/lib/lua/luci/controller/admin/</code>目录下</li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/62f7bf37eb5ac33e.png" alt=""></p><ul><li><p>openwrt路由器ip设置为 169.254.31.1 然后关闭DHCP</p><p><img src="https://img.x-wan.top/imgs/2022/05/c3661699d1a03973.png" alt=""></p></li><li><p>电脑固定ip为169.254.31.3，再重启openwrt路由器</p><p><img src="https://img.x-wan.top/imgs/2022/05/e74023aa10e3ea0c.png" alt=""></p></li><li><p>169.254.31.1能进openwrt路由器后台后，浏览器访问<code>http://169.254.31.1/cgi-bin/luci/api/xqsystem/token</code>，之后会出现<code>code 0</code>等字样就OK了</p></li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/27e89a5f243dd8fa.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/39a4d232b09cd76f.png" alt=""></p><ul><li>拔掉openwrt路由器跟电脑的网线放在一边备用（电源不要拔），然后电脑的ip地址改为自动获取。</li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/05c281bb541cb9a7.png" alt=""></p><h2 id="CR660X开启SSH">CR660X开启SSH</h2><p>电脑网线连接CR660x路由器，进入后台</p><p><img src="https://img.x-wan.top/imgs/2022/05/97756368f9c3d5cb.png" alt=""></p><p>浏览器访问</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644/api/misystem/extendwifi_connect?ssid=OpenWrt&amp;password=password</span><br></pre></td></tr></table></figure><blockquote><p><code>http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644</code>改成你的</p></blockquote><p>成功则显示 “code”:0 等字样</p><img src="https://img.x-wan.top/imgs/2022/05/27012ba6ec8639fb.png" style="zoom:25%;" /><p>然后浏览器访问</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644/api/xqsystem/oneclick_get_remote_token?username=xxx&amp;password=xxx&amp;nonce=xxx</span><br></pre></td></tr></table></figure><blockquote><p><code>http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644</code>改成你的</p></blockquote><p>成功则显示 “code”:0 等字样</p><p><img src="https://img.x-wan.top/imgs/2022/05/212dea1a38c0e8f4.png" alt=""></p><p><strong>此时已经成功开启SSH接下来刷pb-boot</strong></p><h2 id="刷入pb-boot">刷入pb-boot</h2><p>用 winscp 将 <code>pb-boot.img</code> 上传到<code>/tmp</code>目录</p><blockquote><p>用户名root，密码admin</p></blockquote><p><img src="https://img.x-wan.top/imgs/2022/05/a86e595eec0421bc.png" alt=""></p><p>执行命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd write /tmp/pb-boot.img Bootloader</span><br></pre></td></tr></table></figure><p><img src="https://img.x-wan.top/imgs/2022/05/44694070c5209dc1.png" alt=""></p><h2 id="进pb-boot刷固件">进pb-boot刷固件</h2><blockquote><blockquote><p>按住复位孔再插电，20秒后松开，浏览器192.168.1.1进入pb-boot控制台，点浏览，选<code>openwrt-ramips-mt7621-xiaomi_mi-router-cr660x-squashfs-factory.bin</code>，再点恢复固件，等待几分钟即可。</p><p><img src="https://img.x-wan.top/imgs/2022/05/1a8af9c380de6551.jpg" alt=""></p></blockquote></blockquote><p><img src="https://img.x-wan.top/imgs/2022/05/e1084e3aa7dbfc9e.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/d91a6e384a6b08ba.png" alt=""></p><h2 id="刷机工具和固件">刷机工具和固件</h2><blockquote><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8CR660X">下载地址</a></p></blockquote><blockquote><p><a href="https://url.x-wan.top/cr6608">路由器购买链接</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CR660x </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>华硕ACRH17刷机教程</title>
       <link href="/2022/05/21/%E5%8D%8E%E7%A1%95ACRH17%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"/>
       <url>/2022/05/21/%E5%8D%8E%E7%A1%95ACRH17%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</url>
