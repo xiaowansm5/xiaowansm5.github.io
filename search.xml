@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>PVE | Proxmox VE 修改IP地址以及无法联网问题</title>
+      <link href="/2022/06/14/PVE%20%20Proxmox%20VE%20%E4%BF%AE%E6%94%B9IP%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/06/14/PVE%20%20Proxmox%20VE%20%E4%BF%AE%E6%94%B9IP%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>PVE | Proxmox VE 修改IP地址以及无法联网问题</h1><h2 id="修改-IP-地址">修改 IP 地址</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /etc/network/interfaces</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">iface enp3s0 inet manual</span><br><span class="line"></span><br><span class="line">auto vmbr0</span><br><span class="line">iface vmbr0 inet static</span><br><span class="line">        address 10.0.0.200</span><br><span class="line">        netmask 255.255.255.0</span><br><span class="line">        gateway 10.0.0.1</span><br><span class="line">        bridge_ports enp3s0</span><br><span class="line">        bridge_stp off</span><br><span class="line">        bridge_fd 0</span><br><span class="line"></span><br><span class="line">iface enp5s0 inet manual</span><br></pre></td></tr></table></figure><p>网络设备名每台机器可能会略有不同，忽略，修改 <code>address</code>, <code>netmask</code> 和 <code>gateway</code> 字段对应的值为新环境的网络地址。</p><h2 id="修改终端提示的-URL">修改终端提示的 URL</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /etc/issue</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Welcome to the Proxmox Virtual Environment. Please use your web browser to</span><br><span class="line">configure this server - connect to:</span><br><span class="line"></span><br><span class="line">  https://10.0.0.200:8006/</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure><p><code>/etc/issue</code> 的内容是 Linux 终端登启动后的欢迎语句。将 URL 中的 IP 地址更改 PVE 新的 IP</p><h2 id="修改-hosts">修改 hosts</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /etc/hosts</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1 localhost.localdomain localhost</span><br><span class="line">10.0.0.200 pve.lan pve</span><br></pre></td></tr></table></figure><p>将 <code>pve.lan</code> （局域网 hostname）映射的 IP 更换成 PVE 新的 IP 地址。</p><h2 id="修改-DNS-这步是取决于PVE能否联网的关键">修改 DNS(这步是取决于PVE能否联网的关键)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /etc/resolv.conf</span><br></pre></td></tr></table></figure><p><code>nameserver </code>114.114.114.114 (这里面建议改为114的DNS)</p><h2 id="重启">重启</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 虚拟机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PVE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米AX3600刷机+UBOOT完全攻略，随意刷大ROM包</title>
+      <link href="/2022/06/14/%E5%B0%8F%E7%B1%B3AX3600%E5%88%B7%E6%9C%BA+UBOOT%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%8C%E9%9A%8F%E6%84%8F%E5%88%B7%E5%A4%A7ROM%E5%8C%85/"/>
+      <url>/2022/06/14/%E5%B0%8F%E7%B1%B3AX3600%E5%88%B7%E6%9C%BA+UBOOT%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%8C%E9%9A%8F%E6%84%8F%E5%88%B7%E5%A4%A7ROM%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>小米AX3600刷机+UBOOT完全攻略，随意刷大ROM包</h1><h4 id="教程前准备">教程前准备</h4><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8AX3600">全套刷机工具</a></p><ul><li>安装WinSCP软件</li><li>安装PUTTY软件 Windows如上两个工具即可，自行百度下载。</li></ul><h2 id="AX3600系统降级">AX3600系统降级</h2><ul><li>浏览器输入：192.168.31.1 登录路由器</li><li>右上角小图标点击选择升级固件</li><li>下载：1.0.17固件，并上传升级至1.0.17漏洞固件</li></ul><p>这一步刷两次，就是升级完后再进去重复升级一次避免后面报错</p><h2 id="获取路由器SSH权限">获取路由器SSH权限</h2><ul><li>浏览器输入：192.168.31.1 登录路由器</li><li>查看路由【STOK】 值<br><code>http://192.168.31.1/cgi-bin/luci/;stok=【STOK】/web/home#router</code><br>直接复制这个STOK值替换进如下这个链接【STOK】位置</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.31.1/cgi-bin/luci/;stok=【STOK】/api/misystem/set_config_iotdev?bssid=Xiaomi&amp;user_id=longdike&amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#x27;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#x27;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B</span><br></pre></td></tr></table></figure><ul><li>在浏览器打开替换完的链接后回车，网页显示{“code”:0}就表示成功</li><li>接着上面方法将STOK值再替换如下链接【STOK】值</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.31.1/cgi-bin/luci/;stok=【STOK】/api/misystem/set_config_iotdev?bssid=Xiaomi&amp;user_id=longdike&amp;ssid=-h%3B%20echo%20-e%20&#x27;admin%5Cnadmin&#x27;%20%7C%20passwd%20root%3B</span><br></pre></td></tr></table></figure><ul><li>同样在浏览器打开替换完的链接后回车，网页显示{“code”:0}就表示成功</li></ul><h2 id="登录SSH并刷写底包">登录SSH并刷写底包</h2><ul><li>用PUTTY或者其他SSH工具登录192.168.31.1 用户名：root 密码：admin</li><li>依次每行单独复制如下代码并回车</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nvram set flag_last_success=0</span><br><span class="line">nvram set flag_boot_rootfs=0</span><br><span class="line">nvram set flag_boot_success=1</span><br><span class="line">nvram set flag_try_sys1_failed=0</span><br><span class="line">nvram set flag_try_sys2_failed=0</span><br><span class="line">nvram set boot_wait=on</span><br><span class="line">nvram set uart_en=1</span><br><span class="line">nvram set telnet_en=1</span><br><span class="line">nvram set ssh_en=1</span><br><span class="line">nvram commit</span><br></pre></td></tr></table></figure><ul><li>打开安装好的WinSCP工具并登录，地址用户名密码和上面一样</li><li>下载底包： nand-factory.ubi并上传到/tmp目录下。</li><li>回到PUTTY继续输入：ubiformat /dev/mtd12 -y -f /tmp/替换精简包名.ubi<br>接着依次单排输入如下代码后路由器重启：</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nvram set flag_last_success=0</span><br><span class="line">nvram set flag_boot_rootfs=0</span><br><span class="line">nvram commit</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure><h2 id="刷入UBOOT">刷入UBOOT</h2><ul><li>用winscp工具登录10.0.0.1 用户名：root 密码：root</li><li>将如下压缩包内两个文件上传到路由器 /tmp目录下<br>UBOOT下载：AX3600-UBOOT.rar</li><li>用PUTTY或者其他SSH工具登录10.0.0.1 用户名：root 密码：root</li><li>分别依次输入如下6行代码并回车：</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv flag_last_success 0</span><br><span class="line">fw_setenv flag_boot_rootfs 0</span><br><span class="line">mtd erase /dev/mtd1</span><br><span class="line">mtd write /tmp/ax3600-mibib.bin /dev/mtd1</span><br><span class="line">mtd erase /dev/mtd7</span><br><span class="line">mtd write /tmp/ax3600-uboot.bin /dev/mtd7</span><br></pre></td></tr></table></figure><p>大功告成，以后想怎么刷怎么刷固件了</p><h2 id="UBoot使用方法：">UBoot使用方法：</h2><ul><li>网线链接电脑和AX3600路由器，设置ipv4为192.168.1.111 子掩码：255.255.255.0 网关：192.168.1.1</li><li>关闭路由器状态下长按路由器reset键同时插上电源，大概5秒松开</li><li>电脑浏览器输入192.168.1.1进入UBOOT界面，上传你想刷的任何AX3600底包（UBI格式包或带factory字样的bin格式包）</li><li>在登录路由器后台正常升级你想升级正常的固件包</li><li>记得用UBOOT刷完底包后把电脑IPV4改成自动获取，在进路由器后台升级</li></ul><p><strong>注意：</strong></p><ul><li>如上刷完的底包路由器后台地址：10.0.0.1 用户名和密码：root</li><li>登录路由器后台后通过备份与升级-升级正常固件包再使用</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AX3600 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>斐讯K3 免降级 免拆机 免TTL 开启telnet 简明刷机教程</title>
+      <link href="/2022/06/14/%E6%96%90%E8%AE%AFK3%20%E5%85%8D%E9%99%8D%E7%BA%A7%20%E5%85%8D%E6%8B%86%E6%9C%BA%20%E5%85%8DTTL%20%E5%BC%80%E5%90%AFtelnet%20%E7%AE%80%E6%98%8E%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/06/14/%E6%96%90%E8%AE%AFK3%20%E5%85%8D%E9%99%8D%E7%BA%A7%20%E5%85%8D%E6%8B%86%E6%9C%BA%20%E5%85%8DTTL%20%E5%BC%80%E5%90%AFtelnet%20%E7%AE%80%E6%98%8E%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>斐讯K3 免降级 免拆机 免TTL 开启telnet 简明刷机教程</h1><h2 id="支持的版本">支持的版本</h2><p>旧版: V21.4.31.212 V21.4.33.217 V21.5.37.246 V21.5.39.260 V21.6.8.46 V21.6.11.58<br>新版: V21.6.14.109 V21.6.14.122 V21.6.14.131 V21.6.14.135 V24.1.1.206<br>矿机D1：V23.1.8.89<br>英文国际：V22.1.20.136 V22.1.23.149</p><hr><h2 id="理论上支持2019年5月以前所发布的所有K3固件">理论上支持2019年5月以前所发布的所有K3固件</h2><p><strong>1</strong>**：** <a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E6%96%90%E8%AE%AFK3/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7">下载配置文件 cn.dat</a>  (国际版下载us.dat或de.dat）</p><p><strong>2</strong>**：**登陆路由 —&gt; 功能设置 —&gt; 备份恢复 —&gt; 浏览选择下载的 .dat 文件 —&gt; 恢复备份</p><p><img src="https://img.x-wan.top/imgs/2022/06/7042f699800eb33a.jpg" alt=""></p><p><strong>3</strong>**：**重启完成后用密码 <a href="http://tbvv.net">tbvv.net</a> 登陆路由 —&gt; 功能设置 —&gt; 存储管理 —&gt; 修改用户名为admin —&gt; 保存</p><p><img src="https://img.x-wan.top/imgs/2022/06/5ae8a1e9bfb023b3.jpg" alt=""></p><p>4：新旧两种固件</p><p><img src="https://img.x-wan.top/imgs/2022/06/12336219a7ecc8e8.jpg" alt=""></p><h2 id="两种刷入方法，新版固件可以使用方法一或二，旧版固件只能用方法二">两种刷入方法，新版固件可以使用方法一或二，旧版固件只能用方法二</h2><p><strong>方法一</strong>： 功能设置 —&gt; 手动升级 —&gt; 浏览选择下载的<strong>root</strong>固件 —&gt; 上传升级<br>(不能刷入官方原版固件)</p><p><img src="https://img.x-wan.top/imgs/2022/06/12336219a7ecc8e8.jpg" alt=""></p><p><strong>方法二</strong>： telnet登陆路由后 —&gt; 接着按照 <a href="https://tbvv.net/posts/0101-k3.html#%E4%B8%8A%E4%BC%A0%E5%9B%BA%E4%BB%B6">上传固件</a> 的步骤操作</p><p><img src="https://img.x-wan.top/imgs/2022/06/e993a79b69c00587.jpg" alt=""></p><h4 id="上传固件">上传固件</h4><ol><li><p>下载固件、<a href="http://tftpd32.jounin.net/tftpd32_download.html">Tftpd32</a></p></li><li><p>打开Tftpd32，防火墙允许，选择连接路由的网卡，固件放到同目录</p></li><li><p>把固件从电脑tftp目录下载到路由(192.168.2.100是实际的电脑IP,tftpd里面有显示)<br>PuTTY输入命令：</p></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /tmp; tftp -g -r K3_V21.6.14.131_tb_beta.bin 192.168.2.100</span><br></pre></td></tr></table></figure><h4 id="刷入固件">刷入固件</h4><p>PuTTY输入命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat K3_V21.6.14.131_tb_beta.bin &gt;/dev/mtdblock6 &amp;&amp; reboot</span><br></pre></td></tr></table></figure><p>会自动重启 等待路由重启 2分钟后重启完成(如果重启失败手动电源按钮重开机)</p><p><img src="https://img.x-wan.top/imgs/2022/06/3c5b182cc5a0df2d.gif" alt=""></p><h2 id="刷入其他固件">刷入其他固件</h2><blockquote><p>刷入梅林或者openwrt固件，直接从root固件的管理后台直接更新即可。</p><p>不管你现在是哪种固件，都可以刷入root版固件，然后再刷别的固件。</p><p>切记更新固件不要保存配置。</p></blockquote><blockquote><p><a href="https://p.x-wan.top/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%9B%BA%E4%BB%B6%E5%90%88%E9%9B%86%E2%9C%A8/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E6%96%90%E8%AE%AFK3/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7">全套刷机工具</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> K3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>极路由系列刷老毛子固件后搜不到WiFi的解决办法</title>
       <link href="/2022/06/01/%E6%9E%81%E8%B7%AF%E7%94%B1%E7%B3%BB%E5%88%97%E5%88%B7%E8%80%81%E6%AF%9B%E5%AD%90%E5%9B%BA%E4%BB%B6%E5%90%8E%E6%90%9C%E4%B8%8D%E5%88%B0WiFi%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
       <url>/2022/06/01/%E6%9E%81%E8%B7%AF%E7%94%B1%E7%B3%BB%E5%88%97%E5%88%B7%E8%80%81%E6%AF%9B%E5%AD%90%E5%9B%BA%E4%BB%B6%E5%90%8E%E6%90%9C%E4%B8%8D%E5%88%B0WiFi%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
