@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>红米AX6刷机+UBOOT完全攻略，随意刷大ROM包</title>
+      <link href="/2022/06/21/%E7%BA%A2%E7%B1%B3AX6%E5%88%B7%E6%9C%BA+UBOOT%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%8C%E9%9A%8F%E6%84%8F%E5%88%B7%E5%A4%A7ROM%E5%8C%85/"/>
+      <url>/2022/06/21/%E7%BA%A2%E7%B1%B3AX6%E5%88%B7%E6%9C%BA+UBOOT%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%8C%E9%9A%8F%E6%84%8F%E5%88%B7%E5%A4%A7ROM%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote><p><a href="https://pan.xiaowansm.top/1/main/%F0%9F%94%A5OpenWrt_LEAN%E7%89%88%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E5%B0%B1%E7%82%B9%E5%BC%80%E6%AD%A4%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8AX6/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7">全套刷机工具</a></p></blockquote><p>1、一台刷好openwrt的路由器（无线名称改为OpenWrt，无线密码改为password）</p><p>2、电脑一台，需要用网线的方式连接路由器</p><p>3、准备一个牙签或卡针</p><h2 id="配置openwrt路由器"><a href="#配置openwrt路由器" class="headerlink" title="配置openwrt路由器"></a>配置openwrt路由器</h2><p>电脑用网线连接openwrt路由器</p><ul><li>用winscp把文件<code>xqsystem.lua</code>上传到<code>/usr/lib/lua/luci/controller/admin/</code>目录下</li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/62f7bf37eb5ac33e.png" alt=""></p><ul><li><p>openwrt路由器ip设置为 169.254.31.1 然后关闭DHCP</p><p><img src="https://img.x-wan.top/imgs/2022/05/c3661699d1a03973.png" alt=""></p></li><li><p>电脑固定ip为169.254.31.3，再重启openwrt路由器</p><p><img src="https://img.x-wan.top/imgs/2022/05/e74023aa10e3ea0c.png" alt=""></p></li><li><p>169.254.31.1能进openwrt路由器后台后，浏览器访问<code>http://169.254.31.1/cgi-bin/luci/api/xqsystem/token</code>，之后会出现<code>code 0</code>等字样就OK了</p></li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/27e89a5f243dd8fa.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/05/39a4d232b09cd76f.png" alt=""></p><ul><li>拔掉openwrt路由器跟电脑的网线放在一边备用（电源不要拔），然后电脑的ip地址改为自动获取。</li></ul><p><img src="https://img.x-wan.top/imgs/2022/05/05c281bb541cb9a7.png" alt=""></p><h2 id="开启SSH"><a href="#开启SSH" class="headerlink" title="开启SSH"></a>开启SSH</h2><p>电脑网线连接红米AX6路由器，进入后台</p><p><img src="https://img.x-wan.top/imgs/2022/05/97756368f9c3d5cb.png" alt=""></p><p>浏览器访问</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644/api/misystem/extendwifi_connect?ssid=OpenWrt&amp;password=password</span><br></pre></td></tr></table></figure><blockquote><p><code>http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644</code>改成你的</p></blockquote><p>成功则显示 “code”:0 等字样</p><p><img src="https://img.x-wan.top/imgs/2022/05/27012ba6ec8639fb.png" style="zoom:25%;" /></p><p>然后浏览器访问</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644/api/xqsystem/oneclick_get_remote_token?username=xxx&amp;password=xxx&amp;nonce=xxx</span><br></pre></td></tr></table></figure><blockquote><p><code>http://192.168.10.1/cgi-bin/luci/;stok=ab2186b95ae6335cc1326ba54e6db644</code>改成你的</p></blockquote><p>成功则显示 “code”:0 等字样</p><p><img src="https://img.x-wan.top/imgs/2022/05/212dea1a38c0e8f4.png" alt=""></p><h2 id="刷入qsdk固件"><a href="#刷入qsdk固件" class="headerlink" title="刷入qsdk固件"></a>刷入qsdk固件</h2><ul><li><p>用PUTTY或者其他SSH工具登录192.168.31.1 用户名：root 密码：admin</p></li><li><p>依次每行单独复制如下代码并回车</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nvram set flag_last_success=0</span><br><span class="line">nvram set flag_boot_rootfs=0</span><br><span class="line">nvram set flag_boot_success=1</span><br><span class="line">nvram set flag_try_sys1_failed=0</span><br><span class="line">nvram set flag_try_sys2_failed=0</span><br><span class="line">nvram set boot_wait=on</span><br><span class="line">nvram set uart_en=1</span><br><span class="line">nvram set telnet_en=1</span><br><span class="line">nvram set ssh_en=1</span><br><span class="line">nvram commit</span><br></pre></td></tr></table></figure></li><li><p>打开安装好的WinSCP工具并登录，地址用户名密码和上面一样</p></li><li><p>下载qsdk固件： <strong>xiaomimtd12.bin</strong>并上传到/tmp目录下。</p></li><li><p>回到PUTTY继续输入：</p></li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd write /tmp/xiaomimtd12.bin rootfs</span><br></pre></td></tr></table></figure><p><img src="https://img.x-wan.top/imgs/2022/06/9e465d6f289d17f6.png" alt=""></p><ul><li>插拨电源重新启动路由器</li></ul><h2 id="刷入UBOOT"><a href="#刷入UBOOT" class="headerlink" title="刷入UBOOT"></a>刷入UBOOT</h2><ul><li>用winscp工具登录192.168.1.1 用户名：root 密码：password</li><li>将如下压缩包内两个文件上传到路由器 /tmp目录下</li></ul><p>UBOOT下载：<a href="https://pan.xiaowansm.top/s/ileln1">AX6-UBOOT.rar</a></p><ul><li>用PUTTY或者其他SSH工具登录192.168.1.1 用户名：root 密码：password</li><li>分别依次输入如下6行代码并回车：</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv flag_last_success 0</span><br><span class="line">fw_setenv flag_boot_rootfs 0</span><br><span class="line">mtd erase /dev/mtd1</span><br><span class="line">mtd write /tmp/ax6-mibib.bin /dev/mtd1</span><br><span class="line">mtd erase /dev/mtd7</span><br><span class="line">mtd write /tmp/uboot-redmi-ax6.bin /dev/mtd7</span><br></pre></td></tr></table></figure><p>大功告成，以后想怎么刷怎么刷固件了</p><h2 id="UBoot使用方法"><a href="#UBoot使用方法" class="headerlink" title="UBoot使用方法"></a>UBoot使用方法</h2><ul><li><p>网线链接电脑和AX3600路由器，设置ipv4为192.168.1.2 子掩码：255.255.255.0 网关：192.168.1.1</p><p><img src="https://img.x-wan.top/imgs/2022/06/28baf3b0a6456b5a.png" alt=""></p></li><li><p>关闭路由器状态下长按路由器reset键同时插上电源，大概5秒松开</p></li><li><p>电脑浏览器输入192.168.1.1进入UBOOT界面，上传你想刷的任何AX6底包（UBI格式包或带factory字样的bin格式包）</p><p><img src="https://img.x-wan.top/imgs/2022/06/99bab1be309419d3.png" alt=""></p><p><img src="https://img.x-wan.top/imgs/2022/06/e08d73f40c5947ec.png" alt=""></p></li><li><p>在登录路由器后台正常升级你想升级正常的固件包</p></li><li><p>记得用UBOOT刷完底包后把电脑IPV4改成自动获取，在进路由器后台升级</p></li></ul><p><strong>注意：</strong></p><ul><li>如上刷完的底包路由器后台地址：192.168.5.1 用户名和密码：root/password</li><li>登录路由器后台后通过备份与升级-升级正常固件包再使用</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 红米AX6 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PVE | Proxmox VE 修改IP地址以及无法联网问题</title>
       <link href="/2022/06/14/PVE%20%20Proxmox%20VE%20%E4%BF%AE%E6%94%B9IP%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E9%97%AE%E9%A2%98/"/>
       <url>/2022/06/14/PVE%20%20Proxmox%20VE%20%E4%BF%AE%E6%94%B9IP%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E9%97%AE%E9%A2%98/</url>
@@ -529,6 +554,25 @@
     
     
     <entry>
+      <title>小米CR6608固件介绍</title>
+      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DOCKER  Dokcer的webui程序Portainer（openwrt群晖）</title>
       <link href="/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/"/>
       <url>/2022/04/28/DOCKER%20%20Dokcer%E7%9A%84webui%E7%A8%8B%E5%BA%8FPortainer%EF%BC%88openwrt%E7%BE%A4%E6%99%96%EF%BC%89/</url>
@@ -727,25 +771,6 @@
             <tag> Linux </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>小米CR6608固件介绍</title>
-      <link href="/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2022/04/28/%E5%B0%8F%E7%B1%B3CR6608%E5%9B%BA%E4%BB%B6%E4%BB%8B%E7%BB%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="简版介绍">简版介绍</h2><h2 id="Padavan固件（老毛子）有两个版本">Padavan固件（老毛子）有两个版本</h2><ul><li><p>Hiboy版本，此固件是Hiboy大佬开发的，功能比较全面，看下图<br><img src="https://h.x-wan.top/img/Hiboy.png" alt="请输入图片描述"></p></li><li><p>hanwckf版，或者叫C大鸡血版，此固件是基于hanwckf大佬源码编译而来的版本，简洁即用，特殊上网支持全协议，新手小白推荐此固件，看下图<br><img src="https://h.x-wan.top/img/padavan.jpg" alt="请输入图片描述"></p></li></ul><h2 id="OpenWrt固件-2">OpenWrt固件</h2><ul><li>Openwrt固件基于OP开源项目编译的固件，功能丰富，插件全面，此固件需路由器性能强些才会有好的体验，此固件上手有点难度，适合有一定基础的进阶用户，看下图（下图是以软路由为例）<br><img src="https://h.x-wan.top/img/openwrt.jpg" alt="请输入图片描述"></li></ul><h2 id="pb-boot控制台">pb-boot控制台</h2><p><img src="https://img.x-wan.top/imgs/2022/03/a303357c4063817b.jpg" alt="请输入图片描述"></p><ul><li>购买链接：<a href="https://url.x-wan.top/cr6608">小米CR6608</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 路由器 </category>
-          
-      </categories>
-      
       
     </entry>
     
