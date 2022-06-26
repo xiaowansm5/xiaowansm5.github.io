@@ -4355,6 +4355,12 @@ h1.page-title + .tag-cloud-list {
   -ms-transform: rotate(360deg);
   transform: rotate(360deg);
 }
+#waline-wrap textarea {
+  background: url("https://img.x-wan.top/imgs/2022/05/bc812aeceae7600a.png") 100% 100% no-repeat;
+}
+#waline-wrap textarea:focus {
+  background-image: none;
+}
 .fireworks {
   position: fixed;
   top: 0;
@@ -5783,7 +5789,7 @@ blockquote.pullquote.right {
   color: #49b1f5;
 }
 #local-search .search-dialog .local-search__hit-item .search-result {
-  margin: 0 0 8px;
+  margin: 0 8px 8px 0;
   word-break: break-all;
 }
 #local-search .search-dialog .local-search__hit-item .search-keyword {
