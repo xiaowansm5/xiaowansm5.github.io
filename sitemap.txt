@@ -1,9 +1,9 @@
+https://blog.w2aa.ga/post/GitHub-pull.html
 https://blog.w2aa.ga/post/Flyio-Alist.html
 https://blog.w2aa.ga/post/Waline.html
 https://blog.w2aa.ga/post/wget.html
 https://blog.w2aa.ga/post/tar.html
 https://blog.w2aa.ga/post/docusaurus.html
-https://blog.w2aa.ga/post/GitHub.html
 https://blog.w2aa.ga/post/Telegram-Bot-API.html
 https://blog.w2aa.ga/post/hexo.html
 https://blog.w2aa.ga/post/GitHub.html

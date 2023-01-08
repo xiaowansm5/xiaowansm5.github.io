@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.w2aa.ga/post/GitHub-pull.html</loc>
+    <lastmod>2023-01-08</lastmod>
+  </url>
+  <url>
     <loc>https://blog.w2aa.ga/post/Flyio-Alist.html</loc>
     <lastmod>2023-01-07</lastmod>
   </url>
@@ -18,10 +22,6 @@
   </url>
   <url>
     <loc>https://blog.w2aa.ga/post/docusaurus.html</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.w2aa.ga/post/GitHub.html</loc>
     <lastmod>2023-01-02</lastmod>
   </url>
   <url>
