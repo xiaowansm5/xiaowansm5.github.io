@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>通过ZeroTier插件远程管理软路由 | 时光's Blog</title><meta name="keywords" content="openwrt,ZeroTier"><meta name="author" content="XiaoWan💦"><meta name="copyright" content="XiaoWan💦"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OpenWrt是一款开源的路由器系统，可以自由安装各种插件，但由于是非商业化的系统，没有统一的云管理平台，所以远程管理相对麻烦，需要借助于第三方服务器。当然如果家里宽带有独立公网ip，还可以通过ddns实现远程管理。 这里给大家介绍一种内网穿透的方法，ZeroTier是一款比较常用的内网穿透软件，支持运行在多种平台中，如windows、macos、android、openwrt、linux等，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过ZeroTier插件远程管理软路由">
+<meta property="og:url" content="https://blog.w2aa.ga/post/983d3b15.html">
+<meta property="og:site_name" content="时光&#39;s Blog">
+<meta property="og:description" content="OpenWrt是一款开源的路由器系统，可以自由安装各种插件，但由于是非商业化的系统，没有统一的云管理平台，所以远程管理相对麻烦，需要借助于第三方服务器。当然如果家里宽带有独立公网ip，还可以通过ddns实现远程管理。 这里给大家介绍一种内网穿透的方法，ZeroTier是一款比较常用的内网穿透软件，支持运行在多种平台中，如windows、macos、android、openwrt、linux等，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_38_55_202208120738623.png">
+<meta property="article:published_time" content="2023-02-04T04:10:16.000Z">
+<meta property="article:modified_time" content="2023-02-04T13:47:07.742Z">
+<meta property="article:author" content="XiaoWan💦">
+<meta property="article:tag" content="openwrt">
+<meta property="article:tag" content="ZeroTier">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_38_55_202208120738623.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.w2aa.ga/post/983d3b15"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5cd98a826aa91c5ceefdb92e614872a9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b03745f1bc834e2db65a965fb30269de&quot;}"></script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dnxvoye4c3");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '通过ZeroTier插件远程管理软路由',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-02-04 21:47:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/hexo-footer.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">89</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">81</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://p.w2nn.ml"><i class="fa-fw fas fa-compass"></i><span> 固件仓库</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://mi.w2aa.ga/"><i class="fa-fw fa-solid fa-lock"></i><span> 小米路由SSH密码计算</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.w2aa.ga/"><i class="fa-fw fa-brands fa-github"></i><span> GitHub文件加速</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://u.xwsm.tk/url"><i class="fa-fw fa-solid fa-arrow-up-short-wide"></i><span> 缩短网址</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.speedtest.cn"><i class="fa-fw fa-solid fa-gauge"></i><span> 测速网</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://tg.w2aa.ga"><i class="fa-fw fa-brands fa-telegram"></i><span> TelegramBotAPI</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://sub.w2aa.ga"><i class="fa-fw fa-solid fa-rocket"></i><span> 订阅转换</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://api.xiaowansm.repl.co"><i class="fa-fw fa-solid fa-image"></i><span> 随机图api</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-wave-square"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://blog.wwang.pw"><i class="fa-fw fa-fw fas fa-subway"></i><span> 开往镜像站</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">时光's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://p.w2nn.ml"><i class="fa-fw fas fa-compass"></i><span> 固件仓库</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://mi.w2aa.ga/"><i class="fa-fw fa-solid fa-lock"></i><span> 小米路由SSH密码计算</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.w2aa.ga/"><i class="fa-fw fa-brands fa-github"></i><span> GitHub文件加速</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://u.xwsm.tk/url"><i class="fa-fw fa-solid fa-arrow-up-short-wide"></i><span> 缩短网址</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.speedtest.cn"><i class="fa-fw fa-solid fa-gauge"></i><span> 测速网</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://tg.w2aa.ga"><i class="fa-fw fa-brands fa-telegram"></i><span> TelegramBotAPI</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://sub.w2aa.ga"><i class="fa-fw fa-solid fa-rocket"></i><span> 订阅转换</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://api.xiaowansm.repl.co"><i class="fa-fw fa-solid fa-image"></i><span> 随机图api</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-wave-square"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://blog.wwang.pw"><i class="fa-fw fa-fw fas fa-subway"></i><span> 开往镜像站</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">通过ZeroTier插件远程管理软路由</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-04T04:10:16.000Z" title="发表于 2023-02-04 12:10:16">2023-02-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-04T13:47:07.742Z" title="更新于 2023-02-04 21:47:07">2023-02-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/openwrt/">openwrt</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="通过ZeroTier插件远程管理软路由"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="waline-pageview-count" data-path="/post/983d3b15.html"></span></span></div></div></div><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>OpenWrt是一款开源的路由器系统，可以自由安装各种插件，但由于是非商业化的系统，没有统一的云管理平台，所以远程管理相对麻烦，需要借助于第三方服务器。当然如果家里宽带有独立公网ip，还可以通过ddns实现远程管理。</p>
+<p>这里给大家介绍一种内网穿透的方法，ZeroTier是一款比较常用的内网穿透软件，支持运行在多种平台中，如windows、macos、android、openwrt、linux等，</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_6_38_640.png" alt="图片"></p>
+<p>ZeroTier类似于虚拟专网软件，拨号成功后可以实现点对点直通，ZeroTier是可以免费使用的，普通个人使用完全没问题，免费版本最大支持25台设备。</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_6_45_640.png" alt="图片"></p>
+<p>这里教大家如何通过ZeroTier实现远程管理openwrt系统，这样可以很方便的实时查看路由器状态，比如实时查看小孩是否正在玩游戏。</p>
+<p>首先我们需要在zerotier官网注册一个账号</p>
+<p>官网地址</p>
+<p><a target="_blank" rel="noopener" href="http://www.zerotier.com/">www.zerotier.com</a></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_6_48_640.png" alt="图片"></p>
+<p>注册成功后登录，然后新建一个网络</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_47_640.png" alt="图片"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_9_2_image-20230204210900683.png" alt="image-20230204210900683"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_9_36_image-20230204210934950.png" alt="image-20230204210934950"></p>
+<p>复制新建的网络id，该id用于各个终端进行注册，只要输入了该id，就可以将设备绑定到该网络。</p>
+<p>进入openwrt后台的zerotier插件界面</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_9_58_640.png" alt="图片"></p>
+<p>输入上面新建网络的id并启用zerotier，如下图所示</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_15_640.png" alt="图片"></p>
+<p>这样openwrt中就配置完成，回到zerotier官网的网络界面，滚动到页面下方的设备列表，可以看到有一台新的设备</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_13_640.png" alt="图片"></p>
+<p>由于还没有授权，需要勾选授权加入网络</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_10_640.png" alt="图片"></p>
+<p>这样openwrt系统就注册成功了，为了远程能够管理，我们还需要将远程的电脑加入到该网络，可以理解为将openwrt系统和电脑加入到同一个局域网（虚拟）</p>
+<p>windows中的操作过程类似，需要先下载一个windows客户端然后加入到新的网络</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_7_640.png" alt="图片"></p>
+<p>输入网络id即可加入，同样也需要在设备列表中勾选授权，授权成功后可以看到有两台设备在该网络下面</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_4_640.png" alt="图片"></p>
+<p>在windows网络适配其中看到新建了一个虚拟网卡，该虚拟网卡的ip由zerotier服务器分配，同一个网络的虚拟网卡在同一个网段，注意该ip为私有网络地址，在zerotier服务器中可以配置。</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_11_1_640.png" alt="图片"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_10_59_640.png" alt="图片"></p>
+<p>下面我们进入openwrt后台通过ifconfig命令查看网卡信息，同样可以看到多出了一个虚拟网卡，其ip和window的虚拟网卡在同一个网段。</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_26_640.png" alt="图片"></p>
+<p>现在我们在windows电脑中直接访问openwrt的虚拟ip即可实现远程管理openwrt系统</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_24_640.png" alt="图片"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_1_640.png" alt="图片"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_4_640.png" alt="图片"></p>
+<p>当然在openwrt系统中也可以直接ping通windows虚拟网卡的ip</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_9_640.png" alt="图片"></p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_16_640.png" alt="图片"></p>
+<p>可能很多同学不理解为什么两个局域网的ip能够跨公网互通，这里就涉及到虚拟专用网络的知识了，以openwrt系统访问windows为例，当我们ping 10.243.53.247地址时，首先会找到直连路由走到zerotier接口，而该接口的数据会经过zerotier-one进程进行封包处理，然后再将包发送到zerotier服务器，而发送到zerotier服务器的报文会通过默认路由发出，通过公网传输后到达zerotier服务器，然后转发到对端的windows物理网卡，最终到达windows zerotier虚拟网卡并解隧道报文，对于虚拟网卡来说，它是无法感知中间传输时加了隧道，而对于物理网卡来说，也不知道报文内容还包含一层ip报文，当然也不需要关心，隧道的核心思想就是双层ip头部，绕过防火墙的原理也是如此，只是加密算法和协议的不同而已。</p>
+<p><img src="https://gitlab.com/xiaowansm/img/raw/main/pictures/2023/02/4_21_7_13_640.png" alt="图片"></p>
+<p>以上就是通过zerotier远程访问openwrt系统的教程，当然也可以通过zerotier远程管理windows或linux电脑，只要保证各个设备加入到同一网络即可，结合静态路由还可以实现私网到私网的互通。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.w2aa.ga">XiaoWan💦</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.w2aa.ga/post/983d3b15.html">https://blog.w2aa.ga/post/983d3b15.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.w2aa.ga" target="_blank">时光's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/openwrt/">openwrt</a><a class="post-meta__tags" href="/tags/ZeroTier/">ZeroTier</a></div><div class="post_share"><div class="social-share" data-image="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_38_55_202208120738623.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/Waline.html"><img class="next-cover" src="http://p9.qhimg.com/bdr/__85/t0103f1a8d4363c057c.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Waline评论服务端转移至Deta并添加环境变量</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/op.html" title="OpenWrt基础使用教程"><img class="cover" src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_37_46_202208120737520.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-06</div><div class="title">OpenWrt基础使用教程</div></div></a></div><div><a href="/post/ax6000-uboot.html" title="红米ax6000刷不死uboot+刷openwrt+刷回原厂系统教程"><img class="cover" src="https://cdn.staticaly.com/gh/xiaowansm5/img@master/ecy/632075.7g4fxlivl480.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-03</div><div class="title">红米ax6000刷不死uboot+刷openwrt+刷回原厂系统教程</div></div></a></div><div><a href="/post/openwrt1.html" title="OpenWrt介绍及编译基础教程"><img class="cover" src="https://cdn.staticaly.com/gh/xiaowansm5/img@master/ecy/933852.6x12cq9cfjk0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-17</div><div class="title">OpenWrt介绍及编译基础教程</div></div></a></div><div><a href="/post/JCG-Q20.html" title="捷稀JCG Q20刷pb-boot与OpenWrt教程"><img class="cover" src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/7_18_57_10_202208071857685.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-11</div><div class="title">捷稀JCG Q20刷pb-boot与OpenWrt教程</div></div></a></div><div><a href="/post/R68S.html" title="电犀牛R68S线刷OpenWrt教程"><img class="cover" src="http://p19.qhimg.com/bdr/__85/t015a874f7b26bf074f.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-11</div><div class="title">电犀牛R68S线刷OpenWrt教程</div></div></a></div><div><a href="/post/R5S.html" title="NanoPi R5S线刷OpenWrt至eMMC教程"><img class="cover" src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_39_11_202208120739884.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-11</div><div class="title">NanoPi R5S线刷OpenWrt至eMMC教程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">XiaoWan💦</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">89</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">81</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaowansm5/"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xiaowansm5/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://gitlab.com/xiaowansm" target="_blank" title="Gitlab"><i class="fab fa-gitlab"></i></a><a class="social-icon" href="mailto:wwang.pw@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://wpa.qq.com/msgrd?v=3&amp;uin=85151535" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/xiaowan_sm" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://pan.wwang.pw/" target="_blank" title="网盘"><i class="fa-solid fa-cloud-arrow-down"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果你在使用中遇到問題，請加QQ進行反饋，你也可以加入QQ群<div class="social-button"><a class="button--animated" href="https://jq.qq.com/?_wv=1027&k=g9Rgx6I0" rel="external nofollow noreferrer" target="_blank">QQ1群 👍</a> <a class="button--animated" href="https://jq.qq.com/?_wv=1027&k=iChIlJ4q" rel="external nofollow noreferrer" target="_blank">QQ2群👍</a><a class="button--animated" href="https://t.me/+5SM7cZFc6n45Njc1" rel="external nofollow noreferrer" target="_blank">Telegram群👍</a></div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/983d3b15.html" title="通过ZeroTier插件远程管理软路由"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_38_55_202208120738623.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通过ZeroTier插件远程管理软路由"/></a><div class="content"><a class="title" href="/post/983d3b15.html" title="通过ZeroTier插件远程管理软路由">通过ZeroTier插件远程管理软路由</a><time datetime="2023-02-04T04:10:16.000Z" title="发表于 2023-02-04 12:10:16">2023-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Waline.html" title="Waline评论服务端转移至Deta并添加环境变量"><img src="http://p9.qhimg.com/bdr/__85/t0103f1a8d4363c057c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Waline评论服务端转移至Deta并添加环境变量"/></a><div class="content"><a class="title" href="/post/Waline.html" title="Waline评论服务端转移至Deta并添加环境变量">Waline评论服务端转移至Deta并添加环境变量</a><time datetime="2023-01-07T10:21:16.000Z" title="发表于 2023-01-07 18:21:16">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Flyio-Alist.html" title="利用Fly.io免费服务部署Alist网盘程序"><img src="https://cdn.staticaly.com/gh/xiaowansm5/img@master/ecy/oxjvrm.3ru186yl0no0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Fly.io免费服务部署Alist网盘程序"/></a><div class="content"><a class="title" href="/post/Flyio-Alist.html" title="利用Fly.io免费服务部署Alist网盘程序">利用Fly.io免费服务部署Alist网盘程序</a><time datetime="2023-01-07T10:21:16.000Z" title="发表于 2023-01-07 18:21:16">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/wget.html" title="wget 使用技巧"><img src="http://p17.qhimg.com/bdr/__85/t01a36f6e90f6319a4b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="wget 使用技巧"/></a><div class="content"><a class="title" href="/post/wget.html" title="wget 使用技巧">wget 使用技巧</a><time datetime="2023-01-05T10:21:16.000Z" title="发表于 2023-01-05 18:21:16">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/tar.html" title="常用软件upx、unzip、tar那点事"><img src="https://cdn.staticaly.com/gh/xiaowansm5/img@master/ecy/1063577.jq4zp7cehb4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用软件upx、unzip、tar那点事"/></a><div class="content"><a class="title" href="/post/tar.html" title="常用软件upx、unzip、tar那点事">常用软件upx、unzip、tar那点事</a><time datetime="2023-01-05T03:12:16.000Z" title="发表于 2023-01-05 11:12:16">2023-01-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 <i style="color:#FF6A6A" class="fa fa-heartbeat"></i> XiaoWan💦</div><div class="footer_custom_text"><span id="jinrishici-sentence">正在加载今日诗词....</span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> <br> <a target="_blank" href="https://pan.w2nn.ml/">📁固件仓库 </a> <a target="_blank" href="https://pan.wwang.pw">☁️网盘 </a> <a target="_blank" href="https://music.w2aa.ml">🎵音乐库 </a> <a target="_blank" href="https://t.me/+5SM7cZFc6n45Njc1"><i class="fa-brands fa-telegram"></i>Telegram群</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.w2aa.ml/',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'leXiNoo4QVv9NcytamzQIqqi-gzGzoHsz',
+      appKey: 'qMMzcW0vKBrEyHaq0jgkTrbj',
+      avatar: 'Q6GVXapt9h5dFyKu8RR3J4PT',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Waline' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
