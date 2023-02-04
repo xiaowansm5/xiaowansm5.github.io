@@ -1,3 +1,4 @@
+https://blog.w2aa.ga/post/ZeroTier.html
 https://blog.w2aa.ga/post/GitHub-pull.html
 https://blog.w2aa.ga/post/Flyio-Alist.html
 https://blog.w2aa.ga/post/Waline.html
@@ -176,6 +177,7 @@ https://blog.w2aa.ga/tags/%E7%BA%A2%E7%B1%B3AX6/
 https://blog.w2aa.ga/tags/Telegram/
 https://blog.w2aa.ga/tags/%E7%BA%A2%E7%B1%B3ax6000/
 https://blog.w2aa.ga/tags/%E4%B8%8D%E6%AD%BBuboot/
+https://blog.w2aa.ga/tags/ZeroTier/
 https://blog.w2aa.ga/categories/%E8%B7%AF%E7%94%B1%E5%99%A8/
 https://blog.w2aa.ga/categories/Linux/
 https://blog.w2aa.ga/categories/%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/
