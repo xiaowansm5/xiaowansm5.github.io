@@ -70,7 +70,6 @@ https://blog.w2aa.ga/post/Win11.html
 https://blog.w2aa.ga/post/op.html
 https://blog.w2aa.ga/post/932.html
 https://blog.w2aa.ga/post/Shortny.html
-https://blog.w2aa.ga/post/a66.html
 https://blog.w2aa.ga/post/a11.html
 https://blog.w2aa.ga/post/a13.html
 https://blog.w2aa.ga/post/a12.html
@@ -125,8 +124,6 @@ https://blog.w2aa.ga/tags/%E8%BD%AF%E4%BB%B6%E6%BA%90/
 https://blog.w2aa.ga/tags/PVE/
 https://blog.w2aa.ga/tags/padavan/
 https://blog.w2aa.ga/tags/%E6%95%99%E7%A8%8B/
-https://blog.w2aa.ga/tags/Padavan/
-https://blog.w2aa.ga/tags/ipv6/
 https://blog.w2aa.ga/tags/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/
 https://blog.w2aa.ga/tags/%E5%8D%9A%E5%AE%A2/
 https://blog.w2aa.ga/tags/Typecho/
@@ -184,5 +181,4 @@ https://blog.w2aa.ga/categories/%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/
 https://blog.w2aa.ga/categories/nas/
 https://blog.w2aa.ga/categories/openwrt/
 https://blog.w2aa.ga/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/
-https://blog.w2aa.ga/categories/Padavan/
 https://blog.w2aa.ga/categories/Windows/

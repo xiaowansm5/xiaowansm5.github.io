@@ -981,33 +981,6 @@
     
     
     <entry>
-      <title>Padavan（老毛子）电信/联通/移动IPV6设置开启教程</title>
-      <link href="/post/a66.html"/>
-      <url>/post/a66.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://iroot.cc/wp-content/uploads/2020/05/Padavan_IPv6.png" alt="img"></p><p>很多人说不会设置老毛子的IPv6</p><p>在这里我简单介绍一下老毛子的IPv6设置流程。</p><p>教程开始之前，这里提供三大宽带运营商光猫可尝默认超密</p><table><thead><tr><th>电信光猫超密</th><th>联通光猫超密</th><th>移动光猫超密</th></tr></thead><tbody><tr><td>telecomadmin</td><td>CUAdmin</td><td>CMCCAdmin</td></tr><tr><td>nE7jA%5m</td><td>CUAdmin</td><td>aDm8H%MdA</td></tr><tr><td></td><td></td><td>移动HG8321R光猫超密</td></tr><tr><td></td><td></td><td>telecomadmin</td></tr><tr><td></td><td></td><td>admintelecom</td></tr></tbody></table><p>由于我家的<strong>电信宽带</strong>申请了公网IP运营商不再分配IPv6地址，所以下面的教程我会采用<strong>移动宽带</strong>作为演示。</p><p><strong>首先确认光猫的设置，参考下图</strong>（电信&#x2F;联通&#x2F;移动的光猫设置方法基本一致）</p><p><img src="https://iroot.cc/wp-content/uploads/2020/05/ipv6-1.png" alt="img"></p><p><strong>第一步，登陆路由器管理后台选择【**外网 WAN – 外网设置**】**，</strong>然后参考下图配置一下相关信息，点击“应用设置”提交即可。**</p><p><img src="https://iroot.cc/wp-content/uploads/2020/05/ipv6-2-943x1024.png" alt="img"></p><p>**第二步，选择【*<em>外网 WAN – IPv6协议*<em>】，然后参考下图各选项内容配置一下信息，点击“应用设置”提交即可。</em></em></p><p><img src="https://iroot.cc/wp-content/uploads/2020/05/ipv6-3.png" alt="img"></p><p><strong>第三步，返回【网络地图 – 外部网络状态】查看是否已经分配到IPv6地址，之后访问 <a href="https://test-ipv6.com/">https://test-ipv6.com/</a> 检测一下是否通过IPv6评分测试。</strong></p><p><img src="https://iroot.cc/wp-content/uploads/2020/05/ipv6-4.png" alt="img"></p><p><img src="https://iroot.cc/wp-content/uploads/2020/05/ipv6-5.png" alt="img"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Padavan </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Padavan </tag>
-            
-            <tag> ipv6 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>一个多功能的PHP短网址程序：Shortny，自定义后缀二维码链接统计等</title>
       <link href="/post/Shortny.html"/>
       <url>/post/Shortny.html</url>
