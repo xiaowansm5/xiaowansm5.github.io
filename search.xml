@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>微信接入ChatGPT API 微信就是ChatGPT AI人工智能bot【二】</title>
+      <link href="/post/ChatGPT-bot.html"/>
+      <url>/post/ChatGPT-bot.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="一、登陆OpenAI官网登录你的账号，获取API-key"><a href="#一、登陆OpenAI官网登录你的账号，获取API-key" class="headerlink" title="一、登陆OpenAI官网登录你的账号，获取API key"></a>一、登陆OpenAI官网登录你的账号，获取API key</h2><p>官网：<a href="http://www.openai.com/">www.openai.com</a></p><h2 id="二、Wechat-Chatgpt项目"><a href="#二、Wechat-Chatgpt项目" class="headerlink" title="二、Wechat-Chatgpt项目"></a>二、Wechat-Chatgpt项目</h2><p><a href="https://github.com/AutumnWhj/ChatGPT-wechat-bot">https://github.com/AutumnWhj/ChatGPT-wechat-bot</a></p><h2 id="三、开始配置服务器"><a href="#三、开始配置服务器" class="headerlink" title="三、开始配置服务器"></a>三、开始配置服务器</h2><p>安装Node环境</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br><span class="line"></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -</span><br><span class="line"></span><br><span class="line">sudo apt-get install nodejs</span><br></pre></td></tr></table></figure><p>克隆项目</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/AutumnWhj/ChatGPT-wechat-bot</span><br></pre></td></tr></table></figure><p>安装依赖并创建配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 进去ChatGPT-wechat-bot目录</span><br><span class="line">cd ChatGPT-wechat-bot</span><br><span class="line"></span><br><span class="line"># 安装依赖</span><br><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>&#x2F;src&#x2F;config.ts内容如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /src/config.ts</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  // 填入你的OPENAI_API_KEY</span><br><span class="line">  OPENAI_API_KEY: &#x27;&#x27;,</span><br><span class="line">  // 设置获取消息的重试次数</span><br><span class="line">  retryTimes: 3,</span><br><span class="line">  // 在群组中设置唤醒微信机器人的关键词</span><br><span class="line">  groupKey: &#x27;小艾&#x27;,</span><br><span class="line">  // 在私聊中设置唤醒微信机器人的关键词</span><br><span class="line">  privateKey: &#x27;&#x27;,</span><br><span class="line">  // 重置上下文的关键词，如可设置为reset</span><br><span class="line">  resetKey: &#x27;reset&#x27;,</span><br><span class="line">  // 开启会后收到ChatGPT的自动回复</span><br><span class="line">  autoReply: true,</span><br><span class="line">  // 根据正则匹配是否自动通过好友验证</span><br><span class="line">  friendShipRule: /chatgpt|chat/,</span><br><span class="line">  // 是否在群聊中按照回复的格式进行回复</span><br><span class="line">  groupReplyMode: true,</span><br><span class="line">  // 是否在私聊中按照回复的格式进行回复</span><br><span class="line">  privateReplyMode: false,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>填入你的OPENAI_API<strong>填入<code>OPENAI_API_KEY</code></strong></p><p>启动服务并扫码登录</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_10_31_51_202302151031678.png" alt="image-20230215103143231"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> bot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>微信接入ChatGPT API 微信就是ChatGPT AI人工智能bot【一】</title>
+      <link href="/post/ChatGPT.html"/>
+      <url>/post/ChatGPT.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="一、登陆OpenAI官网登录你的账号，获取API-key"><a href="#一、登陆OpenAI官网登录你的账号，获取API-key" class="headerlink" title="一、登陆OpenAI官网登录你的账号，获取API key"></a>一、登陆OpenAI官网登录你的账号，获取API key</h2><p>官网：<a href="http://www.openai.com/">www.openai.com</a></p><h2 id="二、Wechat-Chatgpt项目"><a href="#二、Wechat-Chatgpt项目" class="headerlink" title="二、Wechat-Chatgpt项目"></a>二、Wechat-Chatgpt项目</h2><p><a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><h2 id="三、开始配置服务器"><a href="#三、开始配置服务器" class="headerlink" title="三、开始配置服务器"></a>三、开始配置服务器</h2><p>安装Node环境</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br><span class="line"></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -</span><br><span class="line"></span><br><span class="line">sudo apt-get install nodejs</span><br></pre></td></tr></table></figure><p>克隆项目</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/fuergaosi233/wechat-chatgpt.git</span><br></pre></td></tr></table></figure><p>安装依赖并创建配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 进去wechat-chatgpt目录</span><br><span class="line">cd wechat-chatgpt</span><br><span class="line"></span><br><span class="line"># 切换到new-wechatgpt分支</span><br><span class="line">git checkout new-wechatgpt</span><br><span class="line"></span><br><span class="line"># 安装依赖</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 创建配置文件</span><br><span class="line">cp config.yaml.example config.yaml</span><br><span class="line">cp .env.example .env</span><br></pre></td></tr></table></figure><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>config.yaml内容如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chatGPTAccountPool:</span><br><span class="line">  - email: 填写你的ChatGPT账号</span><br><span class="line">    password: 填写你的ChatGPT密码</span><br><span class="line">    isGoogleLogin: false</span><br><span class="line">chatPrivateTiggerKeyword: &quot;&quot;</span><br><span class="line">openAIProxy: &quot;&quot;</span><br></pre></td></tr></table></figure><p>.env内容如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CHAT_GPT_EMAIL=</span><br><span class="line">CHAT_GPT_PASSWORD=</span><br><span class="line">CHAT_GPT_RETRY_TIMES=</span><br><span class="line">CHAT_PRIVATE_TRIGGER_KEYWORD=</span><br><span class="line">OPENAI_PROXY=</span><br><span class="line">NOPECHA_KEY=</span><br><span class="line">CAPTCHA_TOKEN=</span><br><span class="line">OPENAI_API_KEY=填写你的API_KEY</span><br></pre></td></tr></table></figure><p>修改模型</p><p>打开文件：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd wechat-chatgpt</span><br><span class="line">vi node_modules/chatgpt/build/index.js          </span><br><span class="line"></span><br><span class="line">(73行)</span><br></pre></td></tr></table></figure><p>修改模型为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-davinci-003</span><br></pre></td></tr></table></figure><p>启动服务并扫码登录</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_10_31_51_202302151031678.png" alt="image-20230215103143231"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> bot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Clash for Mac 版使用教程 | ClashX 教程</title>
+      <link href="/post/ClashX.html"/>
+      <url>/post/ClashX.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>说明：ClashX 软件版权及后续权益属于软件作者，软件相关介绍及说明可参考作者主页：<a href="https://github.com/yichengchen/clashX">https://github.com/yichengchen/clashX</a></p><p>ClashX 的新版本支持一键导入功能，请确保您已安装最新版的 ClashX。</p><p>1、下载好后安装该软件（如提示来历不明开发者，请去设置-隐私中将此APP信任）</p><hr><p>2、使用Safari浏览器登录进入个人中心，在<strong>仪表盘</strong>页面或<strong>我的订阅</strong>页面找到“<strong>一键订阅</strong>”按钮，点击并选择“<strong>导入到Clash</strong>”选项。点击后会自动提示跳转到ClashX客户端。</p><p>如果系统无法自动跳转，则可点击“<strong>一键订阅</strong>”按钮的“<strong>复制订阅地址</strong>”选项，并在稍后填入到ClashX客户端中进行手动下载。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/9_14_52_19_202302091452603.png" alt="img"></p><hr><p>3、一键导入成功的用户请直接前进到第6步。旧版本客户端用户需要进一步手动添加托管配置地址。前往菜单项的<strong>配置</strong> – <strong>托管配置</strong> – <strong>设置地址</strong></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/9_14_52_21_202302091452173.png" alt="img"></p><hr><p>4、将第2步复制的配置文件托管地址复制到URL输入框，点击OK即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/9_14_52_21_202302091452470.png" alt="img"></p><hr><p>5、客户端将从BosLife API中心验证地址并下载配置文件。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/9_14_52_18_202302091452707.png" alt="img"></p><hr><p>6、设置软件模式。首先勾选<strong>设置为系统代理</strong>（软件启动生效），然后根据需求选择<strong>出站模式</strong>，建议为<strong>规则判断</strong>即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/9_14_52_20_202302091452327.png" alt="img"></p><hr><h3 id="进阶操作：可选白名单模式配置文件"><a href="#进阶操作：可选白名单模式配置文件" class="headerlink" title="进阶操作：可选白名单模式配置文件"></a>进阶操作：可选白名单模式配置文件</h3><p>注意：1. BosLife不提供任何进阶代码编写指导，也不接受关于进阶功能的工单支持请求，无编程经验的用户请一定不要操作进阶功能。</p><ol start="2"><li>进阶操作仅适用于客户端v1.72.0及更新版本。</li></ol><p>BosLife 为进阶用户提供了可选的简易白名单模式配置文件，相比默认订阅配置文件，白名单模式配置文件的区别有：</p><ul><li>规则模式下，带有“<strong>自动选择</strong>”和“<strong>故障转移</strong>”分组，分别对应 <strong>url-test</strong> 模式和 <strong>fallback</strong> 模式，默认 BosLife 分组保留。</li><li>配置文件使用<strong>混合端口</strong>来代替旧版本的<strong>三端口分离</strong>，即 <strong>mixed-port</strong> 代替 <strong>port</strong>、<strong>socks-port</strong>、<strong>redir-port</strong>。</li><li>带有 <strong>redir-host</strong> 的增强模式 dns 处理，默认禁用 dns-ipv6。</li><li>默认<strong>白名单模式</strong>，即当所有分流规则均无匹配项时，默认走代理。</li></ul><h6 id="操作步骤（简略）"><a href="#操作步骤（简略）" class="headerlink" title="操作步骤（简略）"></a>操作步骤（简略）</h6><ol><li>上述基本操作步骤2时，点击“一键订阅”按钮的“复制订阅地址”选项。</li><li>上述基本操作步骤4时，在URL输入栏中粘贴自己的订阅地址，在地址最后添加<code>&amp;flag=clashw</code>标签，点击“OK”按钮后客户端会自动下载白名单配置文件，后续步骤相同。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> ClashX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt固件关闭ipv6图文教程</title>
+      <link href="/post/openwrt-ipv6.html"/>
+      <url>/post/openwrt-ipv6.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/16_19_17_45_202302161917068.PNG" alt="关闭ipv6"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/16_19_17_42_202302161917612.PNG" alt="关闭ipv6-1"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/16_19_17_44_202302161917429.PNG" alt="关闭ipv6-2"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/16_19_17_44_202302161917203.PNG" alt="关闭ipv6-3"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> ipv6 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt固件闭源无线驱动设置教程</title>
+      <link href="/post/op-wifi.html"/>
+      <url>/post/op-wifi.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>使用了闭源无线驱动的openwrt固件无线信号强，但是设置无线的时候比较卡顿，这是正常的，多点耐心即可</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_17_31_54_202302151731909.jpg" alt="img"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_17_32_3_202302151732038.jpg" alt="img"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_17_32_8_202302151732332.jpg" alt="img"></p><p><strong>点了《保存&amp;应用》后会卡着不动，等30秒钟后直接点左侧《无线》即可</strong></p><p><strong>5G也是一样的设置方式.</strong></p><p><strong>如果是下图的情况也不要着急，等待一会,刷新页面即可恢复正常（按F5键刷新）</strong></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_17_32_15_202302151732645.jpg" alt="img"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/15_17_32_13_202302151732123.jpg" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 闭源无线 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通过ZeroTier插件远程管理软路由</title>
       <link href="/post/zt.html"/>
       <url>/post/zt.html</url>
@@ -1644,8 +1779,8 @@
     
     <entry>
       <title>Linux 一键测速脚本 SuperSpeed 修复版</title>
-      <link href="/post/d1047e82.html"/>
-      <url>/post/d1047e82.html</url>
+      <link href="/post/4.7e+83.html"/>
+      <url>/post/4.7e+83.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Linux-一键测速脚本-SuperSpeed-修复版"><a href="#Linux-一键测速脚本-SuperSpeed-修复版" class="headerlink" title="Linux 一键测速脚本 SuperSpeed 修复版"></a>Linux 一键测速脚本 SuperSpeed 修复版</h1><p>用来检测服务器到国内三网运营商速度的一键脚本 <a href="https://www.dujin.org/tag/superspeed">SuperSpeed</a> 修复版，很方便，可以测速你的服务器到国内各大节点的速度。如果单纯想测试服务器速度的话，这个脚本十分不错，这里上个今天测试的截图，共小伙伴们参考：</p><p><img src="https://img.dujin.org/uploads/2022/05/20220504113538.png" alt="img"></p><h2 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -Lso- https://git.io/superspeed_uxh)</span><br></pre></td></tr></table></figure><p><strong>备用代码</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -Lso- https://raw.githubusercontent.com/uxh/superspeed/master/superspeed.sh)</span><br></pre></td></tr></table></figure>]]></content>
       
@@ -1921,8 +2056,8 @@
     
     <entry>
       <title>TinyFileManager - PHP轻量文件管理器</title>
-      <link href="/post/aebd4d30.html"/>
-      <url>/post/aebd4d30.html</url>
+      <link href="/post/Tiny.html"/>
+      <url>/post/Tiny.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="TinyFileManager-PHP轻量文件管理器"><a href="#TinyFileManager-PHP轻量文件管理器" class="headerlink" title="TinyFileManager - PHP轻量文件管理器"></a>TinyFileManager - PHP轻量文件管理器</h1><p>Tiny File Manager 正如他名字一样，轻量文件管理器，主要文件就三个文件。安装<code>pecl-rar</code>和<code>pecl-zip</code>扩展后可在线 读取&#x2F;解压&#x2F;生成 压缩文件。</p><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/prasathmani/tinyfilemanager">https://github.com/prasathmani/tinyfilemanager</a></p><p>本站下载<br>链接：<a href="https://p.x-wan.top/d/PC%E8%BD%AF%E4%BB%B6%E3%80%90%E8%93%9D%E5%A5%8F%E4%BA%91%E3%80%91/Linux/tinyfilemanager-2.4.7.zip">下载</a><br>注意：本站下载链接为本文章发布时软件的最高版本，可能与当前时间提供版本有较大差距</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>git下载文件后，上传到服务器，解压，访问<code>网站/文件夹/tinyfilemanager.php</code>，默认账号：<code>admin</code>，默认密码：<code>admin@123</code>。<code>config.php</code>、<code>translation.json</code>、<code>tinyfilemanager.php</code>分别是配置文件、语言文件、主文件，保存这三项即可。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/1.3jhmc2cqznk0.webp" alt="tiny file manager"></p><p> tiny file manager</p><p>登陆后，可以在右上角设置，设置语言、显示错误、显示隐藏文件、隐藏权限和文件夹大小，通过右上角帮助，生成hash密码，可以生成密码替换<code>config.php</code>文件内数组<code>$auth_users</code>，第一项账号，第二项密码hash。通过修改<code>$readonly_users</code>可以设置哪个账号为用户账号。用户账号只能读取文件，管理员账号可以上传，修改，删除等操作。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/2.3g09xd35v1c0.webp" alt="管理员账号"></p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/blog/3.6wout60tgjw0.webp" alt="用户账号"></p><p>读取压缩文件</p>]]></content>
       
@@ -2073,8 +2208,8 @@
     
     <entry>
       <title>HTML添加网页背景音乐</title>
-      <link href="/post/81cf252.html"/>
-      <url>/post/81cf252.html</url>
+      <link href="/post/f252.html"/>
+      <url>/post/f252.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="一、不显示播放器"><a href="#一、不显示播放器" class="headerlink" title="一、不显示播放器"></a>一、不显示播放器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio autoplay=&quot;&quot; loop=&quot;&quot;&gt; &lt;source src=&quot;https://h.x-wan.top/%FB5music/%B2%A4.mp3&quot;&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure><h2 id="二、显示播放器"><a href="#二、显示播放器" class="headerlink" title="二、显示播放器"></a>二、显示播放器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio autoplay=&quot;autoplay&quot; controls=&quot;controls&quot;loop=&quot;loop&quot; preload=&quot;auto&quot;src=&quot;https://h.x-wan.top/%Fmusic/%%E7%B2%A4.mp3&quot;&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure><h2 id="三、本地兼容模式"><a href="#三、本地兼容模式" class="headerlink" title="三、本地兼容模式"></a>三、本地兼容模式</h2><p>在中的title标签之下添加以下这行代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;embed src=&quot;music/We Don&#x27;t Talk Anymore.mp3&quot; autostart=&quot;true&quot; loop=&quot;true&quot; hidden=&quot;true&quot;&gt;&lt;/embed&gt;</span><br></pre></td></tr></table></figure><p>这个方式主要是支持的播放器多。一定程度上解决了浏览器兼容的问题。</p><blockquote><p>说明：<br>1、src&#x3D;””,在””内添加你音乐的保存路径。<br>2、使用hidden&#x3D;”true”表示隐藏音乐播放按钮，相反使用hidden&#x3D;”false”表示开启音乐播放按钮。<br>3、使用autostart&#x3D;”true” 表示是打开网页加载完后自动播放。<br>4、使用loop&#x3D;”true”表示 循环播放 如仅想播放一次则为：loop&#x3D;”false”</p></blockquote><h2 id="四、url兼容模式"><a href="#四、url兼容模式" class="headerlink" title="四、url兼容模式"></a>四、url兼容模式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;video controls=&quot;true&quot; autoplay=&quot;true&quot; name=&quot;media&quot; loop=&quot;true&quot; hidden=&quot;true&quot;&gt;</span><br><span class="line">&lt;source src=&quot;http://music.163.com/song/media/outer/url?id=447925558.mp3&quot; type=&quot;audio/mpeg&quot;&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure><p>这个方式主要是支持的播放器多。一定程度上解决了浏览器兼容的问题。</p><blockquote><p>说明：<br>1、src&#x3D;””,音乐地址<br>2、hidden&#x3D;”true”隐藏音乐播放按钮，相反使用hidden&#x3D;”false”表示开启音乐播放按钮。<br>3、autostart&#x3D;”true” 表示是打开网页加载完后自动播放。<br>4、loop&#x3D;”true”是否循环播放 如仅想播放一次则为：loop&#x3D;“false”</p></blockquote>]]></content>
       
