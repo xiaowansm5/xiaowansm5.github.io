@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>frps和 Nginx 共存 80 443 端口及泛域名支持教程</title>
+      <link href="/post/frps.html"/>
+      <url>/post/frps.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><ol><li>域名泛解析到服务器</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_5_202302202137905.png" alt="image-20230220213704645"></p><ol start="2"><li>添加站点，添加泛域名</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_26_202302202137320.png" alt="image-20230220212631869"></p><ol start="3"><li>添加反代</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_45_202302202137021.png" alt="image-20230220212708964"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> frps </tag>
+            
+            <tag> 内网穿透 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>微信接入ChatGPT API 微信就是ChatGPT AI人工智能bot【二】</title>
       <link href="/post/ChatGPT-bot.html"/>
       <url>/post/ChatGPT-bot.html</url>
