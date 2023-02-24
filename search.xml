@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>OPENWRT 拨号后无法访问光猫的解决方法</title>
+      <link href="/post/openwrt-ppp.html"/>
+      <url>/post/openwrt-ppp.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>最近有小伙伴说在使用openwrt路由器pppoe方式联网后进不去光猫后台，其实很简单，添加虚拟接口即可。</p><h3 id="图文讲解"><a href="#图文讲解" class="headerlink" title="图文讲解"></a>图文讲解</h3><h5 id="进入到openwrt后台-选择网络-接口-添加新接口"><a href="#进入到openwrt后台-选择网络-接口-添加新接口" class="headerlink" title="进入到openwrt后台 选择网络 - 接口 - 添加新接口"></a>进入到openwrt后台 选择网络 - 接口 - 添加新接口</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_51_202302232104538.png" alt="image-20230223201930456"></p><h5 id="名称随意填写，协议选择静态地址，接口选择WAN"><a href="#名称随意填写，协议选择静态地址，接口选择WAN" class="headerlink" title="名称随意填写，协议选择静态地址，接口选择WAN"></a>名称随意填写，协议选择静态地址，接口选择WAN</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_49_202302232104327.png" alt="image-20230223202549703"></p><h5 id="ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255-255-255-0，网关就是光猫的管理地址，填写完成点击保存应用"><a href="#ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255-255-255-0，网关就是光猫的管理地址，填写完成点击保存应用" class="headerlink" title="ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255.255.255.0，网关就是光猫的管理地址，填写完成点击保存应用"></a><strong>ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255.255.255.0，网关就是光猫的管理地址，填写完成点击保存应用</strong></h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_52_202302232104000.png" alt="image-20230223202627281"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_9_59_202302232109920.png" alt="image-20230223202654169"></p><h5 id="进入光猫的管理后台"><a href="#进入光猫的管理后台" class="headerlink" title="进入光猫的管理后台"></a>进入光猫的管理后台</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_50_202302232104031.png" alt="image-20230223202719219"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 拨号 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>frps和 Nginx 共存 80 443 端口及泛域名支持教程</title>
       <link href="/post/frps.html"/>
       <url>/post/frps.html</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><ol><li>域名泛解析到服务器</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_5_202302202137905.png" alt="image-20230220213704645"></p><ol start="2"><li>添加站点，添加泛域名</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_26_202302202137320.png" alt="image-20230220212631869"></p><ol start="3"><li>添加反代</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_45_202302202137021.png" alt="image-20230220212708964"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ol><li>域名泛解析到服务器</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_5_202302202137905.png" alt="image-20230220213704645"></p><ol start="2"><li>添加站点，添加泛域名</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_26_202302202137320.png" alt="image-20230220212631869"></p><ol start="3"><li>添加反代</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/20_21_37_45_202302202137021.png" alt="image-20230220212708964"></p>]]></content>
       
       
       <categories>
