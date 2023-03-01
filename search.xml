@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>New Bing防止跳转cnbing的方法</title>
+      <link href="/post/newbing.html"/>
+      <url>/post/newbing.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>其实老早就申请了，一直在等候列表中……</p><p>28号收到了通过的邮件</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_21_28_202303010821627.png" alt="image-20230301082127041"></p><p>简单分享一下使用的体验，然后分享一个国内小伙伴如何防止bing自动跳转到cn.bing的方法。</p><h2 id="解决bing跳转cn-bing的方法"><a href="#解决bing跳转cn-bing的方法" class="headerlink" title="解决bing跳转cn.bing的方法"></a>解决bing跳转cn.bing的方法</h2><p>国内用bing非常难受，会自动跳转到 cn.bing.com，而众所周知的原因，cn.bing是没有new bing的功能的，即使你已经通过了申请 。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_24_32_202303010824688.png" alt="image-20230301082431591"></p><p>所以，申请通过了之后，为了以后方便，我们需要解决的第一个问题就是——如何防止浏览器自动跳转cn.bing</p><p><strong>简单分享一下方法：</strong></p><p>1、打开链接：<a href="https://microsoftedge.microsoft.com/addons/Microsoft-Edge-Extensions-Home?hl=zh-CN">Microsoft Edge 加载项</a></p><p>2、搜索：<code>header editor</code></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_25_57_202303010825568.webp" alt="image-20230228145342235"></p><p>3、安装之后填入下面的内容</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_26_23_202303010826963.webp" alt="image-20230228145218105"></p><p>名称：Bing（随便写）</p><p>规则类型：修改请求头</p><p>匹配类型：正则表达式</p><p>匹配规则：<code>^http(s?)://www\.bing\.com/(.*)</code></p><p>执行类型：常规</p><p>头名称：<code>x-forwarded-for</code></p><p>头内容：<code>8.8.8.8</code></p><p>然后记得打开：</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_28_25_202303010828124.png" alt="image-20230301082824024"></p><p>就可以愉快使用了！</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_55_44_202303010855159.gif" alt="New Bing防止跳转cnbing的方法"></p><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p>电脑上下了个Microsoft Edge的客户端，然后登录微软账号，<code>bing.com</code>搜索：</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_45_25_202303010845667.png" alt="image-20230301084524605"></p><p>点击聊天或者鼠标上滑就能触发互动模式了。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/1_8_30_18_202303010830182.png" alt="image-20230301083017104"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><p>比起ChatGPT，New Bing的特点是：</p><ul><li>不需要魔法上网</li><li>回答问题实效性更好一些，ChatGPT目前只知道2021年之前的内容。</li><li>回答的问题是会有参考来源的，猜测回答应该是在这些参考来源里面提炼总结出来的。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> Bing </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hugo食用指南</title>
       <link href="/post/hugo.html"/>
       <url>/post/hugo.html</url>
