@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>给你的Win11系统替换HarmonyOS Sans SC字体</title>
+      <link href="/post/winzt.html"/>
+      <url>/post/winzt.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_18_26_28_202303031826702.png" alt="image-20230303182619927"></p><p>下载<a href="https://pan.w2aa.ml/api/raw/?path=/Windows/System%20Fonts%20Replacer%E8%BD%AF%E4%BB%B6%20%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2%E5%8C%85.7z">鸿蒙字体 Windows系统替换包和System Fonts Replacer字体替换工具</a><br>1.将字体文件夹msyh，msyhbd，msyhl三个文件拖拽到字体替换工具 点击开始执行任务。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_18_28_35_202303031828364.png" alt="image-20230303182834462"></p><p>2.执行完毕后不要重启电脑，再将剩下的两个字体（右键–为所有用户安装），需要管理员身份。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_18_30_4_202303031830250.png" alt="image-20230303183002881"></p><p>3.安装完成后重启电脑就行了。这字体不比Mac的好看？</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 字体 </tag>
+            
+            <tag> HarmonyOS </tag>
+            
+            <tag> win11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>比 Win11 自带更现代化的强大文件管理器Files！多标签Tags分栏</title>
+      <link href="/post/Files.html"/>
+      <url>/post/Files.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>「<strong>文件管理器</strong>」是我们每天都必须要频繁使用的工具，但无论是 Windows 系统自带的资源管理器，还是苹果 macOS自带的“访达”(Finder) ，大家普遍都觉得并不好用。</p><p> Windows 平台其实也有很多优秀替代品或增强工具，比如 TC、Listary、Directory Opus 、XYplorer 等。但这些软件都较老了，而「<strong>Files</strong>」则是一款在设计上更现代化的符合 Windows 11气质的 UWP 版文件管理器……</p><h3 id="比-Win11-自带更现代化的强大文件管理器！多标签-x2F-Tags-x2F-分栏"><a href="#比-Win11-自带更现代化的强大文件管理器！多标签-x2F-Tags-x2F-分栏" class="headerlink" title="比 Win11 自带更现代化的强大文件管理器！多标签&#x2F;Tags&#x2F;分栏"></a>比 Win11 自带更现代化的强大文件管理器！多标签&#x2F;Tags&#x2F;分栏</h3><p>「<strong>Files</strong>」是一款采用了微软“Fluent Design”设计风格的开源免费文件管理器。由于它名字过于普通，同时也是上架到微软商店的 UWP 版应用，所以大家一般都习惯叫它「<strong>Files UWP</strong>」。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_3_202303031940878.png" alt="image-20230303184543707"></p><p>Files App 应用获得了 2022 年度微软官方举办的 Microsoft Store App Awards 最佳软件榜单奖项，可谓是拥有非常高的人气。该软件不仅支持呼声极高的“<strong>多标签页</strong>”功能，同时也拥有双分栏 (窗格) 的文件浏览、文件打标签 Tags 分类等功能。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_11_202303031940127.png" alt="image-20230303184654058"></p><p>设计上也大量运用了“圆角”的现代化设计 UI 界面，工具栏、地址栏、菜单等元素都有了不同程度的调整优化，还加入了大量的动画效果，使得整个软件用起来感觉足够的精致。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_15_202303031940479.gif" alt="图片"></p><h3 id="宛如原生，胜过原生！"><a href="#宛如原生，胜过原生！" class="headerlink" title="宛如原生，胜过原生！"></a>宛如原生，胜过原生！</h3><p>Files 这款软件并没有像 Total Commander、Directory Opus 、XYplorer 那样大幅改变了用户的使用习惯，它跟原生的<strong>资源管理器</strong>很相像，可算是 Windows 自带文件管理器的“加强进化版”！所以随便上手即用，没有任何学习门槛，也不必改变以往的操作习惯。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_44_202303031940448.png" alt="image-20230303184844024"></p><p>它最受好评的地方是可以弥补自带资源管理器的几个痛点之处，比如像浏览器一般的选项卡 (多标签页)、列表浏览、更详细的文件预览窗口、文件 Tags 标签系统，以及如上图一样的双文件夹“分栏浏览”布局等等。</p><h3 id="优雅圆润的界面，细节更丰富"><a href="#优雅圆润的界面，细节更丰富" class="headerlink" title="优雅圆润的界面，细节更丰富"></a>优雅圆润的界面，细节更丰富</h3><p>尽管第一眼看过去，Files 应用跟 Windows 11 自带的文件管理器区别不大，但其实在很多细节的视觉设计上得还是更细腻更优雅。比如你可以设置主题颜色；比如文件夹、磁盘等都加上圆角的背景效果，从视觉上能更轻易地跟文件区分开来，可以提高分拣文件的效率。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_18_202303031940721.jpeg" alt="图片"></p><p>同时 Files 支持双文件分栏显示，可以根据高效地管理文件。同时，在 UI 上对平板、触摸屏的用户来说，使用体验明显比原生资源管理器更好，而且也支持明亮和暗黑模式的主题。</p><h3 id="更好用的多标签页、侧边栏"><a href="#更好用的多标签页、侧边栏" class="headerlink" title="更好用的多标签页、侧边栏"></a>更好用的多标签页、侧边栏</h3><p>Files UWP 支持了无数人呼声最高“多标签页”功能，同时还可以以“列表”的方式来显示标签页，在需要打开多个不同文件夹时，这个功能可以更加方便高效地切换。</p><p>在侧边栏上，你可以自定义要显示的「常用入口」，比如本地磁盘驱动器、网络磁盘、回收站、收藏夹，或将自己的常用文件夹固定到侧边栏上，方便随时快速打开。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_20_202303031940636.png" alt="image-20230303184943561"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_39_202303031940391.png" alt="image-20230303185019443"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_23_202303031940034.png" alt="image-20230303185109663"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_34_202303031940408.png" alt="image-20230303185041249"></p><p>侧边栏方面，你可以自由设置要显示的内容，包括收藏夹、回收站、驱动器、网络驱动器等。以及也可以把常用的文件夹固定到侧栏的收藏夹里面。</p><h3 id="文件标签-Tags-系统"><a href="#文件标签-Tags-系统" class="headerlink" title="文件标签 Tags 系统"></a>文件标签 Tags 系统</h3><p>Files 还支持 Windows 本身并没有的 Tags 文件标签功能，它可以像 Mac 系统一样给文件打上不同的颜色标签来进行分类管理以及查询搜索。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_30_202303031940941.png" alt="image-20230303185420977"></p><p>我们可以在设置里的标签里面新建标签。这对于文档较多的办公用户来说，Tags 文件标签归类是一个不错的文件管理方法。</p><h3 id="将-Files-设为-Win11-默认文件管理器"><a href="#将-Files-设为-Win11-默认文件管理器" class="headerlink" title="将 Files 设为 Win11 默认文件管理器"></a>将 Files 设为 Win11 默认文件管理器</h3><p>要开启该功能，用户只需进入 <strong>设置 – 高级</strong>  – 开启 “<strong>将 Files 设为默认文件管理器</strong>” 即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/3_19_40_28_202303031940133.png" alt="image-20230303190023964"></p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Files UWP</strong> 还有许许多多的小功能细节，比如自定义外观&#x2F;主题颜色、多任务双窗口模式、紧凑模式等等，都需要你上手亲自体验。</p><p>由于它是开源免费的应用，所以如果你正在使用 Win11、Win10，并且觉得自带的资源管理器不够好用，那么就该试试这款“加强版”的 Files App 了。它虽不是那种能让你耳目一新的工具，但确实能从中感受到不少比原生文件管理器更多的细节。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> win11 </tag>
+            
+            <tag> 文件管理器 </tag>
+            
+            <tag> Files </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>replit上部署alist</title>
       <link href="/post/replit-alist.html"/>
       <url>/post/replit-alist.html</url>
@@ -20,7 +78,9 @@
       
         <tags>
             
-            <tag> Hexo - replit - alist </tag>
+            <tag> replit </tag>
+            
+            <tag> alist </tag>
             
         </tags>
       
