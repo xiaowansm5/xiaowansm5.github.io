@@ -158,6 +158,58 @@
     
     
     <entry>
+      <title>Hexo教程：给Butterfly添加51la统计</title>
+      <link href="/post/hexo-51la.html"/>
+      <url>/post/hexo-51la.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>适配butterfly只需要在butterfly的配置项的inject的head里添加即可。（注意修改id和ck）</p><blockquote><p>根据yaml规则，引号后面不能有空格，如果自己直接复制统计站的代码，记得手动删除引号后面的空格。</p></blockquote><p><img src="C:\Users\wang\AppData\Roaming\Typora\typora-user-images\image-20230309174203556.png" alt="image-20230309174203556"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- &lt;script charset=&quot;UTF-8&quot; id=&quot;LA_COLLECT&quot; src=&quot;//sdk.51.la/js-sdk-pro.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">- &lt;script src=&quot;https://sdk.51.la/perf/js-sdk-perf.min.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">- &lt;script&gt; LA.init(&#123;id:&quot;XXXXX&quot;,ck:&quot;XXXXX&quot;&#125;)&lt;/script&gt;</span><br><span class="line">- &lt;script&gt;new LingQue.Monitor().init(&#123;id:&quot;XXXXX&quot;,sendSuspicious:true&#125;);&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>用这个格式来添加灵雀监控平台和网站统计。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于ChatGPT3.5-Turbo模型的镜像站</title>
+      <link href="/post/ChatGPT35.html"/>
+      <url>/post/ChatGPT35.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/10_10_40_58_202303101040592.png" alt="cover (1)"></p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>OpenAI 这两天发布了 ChatGPT API，基于 gpt-3.5-turbo 模型，这是一个 GPT-3.5 的优化版本，用于支持开发者把 ChatGPT 集成到自己的产品中，同时把 API 调用价格降到 $0.002 每千 token，意味着处理 100万字符的文本只需要 2 美元，也就是差不多十几块钱人民币，效果更好、价格更低，这让 ChatGPT API 更具性价比，因此这两天基于 ChatGPT API 的各种套壳应用如雨后春笋般大量冒出。</p><ul><li>支持填入自己的 key ，也可内置key后直接使用</li><li>支持系统角色指令</li><li>思维发散程度，数值越大思维越天马行空，就是越胡言乱语</li><li>记录对话内容，刷新不会消失</li><li>支持连续对话</li><li>内置Prompt 预设</li><li>支持导出图片和Markdown语法</li><li>无需魔法，直接使用</li></ul><h2 id="ChatGPT官网"><a href="#ChatGPT官网" class="headerlink" title="ChatGPT官网"></a>ChatGPT官网</h2><p>ChatGPT注册：</p><p><a href="https://chat.openai.com/">https://chat.openai.com</a></p><p>key获取：</p><p><a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p><h2 id="站点直达"><a href="#站点直达" class="headerlink" title="站点直达"></a>站点直达</h2><p><a href="https://ai.wwang.eu.org/">https://ai.wwang.eu.org</a></p><iframe id="test" width="100%" height="670px" frameborder="0" src="https://ai.wwang.eu.org/"></iframe><table><thead><tr><th align="center"></th><th align="center"></th></tr></thead><tbody><tr><td align="center"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/10_10_35_43_202303101035805.png" alt="image-20230310103542765"></td><td align="center"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/10_10_32_52_202303101032501.png" alt="image-20230310102823929"></td></tr></tbody></table><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/10_10_32_51_202303101032848.png" alt="image-20230310102830657"></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>ChatGPT3.5-Turbo模型很强大很智能，不是之前text-davinci-003模型可比的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>New Bing防止跳转cnbing的方法</title>
       <link href="/post/newbing.html"/>
       <url>/post/newbing.html</url>
