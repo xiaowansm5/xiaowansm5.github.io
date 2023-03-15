@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>红米ax6000 OpenWrt固件 跑分测试</title>
+      <link href="/post/test.html"/>
+      <url>/post/test.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h2 id="ax6000跑分"><a href="#ax6000跑分" class="headerlink" title="ax6000跑分"></a>ax6000跑分</h2><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/15_10_30_3_202303151030720.png" alt="image-20230315102549370"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/15_10_30_3_202303151030458.png" alt="2"></p><h2 id="i7-8700b跑分"><a href="#i7-8700b跑分" class="headerlink" title="i7-8700b跑分"></a>i7-8700b跑分</h2><blockquote><p>我家用服务器也随手跑个分<img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/15_10_34_54_202303151034705.png" alt="i7-8700b_AES跑分 ChaCha20 poly1305跑分"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/15_10_34_51_202303151034375.png" alt="i7-8700b_Coremark跑分"></p></blockquote><h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p><strong>CpuMark跑分</strong></p><ul><li>Redmi AX6: 18992.600799</li><li>R4S：41657.987919</li><li>N1：18324.457424</li><li>3965U：31161.142056</li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+          <category> OpenWrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 路由器 </tag>
+            
+            <tag> OpenWrt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于ChatGPT3.5-Turbo模型的镜像站</title>
       <link href="/post/ChatGPT35.html"/>
       <url>/post/ChatGPT35.html</url>
