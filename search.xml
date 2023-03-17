@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Typecho使用CDN后无法登陆后台解决办法</title>
+      <link href="/post/hTypecho-cdn.html"/>
+      <url>/post/hTypecho-cdn.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h2><p>进入typecho后台，点击登录按钮，系统没有任何反应，仍然停留在当前登录页面。</p><h2 id="解决措施"><a href="#解决措施" class="headerlink" title="解决措施"></a>解决措施</h2><h3 id="添加不缓存规则"><a href="#添加不缓存规则" class="headerlink" title="添加不缓存规则"></a>添加<code>不缓存规则</code></h3><p><strong>又拍云设置</strong></p><p>在CDN配置 –&gt; 缓存控制 –&gt; 缓存配置 ，添加一条 不缓存规则 ，资源路径为后台的路径 <code>/admin/*</code> ，状态码留空即可。</p><p><strong>多吉云设置</strong></p><p>添加<code>不缓存规则</code></p><p>在CDN配置 –&gt;域名管理 –&gt;修改配置 –&gt; 缓存与响应 ，添加一条 不缓存规则 ，资源路径为后台的路径 <code>/admin</code> ，生效类型选<code>目录</code>即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/17_12_50_44_202303171250015.png" alt="image-20230317125043043"></p><h3 id="关掉重定向跟随"><a href="#关掉重定向跟随" class="headerlink" title="关掉重定向跟随"></a>关掉<code>重定向跟随</code></h3><p><strong>又拍云设置</strong></p><p>在CDN配置 –&gt; 性能优化 –&gt; 重定向跟随 ，改为OFF。</p><p><strong>多吉云设置</strong></p><p>在CDN配置 –&gt;域名管理 –&gt;修改配置 –&gt; 回源配置，关闭即可</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/03/17_12_50_16_202303171250326.png" alt="image-20230317124937277"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+            <tag> Typecho </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>红米ax6000 OpenWrt固件 跑分测试</title>
       <link href="/post/test.html"/>
       <url>/post/test.html</url>
