@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title>Notion全平台中文汉化教程-支持网页、Windows、MacOS、安卓系统</title>
+      <link href="/post/Notion.html"/>
+      <url>/post/Notion.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Notion是最好用效率笔记软件之一，但是Notion有一个非常不友好的地方在于，他不支持中文版。无论是网页版还是电脑版还是手机版都不支持中文版。</p><p>这篇教程我来教大家如何让Notion在各平台支持中文。</p><h2 id="方法一、使用NotionCn插件"><a href="#方法一、使用NotionCn插件" class="headerlink" title="方法一、使用NotionCn插件"></a>方法一、使用NotionCn插件</h2><p>我要讲的第一种方式，就是使用NotionCn插件 这个方式适合使用网页版Notion的用户。</p><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/plugin.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_42_38_plugin.png" alt="plugin"></a></p><h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>首先从插件商城下载并安装<a href="https://chrome.google.com/webstore/detail/notioncn/hmnaobgeiojplphcldmeiklgllchflpp">NotionCn插件</a></p><h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>前往Notion网页端，刷新重新加载页面即可完成汉化。</p><p>这个插件的翻译是经过开发者人工校对，翻译结果比较准确。</p><h2 id="方法二、Windows客户端中文汉化"><a href="#方法二、Windows客户端中文汉化" class="headerlink" title="方法二、Windows客户端中文汉化"></a>方法二、Windows客户端中文汉化</h2><p>如果你是Windows用户，首先你需要安装Notion的官方 <a href="https://www.notion.so/desktop">客户端</a>。安装登录之后是英文的客户端。</p><p>我们下一步就是安装汉化脚本，而汉化脚本主要基于官方中文词条+人工校对，可以说是目前翻译精度最高的汉化脚本。</p><h3 id="第一步-1"><a href="#第一步-1" class="headerlink" title="第一步"></a>第一步</h3><p>下载[Notion-zh_CN汉化脚本](<a href="https://greasyfork.org/scripts/430116-notion-zh-cn-notion%E7%9A%84%E6%B1%89%E5%8C%96%E8%84%9A%E6%9C%AC/code/Notion-zh_CN">https://greasyfork.org/scripts/430116-notion-zh-cn-notion的汉化脚本/code/Notion-zh_CN</a> notion的汉化脚本.user.js)，然后命名为<code>notion-zh_CN.js</code></p><h3 id="第二步-1"><a href="#第二步-1" class="headerlink" title="第二步"></a>第二步</h3><p>在Notion快捷方式下右键选择<code>打开文件所在的位置</code>，打开renderer文件夹：<code>\resources\app\renderer\</code>。</p><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/win_pos.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_40_37_win_pos.png" alt="win_pos"></a></p><h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>把<code>notion-zh_CN.js</code>复制到上述<code>renderer</code>文件夹；</p><h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>在上述renderer文件夹中使用编译器打开<code>preload.js</code>；</p><p>然后在在<code>preload.js</code>的最后一行添加以下代码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;./notion-zh_CN&quot;)</span><br></pre></td></tr></table></figure><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/win_require.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_40_45_win_require.png" alt="win_require"></a></p><h3 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h3><p>重启Notion完成汉化</p><h2 id="方法三、Notion-Mac客户端汉化"><a href="#方法三、Notion-Mac客户端汉化" class="headerlink" title="方法三、Notion Mac客户端汉化"></a>方法三、Notion Mac客户端汉化</h2><p>同Windows客户端类似，首先你需要安装Notion的官方 <a href="https://www.notion.so/desktop">客户端</a>。安装之后是英文的客户端。</p><h3 id="第一步-2"><a href="#第一步-2" class="headerlink" title="第一步"></a>第一步</h3><p>下载[Notion-zh_CN汉化脚本](<a href="https://greasyfork.org/scripts/430116-notion-zh-cn-notion%E7%9A%84%E6%B1%89%E5%8C%96%E8%84%9A%E6%9C%AC/code/Notion-zh_CN">https://greasyfork.org/scripts/430116-notion-zh-cn-notion的汉化脚本/code/Notion-zh_CN</a> notion的汉化脚本.user.js)，命名为<code>notion-zh_CN.js</code>；</p><h3 id="第二步-2"><a href="#第二步-2" class="headerlink" title="第二步"></a>第二步</h3><p>打开<code>Finder &gt;&gt; 应用程序</code>，右键点击<code>Notion</code>，点击<code>显示包内容</code>。</p><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/mac_pkg.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_40_51_mac_pkg.png" alt="mac_pkg"></a></p><h3 id="第三步-1"><a href="#第三步-1" class="headerlink" title="第三步"></a>第三步</h3><p>打开<code>Contents\Resources\app\renderer\</code>目录</p><h3 id="第四步-1"><a href="#第四步-1" class="headerlink" title="第四步"></a>第四步</h3><p>把<code>notion-zh_CN.js</code>放到上述renderer文件夹；</p><h3 id="第五步-1"><a href="#第五步-1" class="headerlink" title="第五步"></a>第五步</h3><p>使用编译器打开<code>preload.js</code>，然后在<code>preload.js</code>的最后一行添加以下代码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;./notion-zh_CN&quot;)</span><br></pre></td></tr></table></figure><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/mac_require.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_41_21_mac_require.png" alt="mac_require"></a></p><h3 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h3><p>重启Notion，然后点击左边的<code>Settings &amp; members</code>，选择<code>Language &amp; Region</code>，然后随便选择一种语言，比如我选择日本语，然后自动会切换成中文。</p><p>因为我们安装了汉化包，所以无论我们选择什么语言都被中文覆盖。</p><p><a href="https://raw.githubusercontent.com/techxiaofei/resource/main/blog/img/notion/cn/mac_lang.png"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_41_5_mac_lang.png" alt="mac_lang"></a></p><h2 id="方法四、Notion安卓客户端中文汉化"><a href="#方法四、Notion安卓客户端中文汉化" class="headerlink" title="方法四、Notion安卓客户端中文汉化"></a>方法四、Notion安卓客户端中文汉化</h2><p>直接在Android手机下载汉化版APK应用程序。</p><ol><li>点击下载<a href="https://github.com/Reamd7/notion-zh_CN/tree/main/apk">notion汉化apk</a></li><li>安装apk直接登录使用</li></ol><p>根据Notion-zh_CN汉化脚本的github文档，目前它还没有发布适用于苹果iOS系统的版本，iphone用户请耐心等待更新。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Notion </tag>
+            
+            <tag> 笔记软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Telegram电报全平台中文汉化教程-支持Windows、MacOS、安卓，苹果系统</title>
+      <link href="/post/Telegram.html"/>
+      <url>/post/Telegram.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Telegram是一款非常强大的聊天软件，但是它有一个非常不友好的地方在于，他官方不支持中文版。虽然说如果英文好的话使用英语也没什么难度，但是我相信有更多的人使用英语有一定的难度，所以能不能想办法把Telegram电报汉化呢。</p><p>答案是有的。</p><p>这篇教程我来教大家如何让电报在各平台支持中文。教程非常简单，一分钟教会你。</p><h2 id="电脑客户端"><a href="#电脑客户端" class="headerlink" title="电脑客户端"></a>电脑客户端</h2><p>首先教大家如何在电脑端汉化Telegram客户端，Windows客户端和Mac客户端教程是一样的，首先看一下我的客户端，我们点击语言，可以看到只支持以下几种语言，是不支持中文的。</p><p>那我们在浏览器中输入这个链接： <a href="https://t.me/setlanguage/classic-zh-cn">汉化链接</a></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_37_18_link.png" alt="link"></p><p>然后这一段文字的意思就是，点击下方按钮来翻译你的电报软件设置成简体中文语言。</p><p>按钮是<code>设置语言</code>。</p><p>我们点击按钮，会跳出一个弹窗，点击<code>打开Telegram</code>，然后会自动打开电报，然后给一个弹窗，点击下方的<code>Change</code>，也就是修改。即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_37_12_change.png" alt="change"></p><p>这方法适用于Windows客户端和Mac客户端。</p><h2 id="手机App"><a href="#手机App" class="headerlink" title="手机App"></a>手机App</h2><p>下面我来教大家如何在电报手机软件里面设置中文汉化， 手机App包括Android和苹果版，使用方式也是一样的。 看一下官方的软件也是不支持中文的。</p><p>在浏览器中输入这个链接： <a href="https://t.me/setlanguage/classic-zh-cn">汉化链接</a></p><p>然后这一段文字的意思就是，点击下方按钮来翻译你的电报软件设置成简体中文语言。</p><p>按钮是<code>设置语言</code>。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_36_43_set.jpeg" alt="set"></p><p>我们点击按钮，会跳出一个弹窗，点击<code>打开Telegram</code>，然后会自动打开电报，然后给一个弹窗，点击下方的<code>Change</code>，也就是修改。即可。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/22_14_36_40_mobile_change.png" alt="mobile_change"></p><p>这方法适用于Android客户端和iOS客户端。</p><p>是不是非常简单。</p><p>如果你还没有Telegram或者对Telegram有任何使用上的问题，评论区留言，我会教你如何使用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Telegram </tag>
+            
+            <tag> 社交软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Go MusicFox – 终端里的「网易云音乐」，就该这么用电脑</title>
+      <link href="/post/MusicFox.html"/>
+      <url>/post/MusicFox.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Go MusicFox</strong> 是一款在终端中运行的网易云音乐播放器，通过命令行的方式实现登录、播放、下载、搜索、歌词、Last.fm、签到等功能。很酷，电脑就该这么用。</p><p>​<img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/11_12_30_16_WechatIMG7.png"></p><h2 id="什么是终端？"><a href="#什么是终端？" class="headerlink" title="什么是终端？"></a>什么是终端？</h2><p>终端（Terminal）可以指代一个软件程序，它允许用户与计算机进行交互式的会话。终端程序通常提供一个文本界面，用户可以在其中输入命令或操作系统指令，以完成特定的任务。</p><p>一般的终端软件，有命令提示符（CMD）、PowerShell、Windows Terminal、iTerm、Kitty 等。</p><p>虽然终端在视觉上一向给人功能不全的感觉，但 Go MusicFox 可以实现相当多的 macOS 交互，包括通知、菜单栏播放中状态、歌词显示、快捷键，甚至可以在 Mac 下实现睡眠暂停、蓝牙耳机连接断开响应、菜单栏控制等。</p><p>（这方面 Windows 版本要弱一点 😂）</p><h3 id="快捷键-amp-amp-下载"><a href="#快捷键-amp-amp-下载" class="headerlink" title="快捷键 &amp;&amp; 下载"></a>快捷键 &amp;&amp; 下载</h3><p>支持扫码登录，支持切换不同播放引擎（beep &#x2F; mpd &#x2F; osx），支持下载，只需要在听歌的时候，按下快捷键 d 就能下载到本地…</p><p>其它快捷键：</p><table><thead><tr><th align="left">按键</th><th align="left">作用</th><th align="left">备注</th></tr></thead><tbody><tr><td align="left"></td><td align="left"></td><td align="left"></td></tr><tr><td align="left">h&#x2F;H&#x2F;LEFT</td><td align="left">左</td><td align="left"></td></tr><tr><td align="left">l&#x2F;L&#x2F;RIGHT</td><td align="left">右</td><td align="left"></td></tr><tr><td align="left">k&#x2F;K&#x2F;UP</td><td align="left">上</td><td align="left"></td></tr><tr><td align="left">j&#x2F;J&#x2F;DOWN</td><td align="left">下</td><td align="left"></td></tr><tr><td align="left">g</td><td align="left">上移到顶部</td><td align="left"></td></tr><tr><td align="left">G</td><td align="left">下移到底部</td><td align="left"></td></tr><tr><td align="left">q&#x2F;Q</td><td align="left">退出</td><td align="left"></td></tr><tr><td align="left">space</td><td align="left">暂停&#x2F;播放</td><td align="left"></td></tr><tr><td align="left">[</td><td align="left">上一曲</td><td align="left"></td></tr><tr><td align="left">]</td><td align="left">下一曲</td><td align="left"></td></tr><tr><td align="left">–</td><td align="left">减小音量</td><td align="left"></td></tr><tr><td align="left">&#x3D;</td><td align="left">加大音量</td><td align="left"></td></tr><tr><td align="left">n&#x2F;N&#x2F;ENTER</td><td align="left">进入选中的菜单</td><td align="left"></td></tr><tr><td align="left">b&#x2F;B&#x2F;ESC</td><td align="left">返回上级菜单</td><td align="left"></td></tr><tr><td align="left">w&#x2F;W</td><td align="left">退出并退出登录</td><td align="left"></td></tr><tr><td align="left">p</td><td align="left">切换播放方式</td><td align="left"></td></tr><tr><td align="left">P</td><td align="left">心动模式(仅在歌单中时有效)</td><td align="left"></td></tr><tr><td align="left">r&#x2F;R</td><td align="left">重新渲染UI</td><td align="left">如果UI界面因为某种原因出现错乱，可以使用这个重新渲染</td></tr><tr><td align="left">c&#x2F;C</td><td align="left">当前播放列表</td><td align="left"></td></tr><tr><td align="left">,</td><td align="left">喜欢当前播放歌曲</td><td align="left"></td></tr><tr><td align="left">&lt;</td><td align="left">喜欢当前选中歌曲</td><td align="left"></td></tr><tr><td align="left">.</td><td align="left">当前播放歌曲移除出喜欢</td><td align="left"></td></tr><tr><td align="left">&gt;</td><td align="left">当前选中歌曲移除出喜欢</td><td align="left"></td></tr><tr><td align="left">t</td><td align="left">标记当前播放歌曲为不喜欢</td><td align="left"></td></tr><tr><td align="left">T</td><td align="left">标记当前选中歌曲为不喜欢</td><td align="left"></td></tr><tr><td align="left">d</td><td align="left">下载当前播放歌曲</td><td align="left"></td></tr><tr><td align="left">D</td><td align="left">下载当前选中歌曲</td><td align="left"></td></tr><tr><td align="left">&#x2F;</td><td align="left">搜索当前列表</td><td align="left"></td></tr><tr><td align="left">?</td><td align="left">帮助信息</td><td align="left"></td></tr><tr><td align="left">a</td><td align="left">播放中歌曲的所属专辑</td><td align="left"></td></tr><tr><td align="left">A</td><td align="left">选中歌曲的所属专辑</td><td align="left"></td></tr><tr><td align="left">s</td><td align="left">播放中歌曲的所属歌手</td><td align="left"></td></tr><tr><td align="left">S</td><td align="left">选中歌曲的所属歌手</td><td align="left"></td></tr><tr><td align="left">o</td><td align="left">网页打开播放中歌曲</td><td align="left"></td></tr><tr><td align="left">O</td><td align="left">网页打开选中歌曲&#x2F;专辑…</td><td align="left"></td></tr><tr><td align="left">;&#x2F;:</td><td align="left">收藏选中歌单</td><td align="left"></td></tr><tr><td align="left">‘&#x2F;”</td><td align="left">取消收藏选中歌单</td><td align="left"></td></tr></tbody></table><p>另外，还可以手动修改配置文件 go-musicfox.ini，位于用户目录下的 <code>.go-musicfox/go-musicfox.ini</code>，比如 Windows 就是 <code>C:\Users\用户么\.go-musicfox\</code> 下，macOS 下是 <code>/Users/用户名/.go-musicfox</code>，里面有不少设置。</p><h2 id="支持-UnblockNeteaseMusic"><a href="#支持-UnblockNeteaseMusic" class="headerlink" title="支持 UnblockNeteaseMusic"></a>支持 UnblockNeteaseMusic</h2><p>支持通过 kuwo,kugou,migu,qq 来解锁灰色的音乐。</p><h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><ul><li><a href="https://github.com/go-musicfox/go-musicfox">GitHub</a></li></ul><p>Mac 用户可以通过 <code>brew install anhoder/go-musicfox/go-musicfox</code> 安装。</p><p>对于终端爱好者来说，真是一款不错的工具。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/05/11_12_33_56_WechatIMG16.png" alt="WechatIMG16"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MusicFox </tag>
+            
+            <tag> 网易云音乐 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>飞书接入ChatGPT ai机器人搭建</title>
       <link href="/post/feishi-chatgpt.html"/>
       <url>/post/feishi-chatgpt.html</url>
