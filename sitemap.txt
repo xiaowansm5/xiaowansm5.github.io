@@ -1,5 +1,5 @@
-https://blog.wwang.pw/post/draw.html
 https://blog.wwang.pw/post/MusicFox.html
+https://blog.wwang.pw/post/draw.html
 https://blog.wwang.pw/post/Notion.html
 https://blog.wwang.pw/post/Telegram.html
 https://blog.wwang.pw/post/feishi-chatgpt.html
@@ -226,5 +226,4 @@ https://blog.wwang.pw/categories/%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/
 https://blog.wwang.pw/categories/Windows/
 https://blog.wwang.pw/categories/openwrt/
 https://blog.wwang.pw/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/
-https://blog.wwang.pw/categories/Mac/%E6%95%99%E7%A8%8B-%E8%B5%84%E8%AE%AF/
 https://blog.wwang.pw/categories/%E6%95%99%E7%A8%8B-%E8%B5%84%E8%AE%AF/
