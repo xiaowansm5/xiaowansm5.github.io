@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>思创CT3003路由器刷机教程</title>
+      <link href="/post/ct3003.html"/>
+      <url>/post/ct3003.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ol><li>下载配置文件<a href="https://firmware.download.immortalwrt.eu.org/cnsztl/mediatek/filogic/openwrt-mediatek-mt7981-certon-ct3003-e-enabletelnet-cfg.tar.gz,%E5%B0%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BA">https://firmware.download.immortalwrt.eu.org/cnsztl/mediatek/filogic/openwrt-mediatek-mt7981-certon-ct3003-e-enabletelnet-cfg.tar.gz,将配置文件重命名为</a> e-enabletelnet-cfg.tar.gz，登录后台，上传配置文件，确认重启。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_17_53_202307081717254.png" alt="image-20230708164406999"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_18_3_202307081718203.png" alt="image-20230708164510120"></p><ol start="2"><li>重启后系统会自动开启 telnet（用户名 root 密码 password）以及刷写 bootloader，等到指示灯绿灯闪烁则代表 bootloader 刷入成功。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_17_49_202307081717274.png" alt="image-20230708164608978"></p><ol start="3"><li>断电，按住 reset 并接入电源，持续三秒钟，待指示灯变绿后即可进入 webui 恢复界面，地址 192.168.1.1<br>u-boot 可能无法正确下发 ip，手动配置网卡即可：地址 192.168.1.10&#x2F;24<br>上传 Factory 固件并更新，等到自动重启后刷机完毕。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_17_46_202307081717097.png" alt="image-20230708164850679"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_19_26_202307081719794.png" alt="image-20230708164812577"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_17_47_202307081717983.png" alt="image-20230708164827011"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_17_47_202307081717728.png" alt="image-20230708164834818"></p><ol start="4"><li>网卡改为自动获取，192.168.5.1进后台，密码 password</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/07/8_17_18_20_202307081718240.png" alt="image-20230708171818045"></p><p>开源驱动版：</p><p><a href="https://p.w2nn.ml/%F0%9F%94%A5OpenWrt_LEAN/%E6%80%9D%E5%88%9BCT3003">https://p.w2nn.ml/%F0%9F%94%A5OpenWrt_LEAN/%E6%80%9D%E5%88%9BCT3003</a></p><p>闭源驱动版：</p><p><a href="https://p.w2nn.ml/%F0%9F%9A%A9immortalwrt_18.06/%E6%80%9D%E5%88%9BCT3003">https://p.w2nn.ml/%F0%9F%9A%A9immortalwrt_18.06/%E6%80%9D%E5%88%9BCT3003</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 刷机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一键搭建Telegram的MTProto代理</title>
       <link href="/post/MTProto.html"/>
       <url>/post/MTProto.html</url>
