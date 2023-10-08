@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>苹果IOS去广告，Quantumult X是最强神器</title>
+      <link href="/post/Quantumult.html"/>
+      <url>/post/Quantumult.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Quantumult X，即大家俗称的“圈叉”，它是一款功能强大的网络代理工具，主要为 iOS用户提供代理服务和网络优化。它支持多种代理协议，如 Shadowsocks、VMess、Trojan 等，同时具备自定义策略、规则、MitM、脚本引擎等强大功能。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_58_QuantumultXpicb.png" alt="Quantumult X"></p><p>使用条件：</p><ul><li>美区Apple ID（下载）</li><li>需付费$7.99（大概60RMB）</li></ul><p>Quantumult X的使用门槛较高，它未在国区上架，你需要注册一个美区的AppleID账号，登录后付费购买APP。</p><p>由于众所周知的原因，阿刚无法在此展开一步一步教大家如何下载安装，大家只能自己在网上搜索相关教程了。</p><p>Quantumult X安装后，你可快速添加节点、添加分流、重写规则、需要掌握一定的知识，对于我们来说，尤其是小白同学，最简单的是直接引用他人的规则，或者下载导入配置文件，俗称懒人配置。</p><p><strong>墨鱼规则</strong></p><blockquote><p><a href="https://github.com/ddgksf2013">https://github.com/ddgksf2013</a></p></blockquote><p>一个在Github上备受欢迎的Quantumult X规则，由ddgksf2013维护，也是阿刚目前在用的规则。</p><p><strong>主要包括：</strong></p><ul><li>去广告：包括各种APP内部广告、开屏广告、小程序广告</li><li>智能分流：网络请求自动匹配规则策略</li><li>VIP会员解锁：包括某音乐VIP、某听书VIP等等</li><li>应用增强：例如B站自动换区，度盘开启倍速、Spotify歌词翻译等等</li><li>网页优化：例如百度搜索去广告、谷歌搜索自动翻页等</li></ul><p>去广告列表、全部功能可在项目主页上查看。</p><p><strong>如何导入配置</strong></p><p>下面给大家说一下，在Quantumult X中，如何导入配置以及一些设置。我这里初始化了Quantumult X，删除了所有之前的配置。</p><p><strong>1，</strong>打开Quantumult X，点击右下角小风车</p><p>在设置中找到配置文件——&gt;下载配置</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_9_4_image-20231007173839060.png" alt="image-20231007173839060"></p><p>直接粘贴配置文件的在线地址，点击确定后即可导入</p><blockquote><p>地址：</p><p><a href="https://raw.githubusercontent.com/ddgksf2013/Profile/master/QuantumultX.conf">https://raw.githubusercontent.com/ddgksf2013/Profile/master/QuantumultX.conf</a></p></blockquote><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_48_image-20231007173914383.png" alt="image-20231007173914383"></p><p><strong>2，</strong>导入成功后，我们切换到<strong>自己已有的节点</strong>，虽然脚本附带了几个，但是连接不成功，没什么用，所以想要玩的爽，你必须要有自己的节点。</p><p>返回到设置中，在【分流】一栏中，点击规则资源，列表中罗列的便是墨鱼的分流规则，只有选中的规则才会生效，默认有一些未选中，大家可以根据实际需要勾选选择或者取消。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_53_image-20231007174142261.png" alt="image-20231007174142261"></p><p>在【重写】中，一定要确保打开状态。点击规则资源，罗列的是所有的重写规则，与上面一样选中的才会生效，按需选择。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_46_image-20231007174218311.png" alt="image-20231007174218311"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_39_image-20231007174252367.png" alt="image-20231007174252367"></p><p>和上面的一样，点击上面的“全部更新”按钮，更新一下规则。</p><p>3，MitM（英文全称Man-in-the-Middle），它通过在设备上部署根证书解密和分析HTTPS流量，通过使用 MitM 功能，Quantumult X 才可以拦截、查看和修改 HTTPS 请求和响应，因此在使用中，它必须开启。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_34_image-20231007175124760.png" alt="image-20231007175124760"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_31_image-20231007180149339.png" alt="image-20231007180149339"></p><p><strong>开启步骤：</strong></p><ul><li>点击生成证书</li><li>点配置证书，会自动调用Safari浏览器下载。</li><li>手机设置——&gt;通用——&gt;VPN与设备管理，找到已下载好的配置描述文件，点击安装。</li><li>手机设置——&gt;通用——&gt;证书信任设置，选择刚刚的证书，信任即可。</li><li>证书配置好后，最后才可打开MitM</li></ul><p>全部完成后，当你系统启用了代理，Quantumult X便开始接管你设备上流量，然后按照规则进行分类、重定向。</p><p>对于去广告，没有通杀世上所有广告的规则，从目前的应用来看，墨鱼已经是集大成者了，基本上没看到广告了。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/7_18_8_35_image-20231007180821872.png" alt="image-20231007180821872"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>H3C NX30Pro 刷 openwrt 教程</title>
       <link href="/post/nx30pro.html"/>
       <url>/post/nx30pro.html</url>
