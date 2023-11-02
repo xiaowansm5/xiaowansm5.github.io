@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>开启谷歌浏览器新UI界面</title>
+      <link href="/post/chrome.html"/>
+      <url>/post/chrome.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>作为 Google Chrome 浏览器的隐藏设置实验室，<code>chrome://flags</code> 里常常存放着各种已经开发但尚未开放的功能，比如 <strong>并行下载功能 「Parallel downloading」</strong> 或者 <strong>阅读模式 「Reading Mode</strong>」。</p><p>Chrome 已经很久没有进行过大的样式修改，但近期在稳定分支中添加了新的 flags 实验性标志，带来了全新的设计与外观，启用方式如下：</p><ul><li>在 Chrome 浏览器的搜索栏中输入并访问 <strong>chrome:&#x2F;&#x2F;flags</strong>，开启下面这些配置项</li><li>Omnibox Expanded State Height<br>Omnibox Expanded State Shape<br>Chrome Refresh 2023<br>Chrome WebUI Refresh 2023<br>Parallel downloading (多线程下载)</li><li><strong>重启浏览器</strong>后即可使用 Chrome 的新外观</li></ul><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/28_17_17_32_202310281717302.png" alt="img"></p><p>毫无疑问，新式外观的最大特点就是使用了大量的“圆角”设计，补充并统一了众多功能的图标风格，各种下拉框（设置、邮件、收藏夹）的边距也变得更加宽裕；同时采用了与 Android 的 <strong>Material 3</strong> 效果相似的样式，相信使用或者关注 Android 13&#x2F;14 的用户会很眼熟。</p><h2 id="新UI变化"><a href="#新UI变化" class="headerlink" title="新UI变化"></a>新UI变化</h2><blockquote><p>浏览器地址框输入：<code>chrome://whats-new/</code></p><p>可查看说明</p></blockquote><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/28_17_16_23_202310281716305.png" alt="image-20231028171512120"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/10/28_17_16_24_202310281716874.png" alt="image-20231028171603674"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> chrome </tag>
+            
+            <tag> 浏览器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安卓手机神器Poweramp音乐播放器</title>
       <link href="/post/Poweramp.html"/>
       <url>/post/Poweramp.html</url>
