@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>用AI升级你的Siri智商</title>
+      <link href="/post/siri-ai.html"/>
+      <url>/post/siri-ai.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>众所周知Siri可以实现搜索引擎的语音互动，但是它没有办法像ChatGPT那种信息交互式的问答，有时候变现会有点傻瓜。</p><p>现在可以通过直接把Siri和ChatGPT链接，或者通过整合阿里云的通意千问的大语言模型来建立链接，把Siri变得更懂你，让你的苹果手机变成AI手机。</p><h2 id="整合ChatGPT的方法："><a href="#整合ChatGPT的方法：" class="headerlink" title="整合ChatGPT的方法："></a><strong>整合ChatGPT的方法：</strong></h2><h3 id="第一步，安装适用IOS的官方ChatGPT"><a href="#第一步，安装适用IOS的官方ChatGPT" class="headerlink" title="第一步，安装适用IOS的官方ChatGPT"></a>第一步，安装适用IOS的官方ChatGPT</h3><p>与其他ChatGPT快捷方式有所区别，我们分享的这种快捷方式不需要共享OpenAI API密钥。只需要在iPhone上安装适用于iOS的官方ChatGPT应用程序即可。</p><p>注意用美区APPLE ID才能在App Store中找到官方ChatGPT，需要注意的是，下载和使用ChatGPT都需要使用魔法！</p><p>具体注册方法可以在网上查到很多，在此不赘述了。</p><h3 id="第二步，安装快捷方式"><a href="#第二步，安装快捷方式" class="headerlink" title="第二步，安装快捷方式"></a>第二步，安装快捷方式</h3><p>下载安装好ChatGPT,注册好用户名明码，登录以后。</p><p>在你的苹果手机“我的快捷指令”页面中，点击右上角的加号，并将ChatGPT添加到Siri中，注意要选择右边APP一栏，找到chatgpt。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_3_17_202311221503983.png" alt="image-20231122142256604"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_3_7_202311221503250.png" alt="image-20231122142236767"></p><p>选择chatgpt以后会有如下两个提示，选择第一个“Ask ChatGPT”</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_3_5_202311221503528.png" alt="image-20231122142315861"></p><p>进入这个页面后选择Message右侧的扩展按钮</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_3_3_202311221503431.png" alt="image-20231122142331553"></p><p>扩展按钮打开后，将所有选项选择，注意Model选取，点开后选择变量，然后需要一会儿的反应才会显示出ChatGPT3.5模型的选择</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_3_1_202311221503463.png" alt="image-20231122142348110"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_59_202311221502019.png" alt="image-20231122142402829"></p><p>以上维护好以后，点击完成，快捷指令就部署好了。</p><p>注意这个快捷指令的名字就是你跟Siri语音交互启动的大门钥匙，通常默认为Ask ChatGPT，这句话说起来虽然有点洋气，但不符合我接地气，我改名字为“瑞雪”，当然这个快捷指令可以发送到桌面，而且可以加上你喜欢的照片作为快捷指令头像，这里我选择了一只可爱的边牧，真的再合适不过。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_55_202311221502689.png" alt="image-20231122142519089"></p><p>安装好快捷方式后，需要在“设置”中找到“Siri和搜索”部分，打开用“嘿Siri”唤醒。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_53_202311221502206.png" alt="image-20231122142631148"></p><h3 id="第三步，使用方法"><a href="#第三步，使用方法" class="headerlink" title="第三步，使用方法"></a>第三步，使用方法</h3><p>以上完成后，就可以说“嘿Siri”，等她回应你的时候，然后说“瑞雪”，就可以开始使用ChatGPT了</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_50_202311221502676.png" alt="image-20231122143416974"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_48_202311221502303.png" alt="image-20231122143456472"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_38_202311221502600.png" alt="image-20231122143529804"></p><h2 id="整合阿里云的通意千问的大语言模型的方法："><a href="#整合阿里云的通意千问的大语言模型的方法：" class="headerlink" title="整合阿里云的通意千问的大语言模型的方法："></a><strong>整合阿里云的通意千问的大语言模型的方法：</strong></h2><h3 id="申请API-KEY以下步骤建议在PC网页上完成"><a href="#申请API-KEY以下步骤建议在PC网页上完成" class="headerlink" title="申请API-KEY以下步骤建议在PC网页上完成"></a>申请API-KEY以下步骤建议在PC网页上完成</h3><p>第一步：打开阿里云的灵积模型控制台首页：</p><p><a href="https://dashscope.console.aliyun.com/overview">https://dashscope.console.aliyun.com/overview</a> </p><p>或者你也可以进入阿里云官网，搜索“灵积模型服务”来进入。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_35_202311221502275.png" alt="image-20231122143802915"></p><p>需要申请和注册登录阿里云账号，如果这里你没有申请灵积模型的权限，你需要申请使用，需要阿里云账号实名认证之后，把灵机模型服务开通服务</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_33_202311221502111.png" alt="image-20231122143856076"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_31_202311221502540.png" alt="image-20231122143935984"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_5_17_202311221505851.png" alt="image-20231122143952188"></p><p>第二步 ：如果你已经申请开通成功，点击灵积模型控制台首页里的“控制”，或者左侧的“API-KEY管理” 创建API-KEY</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_5_15_202311221505366.png" alt="image-20231122144015517"></p><p>第三步 ：点击“创建新的API-KEY”，保存KEY备用，应该是一个“sk-”开头的字符串</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_5_12_202311221505495.png" alt="image-20231122144119596"></p><h3 id="添加快捷指令"><a href="#添加快捷指令" class="headerlink" title="添加快捷指令"></a>添加快捷指令</h3><p>你可以打开下面链接来快速添加这个快捷指令。</p><p><a href="https://www.icloud.com/shortcuts/b7dcc88e9e6f462385a2051c680ce701">https://www.icloud.com/shortcuts/b7dcc88e9e6f462385a2051c680ce701</a></p><table><thead><tr><th><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_25_202311221502831.jpg" alt="262387b854b3cf8bddafd1cfb3a42e4"></th><th><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_26_202311221502724.jpg" alt="907b2d8c4f74c40b9bbe9b6170fed50"></th><th><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_27_202311221502491.jpg" alt="7a219c5e46a1aa81f0e05113f000e89"></th></tr></thead><tbody><tr><td>1.点击“<strong>获取捷径</strong>”</td><td>2.把你在第一步获得的<strong>API-KEY</strong>粘贴进去</td><td>3.添加的快捷指令在左下“<strong>快捷指令</strong>”里可以看到</td></tr></tbody></table><p>默认的名字叫“小智小智”，建议长按后改一个名字。这个名字就是你在呼出Siri后说的话。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_2_23_202311221502698.png" alt="image-20231122145956842"></p><p>这样以后就可以通过“嘿 Siri”呼出Siri后，说“小智小智”然后等待它回复我“想问什么”后说出我的问题。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_15_5_0_202311221505854.png" alt="image-20231122150132209"></p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>长按电源键，或者通过“嘿 Siri”命令来呼出Siri，然后说出你重命名后的名字，等Siri问你“想问什么”后，说出你的问题，就可以获得大语言模型回复的数据了。（如果你没有设置“嘿 Siri”，你要在手机的设置 - Siri与搜索 里打开这个功能）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> siri </tag>
+            
+            <tag> ai </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>开启谷歌浏览器新UI界面</title>
       <link href="/post/chrome.html"/>
       <url>/post/chrome.html</url>
