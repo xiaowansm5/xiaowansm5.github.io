@@ -1,3 +1,4 @@
+https://blog.wwang.pw/post/xiaoya-Tvbox.html
 https://blog.wwang.pw/post/siri-ai.html
 https://blog.wwang.pw/post/chrome.html
 https://blog.wwang.pw/post/Poweramp.html
@@ -228,6 +229,8 @@ https://blog.wwang.pw/tags/chrome/
 https://blog.wwang.pw/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/
 https://blog.wwang.pw/tags/siri/
 https://blog.wwang.pw/tags/ai/
+https://blog.wwang.pw/tags/tvbot/
+https://blog.wwang.pw/tags/xiaoya/
 https://blog.wwang.pw/categories/%E8%B7%AF%E7%94%B1%E5%99%A8/
 https://blog.wwang.pw/categories/Linux/
 https://blog.wwang.pw/categories/Mac/

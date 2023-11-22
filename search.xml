@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>xiaoya-Tvbox：海量专属影视资源库</title>
+      <link href="/post/xiaoya-Tvbox.html"/>
+      <url>/post/xiaoya-Tvbox.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>原文档放到这里：<a href="https://github.com/power721/alist-tvbox/blob/master/doc/README_zh.md">点击查看</a></p><h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a><strong>前提条件</strong></h2><ul><li>一台已经安装了Docker的服务器（软路由、vps等）。如果你还没有安装Docker，你可以参考<a href="https://docs.docker.com/engine/install/">Docker官方文档</a>来进行安装。</li><li>阿里云盘账号一个，且已经获取到了token、opentoken、转存id的值。</li><li>SSH连接工具，我这里使用的是 finalshell <a href="https://www.hostbuf.com/t/988.html">点击下载</a></li></ul><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a><strong>安装步骤</strong></h2><h3 id="步骤1：获取tvbox-xiaoya的Docker镜像"><a href="#步骤1：获取tvbox-xiaoya的Docker镜像" class="headerlink" title="步骤1：获取tvbox-xiaoya的Docker镜像"></a><strong>步骤1：获取tvbox-xiaoya的Docker镜像</strong></h3><p>首先用SSH工具连接你的软路由，我这里使用的是finalshell，如果你没有安装请：<a href="https://www.hostbuf.com/t/988.html">点击下载</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4567:4567 -p 5344:80 -e ALIST_PORT=5344 -v /etc/xiaoya:/data --restart=always --name=xiaoya-tvbox haroldli/xiaoya-tvbox:latest</span><br></pre></td></tr></table></figure><h3 id="步骤2：创建配置文件"><a href="#步骤2：创建配置文件" class="headerlink" title="步骤2：创建配置文件"></a><strong>步骤2：创建配置文件</strong></h3><p>所需配置文件示范：<a href="https://www.aliyundrive.com/s/rP9gP3h9asE">点击转存到自己的阿里云盘（资源盘）</a> 注意一定是“资源盘”，转存后下载“配置示范文件”放到桌面备用。</p><h2 id="步骤3：获取阿里云盘token"><a href="#步骤3：获取阿里云盘token" class="headerlink" title="步骤3：获取阿里云盘token"></a><strong>步骤3：获取阿里云盘token</strong></h2><p>token 对应文件路径：&#x2F;etc&#x2F;xiaoya&#x2F;mytoken.txt <a href="https://aliyuntoken.vercel.app/">点击后扫码获取</a> 复制并保存到配置示范文件夹中的mytoken.txt中</p><p>open token 对应文件路径：&#x2F;etc&#x2F;xiaoya&#x2F;myopentoken.txt <a href="https://alist.nn.ci/tool/aliyundrive/request.html">点击获取</a> 复制并保存到配置示范文件夹中的myopentoken.txt中</p><p>folder id 对应文件路径：&#x2F;etc&#x2F;xiaoya&#x2F;temp_transfer_folder_id.txt <a href="https://www.aliyundrive.com/sign/in?spm=aliyundrive.index.0.0.2d836f60k2lbvf">阿里云盘网页版</a> 找到你刚转存的文件夹，点击进去，复制网址最后一段并保存到配置示范文件夹中的temp_transfer_folder_id.txt中</p><p>找到这个文件：**&#x2F;etc&#x2F;xiaoya**</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_23_30_0_202311222330490.png" alt="img"></p><p>并将所需txt文档上传到此文件夹</p><p>注意：这里的的mytoken.txt、meopentoken.txt、temp_transfer_folder_id.txt中的内容要替换为你自己阿里云盘的。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_23_30_3_202311222330440.png" alt="img"></p><h3 id="步骤4：访问tvbox-xiaoya"><a href="#步骤4：访问tvbox-xiaoya" class="headerlink" title="步骤4：访问tvbox-xiaoya"></a><strong>步骤4：访问tvbox-xiaoya</strong></h3><p>现在，你可以通过在浏览器中输入<a href="http://XXXXXXXXXXX:4567来访问你的tvbox-xiaoya影视资源库。">http://XXXXXXXXXXX:4567来访问你的tvbox-xiaoya影视资源库。</a></p><h2 id="配置你的影视资源库"><a href="#配置你的影视资源库" class="headerlink" title="配置你的影视资源库"></a><strong>配置你的影视资源库</strong></h2><p>进入以后打开高级模式，点击账号（如果你已经上传了txt配置文档，首次启动时会自动读取配置文件），如无账号请将token和opentonke填入相应位置。</p><p>如果操作无误的话就应该能看到资源库主页了。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_23_30_5_202311222330605.png" alt="img"></p><p>点击配置开始索引</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_23_30_15_202311222330261.png" alt="img"></p><p>索引无误后点击订阅，辅助默认订阅链接填入tvbox壳的配置地址就可以实现刷剧自由了。</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/11/22_23_30_9_202311222330202.png" alt="img"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h2><p>通过Docker和tvbox-xiaoya，你可以轻松地创建和管理你自己的影视资源库。如果你是一个影视爱好者，这将是一个非常有用的工具。如果你在使用过程中遇到任何问题，你可以查阅相关的文档或者寻求社区的帮助。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程|资讯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> tvbot </tag>
+            
+            <tag> xiaoya </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用AI升级你的Siri智商</title>
       <link href="/post/siri-ai.html"/>
       <url>/post/siri-ai.html</url>
