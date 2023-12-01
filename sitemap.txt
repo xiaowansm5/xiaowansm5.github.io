@@ -1,3 +1,4 @@
+https://blog.wwang.pw/post/ax6000.html
 https://blog.wwang.pw/post/xiaoya-Tvbox.html
 https://blog.wwang.pw/post/siri-ai.html
 https://blog.wwang.pw/post/chrome.html
@@ -9,7 +10,6 @@ https://blog.wwang.pw/post/Quantumult.html
 https://blog.wwang.pw/post/ac2100.html
 https://blog.wwang.pw/post/miwifi-r3.html
 https://blog.wwang.pw/post/acrh17.html
-https://blog.wwang.pw/post/AX6000.html
 https://blog.wwang.pw/post/d1e.html
 https://blog.wwang.pw/post/MTProto.html
 https://blog.wwang.pw/post/MusicFox.html
@@ -59,7 +59,6 @@ https://blog.wwang.pw/post/docusaurus.html
 https://blog.wwang.pw/post/Telegram-Bot-API.html
 https://blog.wwang.pw/post/hexo.html
 https://blog.wwang.pw/post/GitHub.html
-https://blog.wwang.pw/post/ax6000-uboot.html
 https://blog.wwang.pw/post/cr660x.html
 https://blog.wwang.pw/post/nastoos.html
 https://blog.wwang.pw/post/openwrt1.html

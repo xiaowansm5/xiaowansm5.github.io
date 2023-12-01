@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.wwang.pw/post/ax6000.html</loc>
+    <lastmod>2023-12-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.wwang.pw/post/xiaoya-Tvbox.html</loc>
     <lastmod>2023-11-22</lastmod>
   </url>
@@ -42,10 +46,6 @@
   </url>
   <url>
     <loc>https://blog.wwang.pw/post/acrh17.html</loc>
-    <lastmod>2023-06-17</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.wwang.pw/post/AX6000.html</loc>
     <lastmod>2023-06-17</lastmod>
   </url>
   <url>
@@ -239,10 +239,6 @@
   <url>
     <loc>https://blog.wwang.pw/post/GitHub.html</loc>
     <lastmod>2023-01-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.wwang.pw/post/ax6000-uboot.html</loc>
-    <lastmod>2022-12-17</lastmod>
   </url>
   <url>
     <loc>https://blog.wwang.pw/post/cr660x.html</loc>
