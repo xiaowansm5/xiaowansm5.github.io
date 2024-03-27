@@ -1,14 +1,15 @@
-https://blog.wwang.pw/post/Airplay2.html
-https://blog.wwang.pw/post/hiwifi-x.html
-https://blog.wwang.pw/post/nx30pro.html
-https://blog.wwang.pw/post/acrh17.html
-https://blog.wwang.pw/post/ax6000-boot.html
+https://blog.wwang.pw/post/Linux.html
+https://blog.wwang.pw/post/ax6s.html
 https://blog.wwang.pw/post/ax3000t.html
+https://blog.wwang.pw/post/ax6000-boot.html
+https://blog.wwang.pw/post/acrh17.html
+https://blog.wwang.pw/post/nx30pro.html
+https://blog.wwang.pw/post/hiwifi-x.html
+https://blog.wwang.pw/post/Airplay2.html
 https://blog.wwang.pw/post/xiaoya-Tvbox.html
 https://blog.wwang.pw/post/siri-ai.html
 https://blog.wwang.pw/post/chrome.html
 https://blog.wwang.pw/post/Poweramp.html
-https://blog.wwang.pw/post/ax6s.html
 https://blog.wwang.pw/post/ct3003.html
 https://blog.wwang.pw/post/Quantumult.html
 https://blog.wwang.pw/post/ac2100.html
@@ -226,6 +227,7 @@ https://blog.wwang.pw/tags/%E9%A3%9E%E4%B9%A6/
 https://blog.wwang.pw/tags/chatgpt/
 https://blog.wwang.pw/tags/%E5%B0%8F%E7%B1%B3ax3000t/
 https://blog.wwang.pw/tags/Airplay2/
+https://blog.wwang.pw/tags/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/
 https://blog.wwang.pw/categories/%E8%B7%AF%E7%94%B1%E5%99%A8/
 https://blog.wwang.pw/categories/Linux/
 https://blog.wwang.pw/categories/Mac/
@@ -235,3 +237,4 @@ https://blog.wwang.pw/categories/Windows/
 https://blog.wwang.pw/categories/%E6%95%99%E7%A8%8B-%E8%B5%84%E8%AE%AF/
 https://blog.wwang.pw/categories/openwrt/
 https://blog.wwang.pw/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/
+https://blog.wwang.pw/categories/ql/
