@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.wwang.pw/post/ax1800pro.html</loc>
+    
+    <lastmod>2024-06-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.wwang.pw/post/test.html</loc>
     
     <lastmod>2024-06-21</lastmod>
@@ -1858,6 +1867,13 @@
   
   <url>
     <loc>https://blog.wwang.pw/tags/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/</loc>
+    <lastmod>2024-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.wwang.pw/tags/%E4%BA%AC%E4%B8%9C%E4%BA%91ax1800Pro/</loc>
     <lastmod>2024-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
