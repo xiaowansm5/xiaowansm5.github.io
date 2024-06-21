@@ -1,3 +1,4 @@
+https://blog.wwang.pw/post/test.html
 https://blog.wwang.pw/post/ql.html
 https://blog.wwang.pw/post/ax6s.html
 https://blog.wwang.pw/post/ax3000t.html
@@ -23,7 +24,6 @@ https://blog.wwang.pw/post/Telegram.html
 https://blog.wwang.pw/post/feishi-chatgpt.html
 https://blog.wwang.pw/post/dujiaoka.html
 https://blog.wwang.pw/post/hTypecho-cdn.html
-https://blog.wwang.pw/post/test.html
 https://blog.wwang.pw/post/ChatGPT35.html
 https://blog.wwang.pw/post/hexo-51la.html
 https://blog.wwang.pw/post/hexo-clock.html
