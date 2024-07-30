@@ -33,6 +33,31 @@
     
     
     <entry>
+      <title>用 dd 命令快速更换 OpenWrt 固件</title>
+      <link href="/post/dd-op.html"/>
+      <url>/post/dd-op.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="上传-OpenWrt-固件"><a href="#上传-OpenWrt-固件" class="headerlink" title="上传 OpenWrt 固件"></a>上传 OpenWrt 固件</h3><p>点击左下方的文件，然后找到并打开 <code>tmp</code> 文件夹，具体路径为 <code>/tmp</code> 。</p><p>把直接固件拖到 <code>/tmp</code> 目录中（拖到下图中的红框位置）。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094553301.png" alt="image-20240723094553301"></p><h3 id="dd-命令写盘"><a href="#dd-命令写盘" class="headerlink" title="dd 命令写盘"></a>dd 命令写盘</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /tmp</span><br></pre></td></tr></table></figure><p>查看你刚刚上传的固件，看到的是 op.img 就表示上传成功了。</p><p>开始写盘，输入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/tmp/op.img of=/dev/nvme0n1</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094135489.png" alt="image-20240723094135489"></p><p>其中nvme0n1为系统盘，注意是指定整个磁盘而不是磁盘上的分区。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094218761.png" alt="image-20240723094218761"></p><p>后是等待刷写，然后出现下面这两排字母表示刷机成功了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3771704+0 records in</span><br><span class="line">3771704+0 records out</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723095039109.png" alt="image-20240723095039109"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>每日签到集合 签到盒青龙版</title>
       <link href="/post/ql.html"/>
       <url>/post/ql.html</url>
@@ -272,31 +297,6 @@
         <tags>
             
             <tag> Mac </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>用 dd 命令快速更换 OpenWrt 固件</title>
-      <link href="/post/dd-op.html"/>
-      <url>/post/dd-op.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="上传-OpenWrt-固件"><a href="#上传-OpenWrt-固件" class="headerlink" title="上传 OpenWrt 固件"></a>上传 OpenWrt 固件</h3><p>点击左下方的文件，然后找到并打开 <code>tmp</code> 文件夹，具体路径为 <code>/tmp</code> 。</p><p>把直接固件拖到 <code>/tmp</code> 目录中（拖到下图中的红框位置）。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094553301.png" alt="image-20240723094553301"></p><h3 id="dd-命令写盘"><a href="#dd-命令写盘" class="headerlink" title="dd 命令写盘"></a>dd 命令写盘</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /tmp</span><br></pre></td></tr></table></figure><p>查看你刚刚上传的固件，看到的是 op.img 就表示上传成功了。</p><p>开始写盘，输入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/tmp/op.img of=/dev/nvme0n1</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094135489.png" alt="image-20240723094135489"></p><p>其中nvme0n1为系统盘，注意是指定整个磁盘而不是磁盘上的分区。</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723094218761.png" alt="image-20240723094218761"></p><p>后是等待刷写，然后出现下面这两排字母表示刷机成功了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3771704+0 records in</span><br><span class="line">3771704+0 records out</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/image-20240723095039109.png" alt="image-20240723095039109"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> openwrt </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> openwrt </tag>
             
         </tags>
       
