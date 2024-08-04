@@ -1,3 +1,4 @@
+https://blog.wwang.pw/post/modem.html
 https://blog.wwang.pw/post/dd-op.html
 https://blog.wwang.pw/List/index.html
 https://blog.wwang.pw/post/test.html
@@ -38,7 +39,6 @@ https://blog.wwang.pw/post/openwrt-usb.html
 https://blog.wwang.pw/post/a1e6.html
 https://blog.wwang.pw/post/miqd.html
 https://blog.wwang.pw/post/frps.html
-https://blog.wwang.pw/post/openwrt-ppp.html
 https://blog.wwang.pw/post/openwrt-www.html
 https://blog.wwang.pw/post/hugo.html
 https://blog.wwang.pw/post/newbing.html

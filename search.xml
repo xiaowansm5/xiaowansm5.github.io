@@ -33,6 +33,31 @@
     
     
     <entry>
+      <title>OpenWrt下访问光猫教程</title>
+      <link href="/post/modem.html"/>
+      <url>/post/modem.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><ol><li>首先在wan口设置一下网关跃点，代表拨号的wan是第一优先级。这样正常的网络流量还是走宽带，不会影响网络访问。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/08/4_16_21_57_202408041621941.png" alt="image-20240804161916045"></p><ol start="2"><li>添加一个新接口，命名随意，我命名为MAO，MAO的网关跃点设置为60，比之前wan的数字大就行。代表MAO的优先级低于WAN。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/08/4_16_21_53_202408041621611.png" alt="image-20240804162041064"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/08/4_16_23_43_202408041623008.png" alt="image-20240804162059099"></p><ol start="3"><li>完毕，保存。</li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/08/4_16_23_25_202408041623900.png" alt="image-20240804162141580"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> openwrt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用 dd 命令快速更换 OpenWrt 固件</title>
       <link href="/post/dd-op.html"/>
       <url>/post/dd-op.html</url>
@@ -844,31 +869,6 @@
         <tags>
             
             <tag> Hugo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>OPENWRT 拨号后无法访问光猫的解决方法</title>
-      <link href="/post/openwrt-ppp.html"/>
-      <url>/post/openwrt-ppp.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>最近有小伙伴说在使用openwrt路由器pppoe方式联网后进不去光猫后台，其实很简单，添加虚拟接口即可。</p><h3 id="图文讲解"><a href="#图文讲解" class="headerlink" title="图文讲解"></a>图文讲解</h3><h5 id="进入到openwrt后台-选择网络-接口-添加新接口"><a href="#进入到openwrt后台-选择网络-接口-添加新接口" class="headerlink" title="进入到openwrt后台 选择网络 - 接口 - 添加新接口"></a>进入到openwrt后台 选择网络 - 接口 - 添加新接口</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_51_202302232104538.png" alt="image-20230223201930456"></p><h5 id="名称随意填写，协议选择静态地址，接口选择WAN"><a href="#名称随意填写，协议选择静态地址，接口选择WAN" class="headerlink" title="名称随意填写，协议选择静态地址，接口选择WAN"></a>名称随意填写，协议选择静态地址，接口选择WAN</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_49_202302232104327.png" alt="image-20230223202549703"></p><h5 id="ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255-255-255-0，网关就是光猫的管理地址，填写完成点击保存应用"><a href="#ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255-255-255-0，网关就是光猫的管理地址，填写完成点击保存应用" class="headerlink" title="ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255.255.255.0，网关就是光猫的管理地址，填写完成点击保存应用"></a><strong>ip地址填和光猫同网段，前提是不与光猫管理地址冲突，子码掩码255.255.255.0，网关就是光猫的管理地址，填写完成点击保存应用</strong></h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_52_202302232104000.png" alt="image-20230223202627281"></p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_9_59_202302232109920.png" alt="image-20230223202654169"></p><h5 id="进入光猫的管理后台"><a href="#进入光猫的管理后台" class="headerlink" title="进入光猫的管理后台"></a>进入光猫的管理后台</h5><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2023/02/23_21_4_50_202302232104031.png" alt="image-20230223202719219"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> openwrt </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> openwrt </tag>
             
         </tags>
       
