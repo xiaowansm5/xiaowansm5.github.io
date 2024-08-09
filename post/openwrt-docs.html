@@ -1,0 +1,1096 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>OpenWRT基本知识整理 | 时光's Blog</title><meta name="keywords" content="OpenWRT"><meta name="author" content="XiaoWan💦"><meta name="copyright" content="XiaoWan💦"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OpenWRT基本知识整理1.OpenWRT虚拟系统准备环境： 编译服务器：Ubuntu-14.04-desktop 虚拟机软件：VMWare-10.0 编译环境准备：apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc fl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenWRT基本知识整理">
+<meta property="og:url" content="https://blog.wwang.pw/post/openwrt-docs.html">
+<meta property="og:site_name" content="时光&#39;s Blog">
+<meta property="og:description" content="OpenWRT基本知识整理1.OpenWRT虚拟系统准备环境： 编译服务器：Ubuntu-14.04-desktop 虚拟机软件：VMWare-10.0 编译环境准备：apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc fl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/982257.1hk8iymuua80.jpg">
+<meta property="article:published_time" content="2022-05-21T10:21:16.000Z">
+<meta property="article:modified_time" content="2022-11-15T08:48:02.770Z">
+<meta property="article:author" content="XiaoWan💦">
+<meta property="article:tag" content="OpenWRT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/982257.1hk8iymuua80.jpg"><link rel="shortcut icon" href="https://blog.wwang.pw/picx-images-hosting/favicon.5c0u9b8991.webp"><link rel="canonical" href="https://blog.wwang.pw/post/openwrt-docs"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5cd98a826aa91c5ceefdb92e614872a9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b03745f1bc834e2db65a965fb30269de&quot;}"></script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dnxvoye4c3");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenWRT基本知识整理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-15 16:48:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/hexo-footer.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Jzooi0OoETnhEN6K",ck:"Jzooi0OoETnhEN6K"})</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/时光.54dv9r8g4dk0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-compass"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://pan.wwang.pw"><i class="fa-fw fa fa-cloud"></i><span> 固件仓库</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://pan.xiaowansm.repl.co/"><i class="fa-fw fa fa-cloud-download"></i><span> 固件仓库[分流站]</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://p.wwang.pw"><i class="fa-fw fa-fw fab fa-google-drive"></i><span> 资源库</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://wwang.pw/mi"><i class="fa-fw fa-solid fa-lock"></i><span> 小米SSH密码计算</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://git.wwan.eu.org/"><i class="fa-fw fa-brands fa-github"></i><span> GitHub文件加速</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://wwan.eu.org/"><i class="fa-fw fa-solid fa-arrow-up-short-wide"></i><span> 缩短网址</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://xwsm.eu.org/"><i class="fa-fw fa-solid fa-image"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://xiaow.pages.dev/lab"><i class="fa-fw fa fa-cog"></i><span> 实验室</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-wave-square"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-list-alt"></i><span> 单页</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%80%92%E8%AE%A1%E6%97%B6/"><i class="fa-fw fa-fw far fa-clock"></i><span> 倒计时</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/"><i class="fa-fw fa-fw fas fa-gamepad"></i><span> 俄罗斯方块</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%97%B6%E9%92%9F/"><i class="fa-fw fa-fw fas fa-clock"></i><span> 时钟</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A5/"><i class="fa-fw fa-fw fab fa-studiovinari"></i><span> 初音未来</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%B0%8F%E5%9C%86%E7%82%B9/"><i class="fa-fw fa-fw far fa-dot-circle"></i><span> 小圆点</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%B6%B2%E4%BD%93/"><i class="fa-fw fa-fw fab fa-google-wallet"></i><span> 液体</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/home/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 网址收藏</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%97%B6%E5%85%89%E6%90%9C%E7%B4%A2/"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> 时光搜索</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9B%BE%E7%89%87%E5%8A%A0%E6%B0%B4%E5%8D%B0/"><i class="fa-fw fa-regular fa-image"></i><span> 图片加水印</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%8A%A8%E6%80%81%E7%99%BD%E4%BA%91/"><i class="fa-fw fa fa-cloud"></i><span> 动态白云</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9B%BE%E7%89%87%E8%87%AA%E9%80%82%E5%BA%94UI%E6%A8%A1%E6%9D%BF/"><i class="fa-fw fa-brands fa-uikit"></i><span> 图片自适应UI</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9C%A8%E7%BA%BF%E7%94%BB%E6%9D%BF/"><i class="fa-fw fa fa-sign-language"></i><span> 在线画板</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/Onlinemusic/"><i class="fa-fw fa fas fa-music"></i><span> 在线音乐</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">时光's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-compass"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://pan.wwang.pw"><i class="fa-fw fa fa-cloud"></i><span> 固件仓库</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://pan.xiaowansm.repl.co/"><i class="fa-fw fa fa-cloud-download"></i><span> 固件仓库[分流站]</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://p.wwang.pw"><i class="fa-fw fa-fw fab fa-google-drive"></i><span> 资源库</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://wwang.pw/mi"><i class="fa-fw fa-solid fa-lock"></i><span> 小米SSH密码计算</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://git.wwan.eu.org/"><i class="fa-fw fa-brands fa-github"></i><span> GitHub文件加速</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://wwan.eu.org/"><i class="fa-fw fa-solid fa-arrow-up-short-wide"></i><span> 缩短网址</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://xwsm.eu.org/"><i class="fa-fw fa-solid fa-image"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://xiaow.pages.dev/lab"><i class="fa-fw fa fa-cog"></i><span> 实验室</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-wave-square"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-list-alt"></i><span> 单页</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%80%92%E8%AE%A1%E6%97%B6/"><i class="fa-fw fa-fw far fa-clock"></i><span> 倒计时</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/"><i class="fa-fw fa-fw fas fa-gamepad"></i><span> 俄罗斯方块</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%97%B6%E9%92%9F/"><i class="fa-fw fa-fw fas fa-clock"></i><span> 时钟</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A5/"><i class="fa-fw fa-fw fab fa-studiovinari"></i><span> 初音未来</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%B0%8F%E5%9C%86%E7%82%B9/"><i class="fa-fw fa-fw far fa-dot-circle"></i><span> 小圆点</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%B6%B2%E4%BD%93/"><i class="fa-fw fa-fw fab fa-google-wallet"></i><span> 液体</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/home/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 网址收藏</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E6%97%B6%E5%85%89%E6%90%9C%E7%B4%A2/"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> 时光搜索</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9B%BE%E7%89%87%E5%8A%A0%E6%B0%B4%E5%8D%B0/"><i class="fa-fw fa-regular fa-image"></i><span> 图片加水印</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%8A%A8%E6%80%81%E7%99%BD%E4%BA%91/"><i class="fa-fw fa fa-cloud"></i><span> 动态白云</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9B%BE%E7%89%87%E8%87%AA%E9%80%82%E5%BA%94UI%E6%A8%A1%E6%9D%BF/"><i class="fa-fw fa-brands fa-uikit"></i><span> 图片自适应UI</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/home/%E5%9C%A8%E7%BA%BF%E7%94%BB%E6%9D%BF/"><i class="fa-fw fa fa-sign-language"></i><span> 在线画板</span></a></li><li><a class="site-page child" href="https://blog.wwang.pw/Onlinemusic/"><i class="fa-fw fa fas fa-music"></i><span> 在线音乐</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">OpenWRT基本知识整理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-21T10:21:16.000Z" title="发表于 2022-05-21 18:21:16">2022-05-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-15T08:48:02.770Z" title="更新于 2022-11-15 16:48:02">2022-11-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/openwrt/">openwrt</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">13.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>58分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="OpenWRT基本知识整理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="OpenWRT基本知识整理"><a href="#OpenWRT基本知识整理" class="headerlink" title="OpenWRT基本知识整理"></a>OpenWRT基本知识整理</h1><h1 id="1-OpenWRT虚拟系统准备"><a href="#1-OpenWRT虚拟系统准备" class="headerlink" title="1.OpenWRT虚拟系统准备"></a>1.OpenWRT虚拟系统准备</h1><p>环境：</p>
+<p>编译服务器：Ubuntu-14.04-desktop</p>
+<p>虚拟机软件：VMWare-10.0</p>
+<p>编译环境准备：apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc flex gcc-multilib</p>
+<h2 id="1-1-编译openwrt虚拟机系统"><a href="#1-1-编译openwrt虚拟机系统" class="headerlink" title="1.1.编译openwrt虚拟机系统"></a>1.1.编译openwrt虚拟机系统</h2><h3 id="1-1-1-准备源码"><a href="#1-1-1-准备源码" class="headerlink" title="1.1.1 准备源码"></a>1.1.1 准备源码</h3><p>#cd &#x2F;home&#x2F;nickli&#x2F;</p>
+<p>#mkdir openwrt_SDK</p>
+<p>#cd openwrt_SDK</p>
+<p>#svn checkout</p>
+<p>svn:&#x2F;&#x2F;svn.openwrt.org&#x2F;openwrt&#x2F;branches&#x2F;barrier_breaker</p>
+<h3 id="1-1-2-准备源码包"><a href="#1-1-2-准备源码包" class="headerlink" title="1.1.2 准备源码包"></a>1.1.2 准备源码包</h3><p>#cd barrier_breaker</p>
+<p>#mkdir dl</p>
+<p>#cp -r &#x2F;home&#x2F;public&#x2F;openwrt_dl&#x2F;* .&#x2F;dl&#x2F;</p>
+<p>之前已经将几乎所有的编译时需要下载的源码包下载到了&#x2F;home&#x2F;public&#x2F;openwrt_dl 目录下，所以为减少编译时间直接将该目录链接到新的SDK中。</p>
+<h3 id="1-1-3-编译配置"><a href="#1-1-3-编译配置" class="headerlink" title="1.1.3 编译配置"></a>1.1.3 编译配置</h3><p>#make defconfig</p>
+<p>#make prereq</p>
+<p>#make menuconfig  &#x2F;&#x2F;配置系统编译选单时需注意以下几点：</p>
+<ul>
+<li>系统目标平台选择为x86</li>
+<li>目标文件为虚拟机文件***.vmdk</li>
+<li>选择c库(uClibc&#x2F;eglibc&#x2F;glibc……)</li>
+<li>配置系统所需的基本配置比如adduser&#x2F;addgroup&#x2F;su等命令（basesystem&#x2F;busybox）</li>
+</ul>
+<p>退出配置单并保存。</p>
+<h3 id="1-1-4-编译"><a href="#1-1-4-编译" class="headerlink" title="1.1.4 编译"></a>1.1.4 编译</h3><p>#make V&#x3D;99</p>
+<p>完成以后镜像文件“openwrt-x86-generic-combined-squashfs.vmdk”存在于bin&#x2F;x86&#x2F;目录下,将该文件拷贝到windows下如F:&#x2F;template&#x2F;下。</p>
+<h2 id="1-2-安装虚拟机"><a href="#1-2-安装虚拟机" class="headerlink" title="1.2.安装虚拟机"></a>1.2.安装虚拟机</h2><h3 id="1-2-1-新建虚拟机"><a href="#1-2-1-新建虚拟机" class="headerlink" title="1.2.1.新建虚拟机"></a>1.2.1.新建虚拟机</h3><p>下一步</p>
+<p>选择稍后安装操作系统</p>
+<p>客户及操作系统选择Linux，版本选择“其他Linux 2.6.x内核”</p>
+<p>为虚拟机命名，并选择之前镜像存放的路径作为虚拟机存放路径</p>
+<p>点击继续</p>
+<p>Cpu&#x2F;memory等信息保持默认，点击下一步即可：</p>
+<p>内存选择512足够了：</p>
+<p>选择桥接：</p>
+<p>保持默认，点击下一步</p>
+<p>选择硬盘类型为IDE:</p>
+<p>创建新磁盘：</p>
+<p>设置磁盘大小10G：</p>
+<p>然后一路默认，点击“下一步”直到结束。</p>
+<h3 id="1-2-2-修改虚拟机配置文件："><a href="#1-2-2-修改虚拟机配置文件：" class="headerlink" title="1.2.2.修改虚拟机配置文件："></a>1.2.2.修改虚拟机配置文件：</h3><p>进入以上放置虚拟机的目录，并找后缀为vmx的文件，使用记事本打开，将以下途中表示的虚拟机名字修改成第一步中编译出来，保存在本地的那个系统镜像名称：</p>
+<p>修改完成后保存退出。</p>
+<p>在vmware中启动刚刚新建的虚拟机“smartRouter_4x4”</p>
+<h1 id="2-配置使用"><a href="#2-配置使用" class="headerlink" title="2.配置使用"></a>2.配置使用</h1><h2 id="2-1-设置root密码"><a href="#2-1-设置root密码" class="headerlink" title="2.1.设置root密码"></a>2.1.设置root密码</h2><p>#passwd</p>
+<p>两次输入密码即可</p>
+<p>重启系统即可</p>
+<h2 id="2-2-网络配置"><a href="#2-2-网络配置" class="headerlink" title="2.2.网络配置"></a>2.2.网络配置</h2><p>#vi &#x2F;etc&#x2F;config&#x2F;network</p>
+<p>保存退出，后重启网络：</p>
+<p>#&#x2F;etc&#x2F;init.d&#x2F;network restart</p>
+<p>#ifconfig  br-lan</p>
+<p>以上红色标注处显示修改成功。</p>
+<h2 id="2-3-关于ssh"><a href="#2-3-关于ssh" class="headerlink" title="2.3.关于ssh"></a>2.3.关于ssh</h2><p>OpenWrt 中默认自带的 SSH 服务端和客户端是 Dropbear</p>
+<p>使用ssh代理方法，实现自动登录ssh，类似于convirt节点管理方法：</p>
+<p><a target="_blank" rel="noopener" href="http://talk.withme.me/?p=210#codesyntax_1">http://talk.withme.me/?p=210#codesyntax_1</a></p>
+<h1 id="3-软件安装方法"><a href="#3-软件安装方法" class="headerlink" title="3.软件安装方法"></a>3.软件安装方法</h1><h2 id="3-1-本地安装ipk软件包"><a href="#3-1-本地安装ipk软件包" class="headerlink" title="3.1.本地安装ipk软件包"></a>3.1.本地安装ipk软件包</h2><p>使用命令:opkg install softwall.ipk</p>
+<p>例如：安装sftp</p>
+<p>首先下载软件：</p>
+<p>#cd &#x2F;root</p>
+<p>#wget <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/backfire/10.03.1/x86_generic/packages/openssh-sftp-server_5.8p2-2_x86.ipk">http://downloads.openwrt.org/backfire/10.03.1/x86_generic/packages/openssh-sftp-server_5.8p2-2_x86.ipk</a></p>
+<p># opkg install openssh-sftp-server_5.8p2-2_x86.ipk</p>
+<p>Installing openssh-sftp-server (5.8p2-2) to root…</p>
+<p>Configuring openssh-sftp-server.</p>
+<h2 id="3-2-在线安装软件及设置"><a href="#3-2-在线安装软件及设置" class="headerlink" title="3.2.在线安装软件及设置"></a>3.2.在线安装软件及设置</h2><h3 id="3-2-1-设置软件源"><a href="#3-2-1-设置软件源" class="headerlink" title="3.2.1.设置软件源"></a>3.2.1.设置软件源</h3><p>#vim &#x2F;etc&#x2F;opkg.conf</p>
+<p>内容如下：</p>
+<p>dest root &#x2F;</p>
+<p>dest ram &#x2F;tmp</p>
+<p>lists_dir ext &#x2F;var&#x2F;opkg-lists</p>
+<p>option overlay_root &#x2F;overlay</p>
+<p>src&#x2F;gz barrier_breaker_base <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/base">http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/base</a></p>
+<p>最后一行url为实际可以下载到ipk的地址，配置好后才能使用在线安装功能。</p>
+<h3 id="3-2-2-安装软件"><a href="#3-2-2-安装软件" class="headerlink" title="3.2.2.安装软件"></a>3.2.2.安装软件</h3><p>更新可用ipk软件包列表：</p>
+<p>#opkg update</p>
+<p>查看所有ipk包列表：</p>
+<p>#opkg list</p>
+<p>#opkg install software.ipkg</p>
+<p>安装软件：</p>
+<p>#opkg install software.ipk</p>
+<h3 id="3-2-3-直接安装"><a href="#3-2-3-直接安装" class="headerlink" title="3.2.3.直接安装"></a>3.2.3.直接安装</h3><p>在3.1节中，描述的安装本地软件，实际上是先wget下载一个软件到本地，然后再执行本地安装，实际上可以直接使用opkg install URL的方式在线安装。如下：</p>
+<p>#opkg install <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/backfire/10.03.1/x86_generic/packages/openssh-sftp-server_5.8p2-2_x86.ipk">http://downloads.openwrt.org/backfire/10.03.1/x86_generic/packages/openssh-sftp-server_5.8p2-2_x86.ipk</a></p>
+<h2 id="3-3-使用本地服务器做软件源以安装自定义软件"><a href="#3-3-使用本地服务器做软件源以安装自定义软件" class="headerlink" title="3.3.使用本地服务器做软件源以安装自定义软件"></a>3.3.使用本地服务器做软件源以安装自定义软件</h2><p>安装本地软件有两种方法：一种是将本地软件scp到openwrt系统中，通过opkg安装即可；第二种就是在本地服务器上搭建一个ftp服务器， 然后在openwrt系统软件源中添加该服务器的url，然后通过在线安装的方式安装本地服务器上制作的Ipk包。现就第二种方式做介绍。</p>
+<h3 id="3-3-1-在编译服务器上配置vsftp服务器"><a href="#3-3-1-在编译服务器上配置vsftp服务器" class="headerlink" title="3.3.1.在编译服务器上配置vsftp服务器"></a>3.3.1.在编译服务器上配置vsftp服务器</h3><p>2.11安装ftp服务器</p>
+<p>#sudo apt-get install vsftpd</p>
+<p># sudo gedit &#x2F;etc&#x2F;vsftpd.conf</p>
+<p>原文件中不少指令被注释，只要启用部分即可，一下是启用的命令（配置文件中对每一条都有具体说明）</p>
+<p>listen&#x3D;YES    # 服务器监听</p>
+<p>anonymous_enable&#x3D;YES    # 匿名访问允许</p>
+<p>local_enable&#x3D;YES  # 本地主机访问允许</p>
+<p>write_enable&#x3D;YES  # 写允许</p>
+<p>anon_upload_enable&#x3D;YES</p>
+<p># 匿名上传允许，默认是NO，嫌麻烦的可以开起来。出了问题我不负责～</p>
+<p>anon_mkdir_write_enable&#x3D;YES # 匿名创建文件夹允许</p>
+<p>dirmessage_enable&#x3D;YES # 进入文件夹允许</p>
+<p>xferlog_enable&#x3D;YES  # ftp 日志记录允许</p>
+<p>connect_from_port_20&#x3D;YES   # 允许使用20号端口作为数据传送的端口</p>
+<p>secure_chroot_dir&#x3D;&#x2F;var&#x2F;run&#x2F;vsftpd&#x2F;empty</p>
+<p>pam_service_name&#x3D;vsftpd</p>
+<p>rsa_cert_file&#x3D;&#x2F;etc&#x2F;ssl&#x2F;private&#x2F;vsftpd.pem</p>
+<p>保存。</p>
+<p>创建匿名访问目录以供openwrt访问</p>
+<p>#mkdir &#x2F;srv&#x2F;ftp</p>
+<p>修改ftp目录权限：</p>
+<p>#chmod 755 &#x2F;srv&#x2F;ftp</p>
+<p>创建upload download目录</p>
+<p>#mkdir –p –m 777 &#x2F;srv&#x2F;ftp&#x2F;upload</p>
+<p>#mkdir –p –m 755 &#x2F;srv&#x2F;ftp&#x2F;download</p>
+<p>重启vsftpd</p>
+<p>#service vsftpd restart</p>
+<p>然后将&#x2F;home&#x2F;nickli&#x2F;openwrt_SDK&#x2F;barrier_breaker&#x2F;bin&#x2F;x86&#x2F;packages 目录下所有的内容都拷贝到&#x2F;srv&#x2F;ftp&#x2F;download目录下：</p>
+<p>#scp -r &#x2F;home&#x2F;nickli&#x2F;openwrt_SDK&#x2F;barrier_breaker&#x2F;bin&#x2F;x86&#x2F;packages &#x2F;srv&#x2F;ftp&#x2F;download&#x2F;</p>
+<p>默认情况下，每个用户的家目录会自动做为vsftp服务的根目录。也就是说使用用户A的权限来访问该ftp服务器时，其登录到的ftp根目录就是该用户A在该ftp服务器寄存的这台主机上自己的home目录。</p>
+<p>本文档制作时服务器IP为10.8.3.50的ubuntu-14.04系统，OpenWRT的SDK在&#x2F;home&#x2F;nickli &#x2F;openwrt_SDK&#x2F;barrier_breaker目录下。编译出来的所有成果在该目录的bin目录下。我们将使用编译出的packages作为 最终的软件源。</p>
+<h3 id="3-3-2-修改openwrt在线安装软件源"><a href="#3-3-2-修改openwrt在线安装软件源" class="headerlink" title="3.3.2.修改openwrt在线安装软件源"></a>3.3.2.修改openwrt在线安装软件源</h3><p>openwrt端修改opkg.conf，添加ftp服务器ipk包存在地址，注释掉系统默认的url地址如下红色标注，并添加绿色标注的文字：</p>
+<p>src&#x2F;gz barrier_breaker_base <a href="ftp://10.8.3.50/download/packages/base">ftp://10.8.3.50/download/packages/base</a></p>
+<p>(或者src&#x2F;gz packages <a href="ftp://10.8.3.50/download/packages/base">ftp://10.8.3.50/download/packages/base</a>)</p>
+<p>dest root &#x2F;</p>
+<p>dest ram &#x2F;tmp</p>
+<p>lists_dir ext &#x2F;var&#x2F;opkg-lists</p>
+<p>option overlay_root &#x2F;overlay</p>
+<p>#src&#x2F;gz barrier_breaker_base <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/base">http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/base</a></p>
+<h3 id="3-3-3更新opkg"><a href="#3-3-3更新opkg" class="headerlink" title="3.3.3更新opkg"></a>3.3.3更新opkg</h3><p>#opkg update</p>
+<p>若无错误提示，则表示可以正常使用opkg从ftp下载ipk包了。</p>
+<h3 id="3-3-3-通过命令安装ipk软件"><a href="#3-3-3-通过命令安装ipk软件" class="headerlink" title="3.3.3.通过命令安装ipk软件"></a>3.3.3.通过命令安装ipk软件</h3><p>#opkg install software.ipk</p>
+<h1 id="4-openwrt-SDK源码目录结构"><a href="#4-openwrt-SDK源码目录结构" class="headerlink" title="4.openwrt SDK源码目录结构"></a>4.openwrt SDK源码目录结构</h1><h2 id="4-1-源码下载"><a href="#4-1-源码下载" class="headerlink" title="4.1.源码下载"></a>4.1.源码下载</h2><p>OpenWrt的源代码管理默认用的是SVN下载：</p>
+<p>svn co svn:&#x2F;&#x2F;svn.openwrt.org&#x2F;openwrt&#x2F;trunk&#x2F; .</p>
+<p>还可以用Git下载：</p>
+<p>git clone git:&#x2F;&#x2F;git.openwrt.org&#x2F;openwrt.git</p>
+<p>git clone git:&#x2F;&#x2F;git.openwrt.org&#x2F;packages.git</p>
+<p>参考方法：<a target="_blank" rel="noopener" href="https://dev.openwrt.org/wiki/GetSource">https://dev.openwrt.org/wiki/GetSource</a></p>
+<h2 id="4-2-OpenWRT的feeds"><a href="#4-2-OpenWRT的feeds" class="headerlink" title="4.2.OpenWRT的feeds"></a>4.2.OpenWRT的feeds</h2><p>包括：</p>
+<p>packages – 提供众多库, 工具等基本功能. 也是其他feed所依赖的软件源, 因此在安装其他feed前一定要先安装packages!</p>
+<p>luci – OpenWrt默认的GUI(WEB管理界面).</p>
+<p>xwrt – 另一种可替换LuCI的GUI</p>
+<p>qpe – DreamBox维护的基于Qt的图形界面, 包含Qt2, Qt4, Qtopia, OPIE, SMPlayer等众多图形界面.</p>
+<p>device – DreamBox维护与硬件密切相关的软件, 如uboot, qemu等.</p>
+<p>dreambox_packages – DreamBox维护的国内常用网络工具, 如oh3c, njit8021xclient等.</p>
+<p>desktop – OpenWrt用于桌面的一些软件包.</p>
+<p>xfce – 基于Xorg的著名轻量级桌面环境. Xfce建基在GTK+2.x之上, 它使用Xfwm作为窗口管理器.</p>
+<p>efl – 针对enlightenment.</p>
+<p>phone -针对fso, paroli.</p>
+<p>trunk中默认的feeds下载有packages、xwrt、luci、routing、telephony。如要下载其他的软件包，需打开源码根目录下面的feeds.conf.default文件，去掉相应软件包前面的#号，然后更新源:</p>
+<p>.&#x2F;scripts&#x2F;feeds update -a</p>
+<p>安装下载好的包:</p>
+<p>.&#x2F;scripts&#x2F;feeds install -a</p>
+<h2 id="4-3-OpenWrt源码目录结构"><a href="#4-3-OpenWrt源码目录结构" class="headerlink" title="4.3.OpenWrt源码目录结构"></a>4.3.OpenWrt源码目录结构</h2><p><strong>tools</strong>和<strong>toolchain</strong>目录：包含了一些通用命令, 用来生成固件, 编译器, 和C库.</p>
+<p><strong>build dir&#x2F;host</strong>目录：是一个临时目录, 用来储存不依赖于目标平台的工具.</p>
+<p><strong>build dir&#x2F;toolchain</strong>-目录：用来储存依赖于指定平台的编译链. 只是编译文件存放目录无需修改.</p>
+<p><strong>build dir&#x2F;target</strong>-目录：用来储存依赖于指定平台的软件包的编译文件, 其中包括linux内核, u-boot, packages, 只是编译文件存放目录无需修改.</p>
+<p><strong>staging_dir</strong>目录：是编译目标的最终安装位置, 其中包括rootfs, package, toolchain.</p>
+<p><strong>package</strong>目录：软件包的下载编译规则, 在OpenWrt固件中, 几乎所有东西都是.ipk, 这样就可以很方便的安装和卸载.</p>
+<p><strong>target</strong>目录：目标系统指嵌入式设备, 针对不同的平台有不同的特性, 针对这些特性, “target&#x2F;linux”目录下按照平台进行目录划分, 里面包括了针对标准内核的补丁, 特殊配置等.</p>
+<p><strong>bin</strong>目录：编译完OpenWrt的二进制文件生成目录, 其中包括sdk, uImage, u-boot, dts, rootfs构建一个嵌入式系统完整的二进制文件.</p>
+<p><strong>config</strong>目录：存放着整个系统的的配置文件.</p>
+<p><strong>docs</strong>目录：里面不断包含了整个宿主机的文件源码的介绍, 里面还有Makefile为目标系统生成docs.</p>
+<p><strong>include</strong>目录：里面包括了整个系统的编译需要的头文件, 但是是以Make进行连接的.</p>
+<p><strong>feeds</strong>目录：扩展软件包索引目录.</p>
+<p><strong>scripts</strong>目录：组织编译整个OpenWrt的规则.</p>
+<p><strong>tmp</strong>目录：编译文件夹, 一般情况为空.</p>
+<p><strong>dl</strong>目录：所有软件的下载目录, 包括u-boot, kernel.</p>
+<p><strong>logs</strong>目录：如果编译出错, 可以在这里找到编译出错的log.</p>
+<h2 id="4-4-基本命令介绍"><a href="#4-4-基本命令介绍" class="headerlink" title="4.4.基本命令介绍"></a>4.4.基本命令介绍</h2><p>#.&#x2F;scripts&#x2F;feeds update -a</p>
+<p>#.&#x2F;scripts&#x2F;feeds install -a</p>
+<p>#make prereq &#x2F;&#x2F;该命令可以检查SDK中target内是否有存在错误的Makefile。</p>
+<p>#make defconfig</p>
+<p>#make menuconfig</p>
+<p>#make kernel_config</p>
+<p>#make V&#x3D;99</p>
+<p>#make package&#x2F;pacakge_name&#x2F;{clean,prepare,compile,install} V&#x3D;99</p>
+<h1 id="5-用户层模块开发方法"><a href="#5-用户层模块开发方法" class="headerlink" title="5.用户层模块开发方法"></a>5.用户层模块开发方法</h1><h2 id="5-1-SDK准备"><a href="#5-1-SDK准备" class="headerlink" title="5.1.SDK准备"></a>5.1.SDK准备</h2><p>请参考：4.1小节内容。</p>
+<h2 id="5-2-添加模块代码"><a href="#5-2-添加模块代码" class="headerlink" title="5.2.添加模块代码"></a>5.2.添加模块代码</h2><p>例如添加模块名字加hello，其目录树如下：</p>
+<p>hello</p>
+<p>├── files   ———————–文件夹：存放文件如：服务配置文件&#x2F;启动脚本等</p>
+<p>├── Makefile ————————文件：打包相关的Makefile</p>
+<p>└── src   ———————–文件夹：存放模块源码文件</p>
+<p>├── hello.c ———————文件：源代码</p>
+<p>└── Makefile ——————文件：源码编译用的Makefile</p>
+<h2 id="5-3-模块程序源代码"><a href="#5-3-模块程序源代码" class="headerlink" title="5.3.模块程序源代码"></a>5.3.模块程序源代码</h2><p>#include&lt;stdio.h&gt;</p>
+<p>int main ()</p>
+<p>{</p>
+<p>printf(“hello world!\n”);</p>
+<p>return 0;</p>
+<p>}</p>
+<h2 id="5-4-源码编译Makefile"><a href="#5-4-源码编译Makefile" class="headerlink" title="5.4.源码编译Makefile"></a>5.4.源码编译Makefile</h2><p>hello:hello.o</p>
+<p>$(CC) -o $@ $^</p>
+<p>hello.o:hello.c</p>
+<p>$(CC) -c $&lt;</p>
+<p>clean:</p>
+<p>rm -rf *.o hello</p>
+<h2 id="5-5-ipK包制作规则Makefile"><a href="#5-5-ipK包制作规则Makefile" class="headerlink" title="5.5.ipK包制作规则Makefile"></a>5.5.ipK包制作规则Makefile</h2><p>#</p>
+<p># Copyright (C) 2006-2010 OpenWrt.org</p>
+<p>#</p>
+<p># This is free software, licensed under the GNU General Public License v2.</p>
+<p># See &#x2F;LICENSE for more information.</p>
+<p>#</p>
+<p>include $(TOPDIR)&#x2F;rules.mk</p>
+<p>PKG_NAME:&#x3D;hello</p>
+<p>PKG_VERSION:&#x3D;1.0</p>
+<p>PKG_RELEASE:&#x3D;1.0</p>
+<p>PKG_BUILD_DIR :&#x3D; $(BUILD_DIR)&#x2F;$(PKG_NAME)</p>
+<p>include $(INCLUDE_DIR)&#x2F;package.mk</p>
+<p>define Package&#x2F;hello</p>
+<p>SECTION:&#x3D;libs</p>
+<p>CATEGORY:&#x3D;Libraries</p>
+<p>TITLE:&#x3D;hello</p>
+<p>endef</p>
+<p>define Build&#x2F;Prepare</p>
+<p>mkdir -p $(PKG_BUILD_DIR)</p>
+<p>$(CP) .&#x2F;src&#x2F;* $(PKG_BUILD_DIR)&#x2F;</p>
+<p>endef</p>
+<p>define Package&#x2F;hello&#x2F;description</p>
+<p>the hello is the base utils of the skysoft’s smartrouter</p>
+<p>endef</p>
+<p>define Package&#x2F;hello&#x2F;install</p>
+<p>$(INSTALL_DIR) $(1)&#x2F;usr&#x2F;lib&#x2F;</p>
+<p>$(CP) $(PKG_BUILD_DIR)&#x2F;hello.so* $(1)&#x2F;usr&#x2F;lib&#x2F;</p>
+<p>endef</p>
+<p>$(eval $(call BuildPackage,hello))</p>
+<p><strong>注意以上红色标注部分文字须保持一致。</strong></p>
+<h2 id="5-6-编译模块"><a href="#5-6-编译模块" class="headerlink" title="5.6.编译模块"></a>5.6.编译模块</h2><p>$ make package&#x2F;libs&#x2F;hello&#x2F;compile V&#x3D;99</p>
+<p>$ make package&#x2F;libs&#x2F;hello&#x2F;clean</p>
+<p>$ make package&#x2F;skysoft_web_admin&#x2F;{clean,prepare,compile} V&#x3D;99</p>
+<h2 id="5-7-ipk包制作"><a href="#5-7-ipk包制作" class="headerlink" title="5.7.ipk包制作"></a>5.7.ipk包制作</h2><p>加入install后会将编译结果打包安装到SDK目录下bin目录下相应位置。</p>
+<p>$ make package&#x2F;skysoft_web_admin&#x2F;{clean,prepare,compile,install} V&#x3D;99</p>
+<h2 id="5-8-安装测试"><a href="#5-8-安装测试" class="headerlink" title="5.8.安装测试"></a>5.8.安装测试</h2><p>编译完成后在SDK目录下的&#x2F;bin&#x2F;x86&#x2F;package&#x2F;base文件夹下回有hello*.ipk文件，将bin&#x2F;x86&#x2F;package 整个目录拷贝到ftp下载目录&#x2F;srv&#x2F;ftp&#x2F;download&#x2F;下，采用在openwrt在线安装的方式，或者直接远程拷贝到目标openwrt系统 中安装。</p>
+<h1 id="6-内核模块开发方法"><a href="#6-内核模块开发方法" class="headerlink" title="6.内核模块开发方法"></a>6.内核模块开发方法</h1><p>OpenWrt开发内核驱动有多种方式，前面讲到的制作内核补丁也是一种开发方法。这里介绍直接在OpenWrt系统上开发内核驱动，把内核驱动做成ipk软件包的形式。</p>
+<h2 id="6-1-建立工作目录"><a href="#6-1-建立工作目录" class="headerlink" title="6.1.建立工作目录"></a>6.1.建立工作目录</h2><p><strong>$cd openwrt&#x2F;trunk&#x2F;package</strong></p>
+<p><strong>$mkdir example</strong></p>
+<h2 id="6-2-进入example目录，创建Makefile文件和代码路径"><a href="#6-2-进入example目录，创建Makefile文件和代码路径" class="headerlink" title="6.2.进入example目录，创建Makefile文件和代码路径"></a>6.2.进入example目录，创建Makefile文件和代码路径</h2><p><strong>$cd example</strong></p>
+<p><strong>$mkdir src</strong></p>
+<p><strong>$vim Makefile</strong></p>
+<p><strong>文件内容如下：</strong></p>
+<p><strong># Kernel module example</strong></p>
+<p><strong>include $(TOPDIR)&#x2F;rules.mk</strong></p>
+<p><strong>include $(INCLUDE_DIR)&#x2F;kernel.mk</strong></p>
+<p><strong>PKG_NAME:&#x3D;example</strong></p>
+<p><strong>PKG_RELEASE:&#x3D;1</strong></p>
+<p><strong>include $(INCLUDE_DIR)&#x2F;package.mk</strong></p>
+<p><strong>define KernelPackage&#x2F;example</strong></p>
+<p>　　<strong>SUBMENU:&#x3D;Other modules</strong></p>
+<p>　　<strong>DEPENDS:&#x3D;@TARGET_octeon</strong></p>
+<p>　　<strong>TITLE:&#x3D;Support Module for example</strong></p>
+<p>　　<strong>AUTOLOAD:&#x3D;$(call AutoLoad,81,example)</strong></p>
+<p>　　<strong>FILES:&#x3D;$(PKG_BUILD_DIR)&#x2F;example&#x2F;example.$(LINUX_KMOD_SUFFIX)</strong></p>
+<p><strong>endef</strong></p>
+<p><strong>define Build&#x2F;Prepare</strong></p>
+<p>　　<strong>mkdir -p $(PKG_BUILD_DIR)</strong></p>
+<p>　　<strong>$(CP) -R .&#x2F;src&#x2F;* $(PKG_BUILD_DIR)&#x2F;</strong></p>
+<p><strong>endef</strong></p>
+<p><strong>define Build&#x2F;Compile</strong></p>
+<p>　　**$(MAKE) -C “$(LINUX_DIR)” **</p>
+<p>　　　　*<em>CROSS_COMPILE&#x3D;”$(TARGET_CROSS)” *</em></p>
+<p>　　　　*<em>ARCH&#x3D;”$(LINUX_KARCH)” *</em></p>
+<p>　　　　*<em>SUBDIRS&#x3D;”$(PKG_BUILD_DIR)&#x2F;example” *</em></p>
+<p>　　　　*<em>EXTRA_CFLAGS&#x3D;”-g $(BUILDFLAGS)” *</em></p>
+<p>　　　　<strong>modules</strong></p>
+<p><strong>endef</strong></p>
+<p><strong>$(eval $(call KernelPackage,example))</strong></p>
+<p>注释：AUTOLOAD：定义了内核模块开机自动挂载的动作，$(call AutoLoad,81,example)，表示当系统启动时名叫“example”的内核模块会在顺序为第81的位置加载到系统中，不必每次启动系统后 手动的去insmod加载模块。如果正常，本模块ipk包制作好并安装到目标系统中后，会在目标系统的&#x2F;etc&#x2F;modules.d&#x2F;目录下创建一份名叫 81-example的加载序列文件，其内容为example。而本ipk安装后会在&#x2F;lib&#x2F;moudules&#x2F;$(KERNEL-VERSION) &#x2F;目录下放置example.ko文件。而如果本软件包包含了多个内核模块文件，比如多个“.ko”文件，那么在这个位置就要加入多个模块名，模块名之间 以“空格”隔开，如下例： </p>
+<p><strong>define KernelPackage&#x2F;exfat</strong></p>
+<p> <strong>SUBMENU:&#x3D;Other modules</strong></p>
+<p> <strong>TITLE:&#x3D;exfat driver</strong></p>
+<p> <strong>DEPENDS:&#x3D;+kmod-nls-base @BUILD_PATENTED</strong></p>
+<p> <strong>FILES:&#x3D;$(PKG_BUILD_DIR)&#x2F;*.$(LINUX_KMOD_SUFFIX)</strong></p>
+<p> <strong>AUTOLOAD:&#x3D;$(call AutoLoad,82,exfat_core exfat_fs)</strong></p>
+<p> <strong>KCONFIG:&#x3D;</strong></p>
+<p><strong>endef</strong></p>
+<p>定义的模块名称为exfat，其内部有两个内核文件需要添加，分别为exfat_core.ko,exfat_fs.ko。</p>
+<h2 id="6-3-进入src目录，创建代码路径和相关源文件"><a href="#6-3-进入src目录，创建代码路径和相关源文件" class="headerlink" title="6.3.进入src目录，创建代码路径和相关源文件"></a>6.3.进入src目录，创建代码路径和相关源文件</h2><p><strong>$cd src</strong></p>
+<p><strong>$mkdir example</strong></p>
+<p><strong>$cd example</strong></p>
+<p><strong>$vim example.c</strong></p>
+<p><strong>编辑内容如下：</strong></p>
+<p><strong>#include &lt;linux&#x2F;init.h&gt;</strong></p>
+<p><strong>#include &lt;linux&#x2F;module.h&gt;</strong></p>
+<p><strong>#include &lt;linux&#x2F;kernel.h&gt;</strong></p>
+<p><strong>&#x2F;* hello_init —-</strong> <strong>初始化函数，当模块装载时被调用，如果成功装载返回0</strong> <strong>否则返回非0****值 *&#x2F;</strong></p>
+<p><strong>static int __init hello_init(void)</strong></p>
+<p><strong>{</strong></p>
+<p>　　　<strong>printk(“I bear a charmed life.\n”);</strong></p>
+<p>　　　<strong>return 0;</strong></p>
+<p><strong>}</strong></p>
+<p><strong>&#x2F; * hello_exit —-</strong> <strong>退出函数，当模块卸载时被调用 *&#x2F;</strong></p>
+<p><strong>static void __exit hello_exit(void)</strong></p>
+<p><strong>{</strong></p>
+<p>　　　<strong>printk(“Out, out, brief candle\n”);</strong></p>
+<p><strong>}</strong></p>
+<p><strong>module_init(hello_init);</strong></p>
+<p><strong>module_exit(hello_exit);</strong></p>
+<p><strong>MODULE_LICENSE(“GPL”);</strong></p>
+<p><strong>MODULE_AUTHOR(“Pillar_zuo”);</strong></p>
+<p><strong>vim Kconfig</strong></p>
+<p><strong>config EXAMPLE</strong></p>
+<p>　　<strong>tristate “Just a example”</strong></p>
+<p>　　<strong>default n</strong></p>
+<p>　　<strong>help</strong></p>
+<p>　　　<strong>This is a example, for debugging kernel model.</strong></p>
+<p>　　　<strong>If unsure, say N.</strong></p>
+<p><strong>保存并退出。</strong></p>
+<p><strong>增加源码编译Makefile****：</strong></p>
+<p><strong>$vim Makefile</strong></p>
+<p><strong>内容如下：</strong></p>
+<p><strong>obj-m :&#x3D; example.o</strong></p>
+<h2 id="6-4-回到OpenWrt源码根目录下"><a href="#6-4-回到OpenWrt源码根目录下" class="headerlink" title="6.4.回到OpenWrt源码根目录下"></a>6.4.回到OpenWrt源码根目录下</h2><p><strong>$make menuconfig</strong></p>
+<p>　　<strong>Kernel modules —&gt;</strong></p>
+<p>　　　　<strong>Other modules —&gt;</strong></p>
+<p>　　　　　　<strong>kmod-example</strong></p>
+<p>选项设置为M，保存退出</p>
+<p>然后编译该模块：</p>
+<p><strong>$make package&#x2F;example&#x2F;compile</strong></p>
+<p><strong>$make package&#x2F;index</strong></p>
+<h2 id="6-5-在OpenWrt系统里面就可以用opkg下载使用了。"><a href="#6-5-在OpenWrt系统里面就可以用opkg下载使用了。" class="headerlink" title="6.5.在OpenWrt系统里面就可以用opkg下载使用了。"></a>6.5.在OpenWrt系统里面就可以用opkg下载使用了。</h2><p>方法参考第三节内容。</p>
+<h1 id="7-openwrt-Makefile框架分析"><a href="#7-openwrt-Makefile框架分析" class="headerlink" title="7.openwrt Makefile框架分析"></a>7.openwrt Makefile框架分析</h1><p>本节原文地址：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/sammei/p/3968916.html">http://www.cnblogs.com/sammei/p/3968916.html</a></p>
+<p>本篇的主要目的是想通过分析Makefile，了解openwrt编译过程。着重关注以下几点：</p>
+<ul>
+<li><strong>openwrt****目录结构</strong></li>
+<li><strong>主Makefile****的解析过程，各子目录的目标生成</strong></li>
+<li><strong>kernel****编译过程</strong></li>
+<li><strong>firmware****的生成过程</strong></li>
+<li><strong>软件包的编译过程</strong></li>
+</ul>
+<h2 id="7-1-openwrt目录结构"><a href="#7-1-openwrt目录结构" class="headerlink" title="7.1.openwrt目录结构"></a>7.1.openwrt目录结构</h2><p>官方源下载速度太慢，我从github上clone了openwrt的代码仓库。</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/openwrt-mirror/openwrt.git">https://github.com/openwrt-mirror/openwrt.git</a></p>
+<p>openwrt目录结构</p>
+<p>上图是openwrt目录结构，其中第一行是原始目录，第二行是编译过程中生成的目录。各目录的作用是：</p>
+<p><strong>tools</strong> – 编译时需要一些工具， tools里包含了获取和编译这些工具的命令。里面是一些Makefile，有的可能还有patch。每个Makefile里都有一句 $(eval $(call HostBuild))，表示编译这个工具是为了在主机上使用的。</p>
+<p><strong>toolchain</strong> – 包含一些命令去获取kernel headers, C library, bin-utils, compiler, debugger</p>
+<p><strong>target</strong> – 各平台在这个目录里定义了firmware和kernel的编译过程。</p>
+<p><strong>package</strong> – 包含针对各个软件包的Makefile。openwrt定义了一套Makefile模板，各软件参照这个模板定义了自己的信息，如软件包的版本、下载地址、编译方式、安装地址等。</p>
+<p><strong>include</strong> – openwrt的Makefile都存放在这里。</p>
+<p><strong>scripts</strong> – 一些perl脚本，用于软件包管理。</p>
+<p><strong>dl</strong> – 软件包下载后都放到这个目录里</p>
+<p><strong>build_dir</strong> – 软件包都解压到build_dir&#x2F;里，然后在此编译</p>
+<p><strong>staging_dir</strong> – 最终安装目录。tools, toolchain被安装到这里，rootfs也会放到这里。例如puma_SDK中文件系统目录为：</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;2015-Router_N01-PUMA_4x4&#x2F;trunk&#x2F;02.DevelopementRepository&#x2F;04.Coding&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;staging_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;root-ipq806x</p>
+<p><strong>feeds</strong> – 扩展软件包索引目录。</p>
+<p><strong>bin</strong> – 编译完成之后，firmware和各ipk会放到此目录下。</p>
+<p><strong>推荐阅读官方资料</strong>：<a target="_blank" rel="noopener" href="http://www.ccs.neu.edu/home/noubir/Courses/CS6710/S12/material/OpenWrt_Dev_Tutorial.pdf">OpenWrt Development Guide</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.liwangmeng.com/wp-content/uploads/2016/01/OpenWrt_Dev_Tutorial.pdf">OpenWrt_Dev_Tutorial</a></p>
+<h2 id="7-2-main-Makefile"><a href="#7-2-main-Makefile" class="headerlink" title="7.2.main Makefile"></a>7.2.main Makefile</h2><p>openwrt根目录下的Makefile是执行make命令时的入口。从这里开始分析。</p>
+<p>world:</p>
+<p>ifndef ($(OPENWRT_BUILD),1)</p>
+<p># 第一个逻辑</p>
+<p>…</p>
+<p>else</p>
+<p># 第二个逻辑</p>
+<p>…</p>
+<p>endif</p>
+<p>上面这段是主Makefile的结构，可以得知：</p>
+<p>执行make时，若无任何目标指定，则默认目标是world</p>
+<p>执行make时，无参数指定，则会进入第一个逻辑。如果执行命令make OPENWRT_BUILD&#x3D;1，则直接进入第二个逻辑。</p>
+<p>编译时一般直接使用make V&#x3D;s -j5这样的命令，不会指定OPENWRT_BUILD变量</p>
+<h3 id="第一个逻辑"><a href="#第一个逻辑" class="headerlink" title="第一个逻辑"></a>第一个逻辑</h3><p>override OPENWRT_BUILD&#x3D;1</p>
+<p>export OPENWRT_BUILD</p>
+<p>更改了OPENWRT_BUILD变量的值。这里起到的作用是下次执行make时，会进入到第二逻辑中。</p>
+<p>toplevel.mk中的 %:: 解释world目标的规则。</p>
+<p>prereq:: prepare-tmpinfo .config</p>
+<p>@+$(MAKE) -r -s tmp&#x2F;.prereq-build $(PREP_MK)</p>
+<p>@+$(NO_TRACE_MAKE) -r -s $@</p>
+<p>%::</p>
+<p>@+$(PREP_MK) $(NO_TRACE_MAKE) -r -s prereq</p>
+<p>@( \</p>
+<p>cp .config tmp&#x2F;.config; \</p>
+<p>.&#x2F;scripts&#x2F;config&#x2F;conf –defconfig&#x3D;tmp&#x2F;.config -w tmp&#x2F;.config Config.in &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1; \</p>
+<p>if .&#x2F;scripts&#x2F;kconfig.pl ‘&gt;’ .config tmp&#x2F;.config | grep -q CONFIG; then \</p>
+<p>printf “$(_R)WARNING: your configuration is out of sync. Please run make menuconfig, oldconfig or defconfig!$(_N)\n” &gt;&amp;2; \</p>
+<p>fi \</p>
+<p>)</p>
+<p>@+$(ULIMIT_FIX) $(SUBMAKE) -r $@</p>
+<p>执行 make V&#x3D;s 时，上面这段规则简化为：</p>
+<p>prereq:: prepare-tmpinfo .config</p>
+<p>@make -r -s tmp&#x2F;.prereq-build</p>
+<p>@make V&#x3D;ss -r -s prereq</p>
+<p>%::</p>
+<p>@make V&#x3D;s -r -s prereq</p>
+<p>@make -w -r world</p>
+<p>可见其中最终又执行了prereq和world目标，这两个目标都会进入到第二逻辑中。</p>
+<h3 id="第二逻辑"><a href="#第二逻辑" class="headerlink" title="第二逻辑"></a>第二逻辑</h3><p>首先就引入了target, package, tools, toolchain这四个关键目录里的Makefile文件</p>
+<p>include target&#x2F;Makefile</p>
+<p>include package&#x2F;Makefile</p>
+<p>include tools&#x2F;Makefile</p>
+<p>include toolchain&#x2F;Makefile</p>
+<p>这些子目录里的Makefile使用include&#x2F;subdir.mk里定义的两个函数来动态生成规则，这两个函数是subdir和stampfile</p>
+<h3 id="stampfile"><a href="#stampfile" class="headerlink" title="stampfile"></a>stampfile</h3><p>拿target&#x2F;Makefile举例：</p>
+<p>(eval(call stampfile,$(curdir),target,prereq,.config))</p>
+<p>会生成规则：</p>
+<p>target&#x2F;stamp-prereq:&#x3D;$(STAGING_DIR)&#x2F;stamp&#x2F;.target_prereq</p>
+<p>$$(target&#x2F;stamp-prereq): $(TMP_DIR)&#x2F;.build .config</p>
+<p>@+$(SCRIPT_DIR)&#x2F;timestamp.pl -n $$(target&#x2F;stamp-prereq) target .config || \</p>
+<p>make $$(target&#x2F;flags-prereq) target&#x2F;prereq</p>
+<p>@mkdir -p $$$$(dirname $$(target&#x2F;stamp-prereq))</p>
+<p>@touch $$(target&#x2F;stamp-prereq)</p>
+<p>$$(if $(call debug,target,v),,.SILENT: $$(target&#x2F;stamp-prereq))</p>
+<p>.PRECIOUS: $$(target&#x2F;stamp-prereq) # work around a make bug</p>
+<p>target&#x2F;&#x2F;clean:&#x3D;target&#x2F;stamp-prereq&#x2F;clean</p>
+<p>target&#x2F;stamp-prereq&#x2F;clean: FORCE</p>
+<p>@rm -f $$(target&#x2F;stamp-prereq)</p>
+<p>所以可以简单的看作： (eval(call stampfile,(curdir),target,prereq,.config))生成了目标(target&#x2F;stamp-prereq)</p>
+<p>对于target分别生成了：(target&#x2F;stamp−preq)，(target&#x2F;stamp-copile)， $(target&#x2F;stamp-install)</p>
+<p>toolchain : $(toolchain&#x2F;stamp-install)</p>
+<p>package : (package&#x2F;stamp−preq),(package&#x2F;stamp-cleanup), (package&#x2F;stamp−compile),(package&#x2F;stamp-install)</p>
+<p>tools : $(tools&#x2F;stamp-install)</p>
+<p>OpenWrt的主Makefile工作过程</p>
+<p>subdir</p>
+<p>subdir这个函数写了一大堆东西，看起来很复杂 。</p>
+<p>$(call subdir, target) 会遍历下的子目录，执行 make -C 操作。这样就切入子目录中去了。</p>
+<h3 id="目录变量"><a href="#目录变量" class="headerlink" title="目录变量"></a>目录变量</h3><p>几个重要的目录路径：</p>
+<p><strong>KERNEL_BUILD_DIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;linux-3.14.18</p>
+<p><strong>LINUX_DIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;linux-3.14.18</p>
+<p><strong>KDIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a</p>
+<p><strong>BIN_DIR</strong></p>
+<p>bin&#x2F;ramips</p>
+<p>Makefile中包含了rules.mk, target.mk等.mk文件，这些文件中定义了许多变量，有些是路径相关的，有些是软件相关的。这些变量在整个Makefile工程中经常被用到，</p>
+<p><strong>TARGET_ROOTFS_DIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2</p>
+<p><strong>BUILD_DIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2</p>
+<p><strong>STAGING_DIR_HOST</strong></p>
+<p>staging_dir&#x2F;toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2</p>
+<p><strong>TARGET_DIR</strong></p>
+<p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;root-ramips</p>
+<h2 id="7-3-kernel-编译："><a href="#7-3-kernel-编译：" class="headerlink" title="7.3.kernel 编译："></a>7.3.kernel 编译：</h2><p>target&#x2F;linux&#x2F;ramips&#x2F;Makefile: $(eval $(call BuildTarget))</p>
+<p>target&#x2F;linux&#x2F;Makefile : export TARGET_BUILD&#x3D;1</p>
+<p>include&#x2F;target.mk:</p>
+<p>ifeq ($(TARGET_BUILD),1)</p>
+<p>include $(INCLUDE_DIR)&#x2F;kernel-build.mk</p>
+<p>BuildTarget?&#x3D;$(BuildKernel)</p>
+<p>endif</p>
+<p>BuildKernel是include&#x2F;kernel-build.mk定义的一个多行变量，其中描述了如何编译内核, 主要关注其中install规则的依赖链：</p>
+<p>$(KERNEL_BUILD_DIR)&#x2F;symtab.h: FORCE</p>
+<p>rm -f $(KERNEL_BUILD_DIR)&#x2F;symtab.h</p>
+<p>touch $(KERNEL_BUILD_DIR)&#x2F;symtab.h</p>
+<p>+$(MAKE) $(KERNEL_MAKEOPTS) vmlinux</p>
+<p>…</p>
+<p>$(LINUX_DIR)&#x2F;.image: $(STAMP_CONFIGURED) $(if $(CONFIG_STRIP_KERNEL_EXPORTS),$(KERNEL_BUILD_DIR)&#x2F;symtab.h) FORCE</p>
+<p>$(Kernel&#x2F;CompileImage)</p>
+<p>$(Kernel&#x2F;CollectDebug)</p>
+<p>touch $$@</p>
+<p>install: $(LINUX_DIR)&#x2F;.image</p>
+<p>+$(MAKE) -C image compile install TARGET_BUILD&#x3D;</p>
+<ol>
+<li><p>触发make vmlinux命令生成vmlinux： install –&gt; $(LINUX_DIR)&#x2F;.image –&gt; $(KERNEL_BUILD_DIR)&#x2F;symtab.h –&gt; <code>$(MAKE) $(KERNEL_MAKEOPTS) vmlinux</code></p>
+</li>
+<li><p>对vmlinux做objcopy, strip操作: $(LINUX_DIR)&#x2F;.image –&gt; $(Kernel&#x2F;CompileImage) –&gt; $(call Kernel&#x2F;CompileImage&#x2F;Default) –&gt; $(call Kernel&#x2F;CompileImage&#x2F;Default)</p>
+</li>
+</ol>
+<p>$(KERNEL_CROSS)objcopy -O binary $(OBJCOPY_STRIP) -S $(LINUX_DIR)&#x2F;vmlinux $(LINUX_KERNEL)$(1)</p>
+<p>–&gt; build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;vmlinux</p>
+<p>$(KERNEL_CROSS)objcopy $(OBJCOPY_STRIP) -S $(LINUX_DIR)&#x2F;vmlinux $(KERNEL_BUILD_DIR)&#x2F;vmlinux$(1).elf</p>
+<p>–&gt; build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;vmlinux.elf</p>
+<p>$(CP) $(LINUX_DIR)&#x2F;vmlinux $(KERNEL_BUILD_DIR)&#x2F;vmlinux.debug</p>
+<p>–&gt; build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;vmlinux.debug</p>
+<h2 id="7-4-生成firmware"><a href="#7-4-生成firmware" class="headerlink" title="7.4.生成firmware"></a>7.4.生成firmware</h2><p>firmware由kernel和rootfs两个部分组成，要对两个部分先分别处理，然后再合并成一个.bin文件。先看一下这个流程。</p>
+<p>“target&#x2F;linux&#x2F;ramips&#x2F;image&#x2F;Makefile” 文件中的最后一句：$(eval $(call BuildImage))，将BuildImage展开在这里。BuildImage定义在 include&#x2F;image.mk 文件中，其中定义了数个目标的规则。</p>
+<p>define BuildImage</p>
+<p>compile: compile-targets FORCE</p>
+<p><strong>$(call Build&#x2F;Compile)</strong></p>
+<p>install: compile install-targets FORCE</p>
+<p>…</p>
+<p>$(call Image&#x2F;BuildKernel) ## 处理vmlinux</p>
+<p>…</p>
+<p>$(call Image&#x2F;mkfs&#x2F;squashfs) ## 生成squashfs，并与vmlinux合并成一个.bin文件</p>
+<p>…</p>
+<p>endef</p>
+<h3 id="处理vmlinux-Image-x2F-BuildKernel"><a href="#处理vmlinux-Image-x2F-BuildKernel" class="headerlink" title="处理vmlinux: Image&#x2F;BuildKernel"></a>处理vmlinux: Image&#x2F;BuildKernel</h3><p>target&#x2F;linux&#x2F;ramips&#x2F;image&#x2F;Makefile:</p>
+<p>define Image&#x2F;BuildKernel</p>
+<p>cp $(KDIR)&#x2F;vmlinux.elf $(BIN_DIR)&#x2F;$(VMLINUX).elf</p>
+<p>cp $(KDIR)&#x2F;vmlinux $(BIN_DIR)&#x2F;$(VMLINUX).bin</p>
+<p>$(call CompressLzma,$(KDIR)&#x2F;vmlinux,$(KDIR)&#x2F;vmlinux.bin.lzma)</p>
+<p>$(call MkImage,lzma,$(KDIR)&#x2F;vmlinux.bin.lzma,$(KDIR)&#x2F;uImage.lzma)</p>
+<p>cp $(KDIR)&#x2F;uImage.lzma $(BIN_DIR)&#x2F;$(UIMAGE).bin</p>
+<p>ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)</p>
+<p>cp $(KDIR)&#x2F;vmlinux-initramfs.elf $(BIN_DIR)&#x2F;$(VMLINUX)-initramfs.elf</p>
+<p>cp $(KDIR)&#x2F;vmlinux-initramfs $(BIN_DIR)&#x2F;$(VMLINUX)-initramfs.bin</p>
+<p>$(call CompressLzma,$(KDIR)&#x2F;vmlinux-initramfs,$(KDIR)&#x2F;vmlinux-initramfs.bin.lzma)</p>
+<p>$(call MkImage,lzma,$(KDIR)&#x2F;vmlinux-initramfs.bin.lzma,$(KDIR)&#x2F;uImage-initramfs.lzma)</p>
+<p>cp $(KDIR)&#x2F;uImage-initramfs.lzma $(BIN_DIR)&#x2F;$(UIMAGE)-initramfs.bin</p>
+<p>endif</p>
+<p>$(call Image&#x2F;Build&#x2F;Initramfs)</p>
+<p>endef</p>
+<h3 id="lzma压缩内核"><a href="#lzma压缩内核" class="headerlink" title="lzma压缩内核"></a>lzma压缩内核</h3><p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F; 目录中:</p>
+<p>lzma e vmlinux -lc1 -lp2 -pb2 vmlinux.bin.lzma</p>
+<h3 id="MkImage"><a href="#MkImage" class="headerlink" title="MkImage"></a>MkImage</h3><p>build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F; 目录中：</p>
+<p>mkimage -A mips -O linux -T kernel -C lzma -a 0x80000000 -e 0x80000000 -n “MIPS OpenWrt Linux-3.14.18” -d vmlinux.bin.lzma uImage.lzma</p>
+<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><p>VMLINUX:&#x3D;$(IMG_PREFIX)-vmlinux –&gt; openwrt-ramips-mt7620a-vmlinux</p>
+<p>UIMAGE:&#x3D;$(IMG_PREFIX)-uImage –&gt; openwrt-ramips-mt7620a-uImage</p>
+<p>cp $(KDIR)&#x2F;uImage.lzma $(BIN_DIR)&#x2F;$(UIMAGE).bin</p>
+<p>把uImage.lzma复制到bin&#x2F;ramips&#x2F;目录下：</p>
+<p>cp $(KDIR)&#x2F;uImage.lzma bin&#x2F;ramips&#x2F;openwrt-ramips-mt7620a-uImage</p>
+<h2 id="7-5-制作squashfs，生成-bin-call-Image-x2F-mkfs-x2F-squashfs"><a href="#7-5-制作squashfs，生成-bin-call-Image-x2F-mkfs-x2F-squashfs" class="headerlink" title="7.5.制作squashfs，生成.bin: $(call Image&#x2F;mkfs&#x2F;squashfs)"></a>7.5.制作squashfs，生成.bin: $(call Image&#x2F;mkfs&#x2F;squashfs)</h2><p>define Image&#x2F;mkfs&#x2F;squashfs</p>
+<p>@mkdir -p $(TARGET_DIR)&#x2F;overlay</p>
+<p>$(STAGING_DIR_HOST)&#x2F;bin&#x2F;mksquashfs4 $(TARGET_DIR) $(KDIR)&#x2F;root.squashfs -nopad -noappend -root-owned -comp $(SQUASHFSCOMP) $(SQUASHFSOPT) -processors $(if $(CONFIG_PKG_BUILD_JOBS),$(CONFIG_PKG_BUILD_JOBS),1)</p>
+<p>$(call Image&#x2F;Build,squashfs)</p>
+<p>endif</p>
+<p>mkdir -p $(TARGET_DIR)&#x2F;overlay</p>
+<p>mkdir -p build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;root-ramips&#x2F;overlay</p>
+<p>mksquashfs4</p>
+<p>$(STAGING_DIR_HOST)&#x2F;bin&#x2F;mksquashfs4 $(TARGET_DIR) $(KDIR)&#x2F;root.squashfs -nopad -noappend -root-owned -comp $(SQUASHFSCOMP) $(SQUASHFSOPT) -processors $(if $(CONFIG_PKG_BUILD_JOBS),$(CONFIG_PKG_BUILD_JOBS),1)</p>
+<p>制作squashfs文件系统，生成root.squashfs:</p>
+<p>mksquashfs4 root-ramips root.squashfs -nopad -noappend -root-owned -comp gzip -b 256k -p ‘&#x2F;dev d 755 0 0’ -p ‘&#x2F;dev&#x2F;console c 600 0 0 5 1’ -processors 1</p>
+<p>$(call Image&#x2F;Build,squashfs)</p>
+<p>在 target&#x2F;linux&#x2F;ramips&#x2F;image&#x2F;Makefile 中：</p>
+<p>define Image&#x2F;Build</p>
+<p>$(call Image&#x2F;Build&#x2F;$(1))</p>
+<p>dd if&#x3D;$(KDIR)&#x2F;root.$(1) of&#x3D;$(BIN_DIR)&#x2F;$(IMG_PREFIX)-root.$(1) bs&#x3D;128k conv&#x3D;sync</p>
+<p>$(call Image&#x2F;Build&#x2F;Profile&#x2F;$(PROFILE),$(1))</p>
+<p>endef</p>
+<p>dd if&#x3D;(KDIR)&#x2F;root.squashfsof&#x3D;(BIN_DIR)&#x2F;$(IMG_PREFIX)-root.squashfs bs&#x3D;128k conv&#x3D;sync</p>
+<p>dd if&#x3D;build_dir&#x2F;target-mipsel_24kec+dsp_uClibc-0.9.33.2&#x2F;linux-ramips_mt7620a&#x2F;root.squashfs of&#x3D;bin&#x2F;ramips&#x2F;openwrt-ramips-mt7620-root.squashfs bs&#x3D;128k conv&#x3D;sync</p>
+<p>(callImage&#x2F;Build&#x2F;Profile&#x2F;(PROFILE),squashfs)</p>
+<p>target&#x2F;linux&#x2F;ramips&#x2F;mt7620a&#x2F;profiles&#x2F;00-default.mk, 中调用 Profile 函数：$(eval $(call Profile,Default))</p>
+<p>include&#x2F;target.mk 中定义了 Profile 函数， 其中令 PROFILE&#x3D;Default</p>
+<p>define Image&#x2F;Build&#x2F;Profile&#x2F;Default</p>
+<p>$(call Image&#x2F;Build&#x2F;Profile&#x2F;MT7620a,$(1))</p>
+<p>…</p>
+<p>endef</p>
+<p>规则依赖序列如下：</p>
+<p>$(call Image&#x2F;Build&#x2F;Profile&#x2F;$(PROFILE),squashfs)</p>
+<p>–&gt; $(call BuildFirmware&#x2F;Default8M&#x2F;squashfs,squashfs,mt7620a,MT7620a)</p>
+<p>–&gt; $(call BuildFirmware&#x2F;OF,squashfs,mt7620a,MT7620a,8060928)</p>
+<p>–&gt; $(call MkImageLzmaDtb,mt7620a,MT7620a)</p>
+<p>–&gt; $(call PatchKernelLzmaDtb,mt7620a,MT7620a)</p>
+<p>–&gt; $(call MkImage,lzma,$(KDIR)&#x2F;vmlinux-mt7620a.bin.lzma,$(KDIR)&#x2F;vmlinux-mt7620a.uImage)</p>
+<p>–&gt; $(call MkImageSysupgrade&#x2F;squashfs,squashfs,mt7620a,8060928)</p>
+<p>其中的主要步骤：</p>
+<p>复制： cp (KDIR)&#x2F;vmlinux(KDIR)&#x2F;vmlinux-mt7620a</p>
+<p>生成dtb文件： (LINUXDIR)&#x2F;scripts&#x2F;dtc&#x2F;dtc−Odtb−o(KDIR)&#x2F;MT7620a.dtb ..&#x2F;dts&#x2F;MT7620a.dts</p>
+<p>将内核与dtb文件合并：(STAGINGDIRHOST)&#x2F;bin&#x2F;patch−dtb(KDIR)&#x2F;vmlinux-mt7620a $(KDIR)&#x2F;MT7620a.dtb</p>
+<p>使用lzma压缩：(callCompressLzma,(KDIR)&#x2F;vmlinux-mt7620a,$(KDIR)&#x2F;vmlinux-mt7620a.bin.lzma)</p>
+<p>将lzma压缩后的文件经过mkimage工具处理，即在头部添加uboot可识别的信息。</p>
+<p>接下来就是合并生成firmware固件了：</p>
+<p>MkImageSysupgrade&#x2F;squashfs, squashfs, mt7620a,8060928</p>
+<p>cat vmlinux-mt7620a.uImage root.squashfs &gt; openwrt-ramips-mt7620-mt7620a-squashfs-sysupgrade.bin</p>
+<p>–&gt; 制作squashfs bin文档, 并确认它的大小 &lt; 8060928 才是有效的，否则报错。</p>
+<p>总结： 整个流程下来，其实最烦索的还是对内核生成文件vmlinux的操作，经过了objcopy, patch-dtb, lzma, mkimage 等过程生成一个uImage，再与mksquashfs工具制作的文件系统rootfs.squashfs合并。</p>
+<h2 id="7-6-Openwrt-SDK中Makefile相关总结"><a href="#7-6-Openwrt-SDK中Makefile相关总结" class="headerlink" title="7.6.Openwrt_SDK中Makefile相关总结"></a>7.6.Openwrt_SDK中Makefile相关总结</h2><h3 id="7-6-1CURDIR变量"><a href="#7-6-1CURDIR变量" class="headerlink" title="7.6.1CURDIR变量"></a>7.6.1CURDIR变量</h3><p>在makefile中表示当前目录，效果等同于shell命令pwd.</p>
+<h3 id="7-6-2空格的表示方法："><a href="#7-6-2空格的表示方法：" class="headerlink" title="7.6.2空格的表示方法："></a>7.6.2空格的表示方法：</h3><p>empty:&#x3D;</p>
+<p>space:&#x3D;$(empty) $(empty)</p>
+<p>在openwrtSDK中该变量用以检查SDK目录是否含有空格，要求所有路径中不得有含空格的文件夹</p>
+<h3 id="7-6-3调用makefile中的函数"><a href="#7-6-3调用makefile中的函数" class="headerlink" title="7.6.3调用makefile中的函数"></a>7.6.3调用makefile中的函数</h3><p>if判断函数，用法：</p>
+<p>$(if <condition>,<then-part>)</p>
+<p>或者：</p>
+<p>$(if <condition>,<then-part>,<else-part>)</p>
+<p>findstring查找字符串函数，用法：</p>
+<p>$(findstring <find>,<in>)在字串<in>中查找<find>字串</p>
+<p>error控制makefile运行的函数，用法：</p>
+<h3 id="7-6-4-其他相关内容"><a href="#7-6-4-其他相关内容" class="headerlink" title="7.6.4.其他相关内容"></a>7.6.4.其他相关内容</h3><h4 id="2-1make-的参数"><a href="#2-1make-的参数" class="headerlink" title="2.1make 的参数"></a>2.1make 的参数</h4><p>-i 或者”–ignore-errors”:忽略Makefile中所有的命令错误；</p>
+<p>-k或者“–keep-going“：终止出错命令，但继续执行其他命令；</p>
+<p>-w或者”–print-directory“：嵌套执行make时，会输出当前工作目录信息，该选项的反作用项是”-s“；</p>
+<h4 id="2-2嵌套执行make"><a href="#2-2嵌套执行make" class="headerlink" title="2.2嵌套执行make"></a>2.2嵌套执行make</h4><p>我们有一个子目录叫 subdir，这个目录下有个 Makefile 文件，来指明了这个目录下文件的编译规则。那么我们总控的 Makefile 可以这样书写：</p>
+<p>subsystem:</p>
+<p>cd subdir &amp;&amp; $(MAKE)</p>
+<p>其等价于：</p>
+<p>subsystem:</p>
+<p>$(MAKE) -C subdir</p>
+<p>定义$(MAKE)宏变量的意思是，也许我们的 make 需要一些参数，所以定义成一个变量比较利于维护。这两个例子的意思都是先进入“subdir”目录，然后执行 make 命令。</p>
+<p>我们把这个 Makefile 叫做“总控 Makefile”，总控 Makefile 的变量可以传递到下级的 Makefile 中（如果你显示的声明），但是不会覆盖下层的 Makefile 中所定义的变量，除非指定了“-e”参数。</p>
+<p>如果你要传递变量到下级 Makefile 中，那么你可以使用这样的声明：</p>
+<p>export &lt;variable …&gt;</p>
+<p>如果你不想让某些变量传递到下级 Makefile 中，那么你可以这样声明：</p>
+<p>unexport &lt;variable …&gt;</p>
+<h4 id="2-在package目录中的Makefile"><a href="#2-在package目录中的Makefile" class="headerlink" title="2.在package目录中的Makefile:"></a>2.在package目录中的Makefile:</h4><h5 id="2-1-call函数"><a href="#2-1-call函数" class="headerlink" title="2.1.call函数"></a>2.1.call函数</h5><p>call 函数是唯一一个可以用来创建新的参数化的函数。你可以写一个非常复杂的表达式，这个表达式中，你可以定义许多参数，然后你可以用 call 函数来向这个表达式传递参数。其语法是：</p>
+<p>$(call <expression>,<parm1>,<parm2>,<parm3>…)</p>
+<p>当 make 执行这个函数时，<expression>参数中的变量，如$(1)，$(2)，$(3)等，会被参 数<parm1>，<parm2>，<parm3>依次取代。而<expression>的返回值就是 call 函数的返回值。</p>
+<h5 id="2-2-eval函数"><a href="#2-2-eval函数" class="headerlink" title="2.2.eval函数"></a>2.2.eval函数</h5><p>函数“eval”是一个比较特殊的函数。使用它可以在Makefile中构造一个可变的规则结构关系（依赖关系链），其中可以使用其它变量和函数。</p>
+<p>函数“eval”对它的参数进行展开，展开的结果作为Makefile的一部分，make可以对展开内容进行语法解析。展开的结果可以包含一个新变量、目标、隐含规则或者是明确规则等。也就是说此函数的功能主要是：根据其参数的关系、结构，对它们进行替换展开。</p>
+<p>Ø    <strong>返回值：</strong>函数“eval”的返回值是空，也可以说没有返回值。</p>
+<p>Ø    <strong>函数说明：</strong>“eval” 函数执行时会对它的参数进行两次展开。第一次展开过程发是由函数本身完成的，第二次是函数展开后的结果被作为Makefile内容时由make解析时展开 的。明确这一过程对于使用“eval”函数非常重要。理解了函数“eval”二次展开的过程后。实际使用时，如果在函数的展开结果中存在引用（格式 为：$(x)），那么在函数的参数中应该使用“$$”来代替“$”。因为这一点，所以通常它的参数中会使用函数“value”来取一个变量的文本值。</p>
+<p>我们看一个例子。例子看起来似乎非常复杂，因为它综合了其它的一些概念和函数。不过我们可以考虑两点：其一，通常实际一个模板的定义可能比例子中的 更为复杂；其二，我们可以实现一个复杂通用的模板，在所有Makefile中包含它，亦可作到一劳永逸。相信这一点可能是大多数程序员所推崇的。</p>
+<p>示例：</p>
+<p>***# sample Makefile***</p>
+<p>*<strong>PROGRAMS  &#x3D; server client*</strong></p>
+<p> *<strong>server_OBJS &#x3D; server.o server_priv.o server_access.o*</strong></p>
+<p>*<strong>server_LIBS &#x3D; priv protocol*</strong></p>
+<p>*<strong>client_OBJS &#x3D; client.o client_api.o client_mem.o*</strong></p>
+<p>*<strong>client_LIBS &#x3D; protocol*</strong></p>
+<p> ***# Everything after this is generic***</p>
+<p>***.PHONY: all***</p>
+<p>*<strong>all: $(PROGRAMS)*</strong></p>
+<p> *<strong>define PROGRAM_template*</strong></p>
+<p>***$(1): $$($(1)_OBJ) $$($(1)_LIBS:%&#x3D;-l%)***</p>
+<p>  *<strong>ALL_OBJS  +&#x3D; $$($(1)_OBJS)*</strong></p>
+<p>*<strong>endef*</strong></p>
+<p>​        ***$(foreach prog,$(PROGRAMS),$(eval $(call PROGRAM_template,$(prog))))***</p>
+<p>​        ***$(PROGRAMS):***</p>
+<p>​        ***$(LINK.o) $^ $(LDLIBS) -o $@***</p>
+<p>​        *<strong>clean:*</strong></p>
+<p>​        *<strong>rm -f $(ALL_OBJS) $(PROGRAMS)*</strong></p>
+<p>来看一下这个例子：它实现的功能是完成“PROGRAMS”的编译链接。例子中“$(LINK.o)”为“$(CC) $(LDFLAGS)”，意思是对所有的.o文件和指定的库文件进行链接。</p>
+<p>​        ***“$(foreach prog,$(PROGRAM),$(eval $(call PROGRAM_template,$(prog))))”***展开为：</p>
+<p>​        *<strong>server : $(server_OBJS) –l$(server_LIBS)*</strong></p>
+<p>​        *<strong>client : $(client_OBJS) –l$(client_LIBS)*</strong></p>
+<h1 id="8-软件包Makefile解析"><a href="#8-软件包Makefile解析" class="headerlink" title="8.软件包Makefile解析"></a>8.软件包Makefile解析</h1><p>上面一篇博文中，博主尝试创建一个非常简单的helloworld包，过程详见博文：<a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/410633">http://my.oschina.net/hevakelcj/blog/410633</a></p>
+<p>本文将带大家一起深入地学习一下OpenWrt包的 Makefile。我们不仅要知其然，还要知其所以然。在上篇博文里，包里的 Makefile 内容如下：</p>
+<p>include $(TOPDIR)&#x2F;rules.mk PKG_NAME:&#x3D;helloworldPKG_RELEASE:&#x3D;1PKG_BUILD_DIR:&#x3D;$(BUILD_DIR)&#x2F;$(PKG_NAME) include $(INCLUDE_DIR)&#x2F;package.mk define Package&#x2F;helloworldSECTION:&#x3D;utilsCATEGORY:&#x3D;UtilitiesTITLE:&#x3D;Helloworld — prints a snarky messageendef define Package&#x2F;helloworld&#x2F;descriptionIt’s my first package demo.endef define Build&#x2F;Prepareecho “Here is Package&#x2F;Prepare”mkdir -p $(PKG_BUILD_DIR)$(CP) .&#x2F;src&#x2F;* $(PKG_BUILD_DIR)&#x2F;endef define Package&#x2F;helloworld&#x2F;installecho “Here is Package&#x2F;install”$(INSTALL_DIR) $(1)&#x2F;bin$(INSTALL_BIN) $(PKG_BUILD_DIR)&#x2F;helloworld $(1)&#x2F;bin&#x2F;endef $(eval $(call BuildPackage,helloworld))</p>
+<p>大概我们可以将简代为如下的结构：</p>
+<p>include $(TOPDIR)&#x2F;rules.mk # 这里定义一系列的 PKG_XX include $(INCLUDE_DIR)&#x2F;package.mk # 定义各种 Package, Build 宏 $(eval $(call BuildPackage,包名))</p>
+<p>下面，我们来一一拆解。</p>
+<h2 id="8-1-include-TOPDIR-x2F-rules-mk"><a href="#8-1-include-TOPDIR-x2F-rules-mk" class="headerlink" title="8.1.include $(TOPDIR)&#x2F;rules.mk"></a>8.1.include $(TOPDIR)&#x2F;rules.mk</h2><p>首先，include $(TOPDIR)&#x2F;rules.mk，也就是将 SDK&#x2F;rules.mk 文件中的内容导入进来。</p>
+<p>TOPDIR就是SDK的路径。</p>
+<p>在 SDK&#x2F;rules.mk 文件中，定义了许多变量。</p>
+<p>我们可以看出，在Makefile中，赋值是用 :&#x3D; ，而不是等号。</p>
+<p>比如上面的 BUILD_DIR, INCLUDE_DIR 等，都在这里定义。还有：</p>
+<p>还有关于 TARGET_CC, TARGET_CXX 等非常有用的变量定义。</p>
+<p>还有 TAR， FIND， INSTALL_BIN, INSTALL_DIR, INSTALL_DATA等等非常重要的变量定义。</p>
+<h2 id="8-2-自定义-PKG-XXXX-变量"><a href="#8-2-自定义-PKG-XXXX-变量" class="headerlink" title="8.2.自定义 PKG_XXXX 变量"></a>8.2.自定义 PKG_XXXX 变量</h2><p>官网上指定有如下变量需要设置：</p>
+<p>PKG_NAME     – The name of the package, as seen via menuconfig and ipkg</p>
+<p>PKG_VERSION   – The upstream version number that we’re downloading</p>
+<p>PKG_RELEASE   – The version of this package Makefile</p>
+<p>PKG_LICENSE   – The license(s) the package is available under, SPDX form.</p>
+<p>PKG_LICENSE_FILE- file containing the license text</p>
+<p>PKG_BUILD_DIR  – Where to compile the package</p>
+<p>PKG_SOURCE    – The filename of the original sources</p>
+<p>PKG_SOURCE_URL- Where to download the sources from (directory)</p>
+<p>PKG_MD5SUM    – A checksum to validate the download</p>
+<p>PKG_CAT     – How to decompress the sources (zcat, bzcat, unzip)</p>
+<p>PKG_BUILD_DEPENDS – Packages that need to be built before this package, but are not required at runtime. Uses the same syntax as DEPENDS below.</p>
+<p>PKG_INSTALL   – Setting it to “1” will call the package’s original “make install” with prefix set to PKG_INSTALL_DIR</p>
+<p>PKG_INSTALL_DIR – Where “make install” copies the compiled files</p>
+<p>PKG_FIXUP    – ???</p>
+<p>PKG_SOURCE_PROTO – the protocol to use for fetching the sources (git, svn)</p>
+<p>PKG_REV     – the svn revision to use, must be specified if proto is “svn”</p>
+<p>PKG_SOURCE_SUBDIR – must be specified if proto is “svn” or “git”, e.g. “PKG_SOURCE_SUBDIR:&#x3D;$(PKG_NAME)-$(PKG_VERSION)”</p>
+<p>PKG_SOURCE_VERSION – must be specified if proto is “git”, the commit hash to check out</p>
+<p>PKG_CONFIG_DEPENDS – specifies which config options depend on this package being selected</p>
+<h2 id="8-3-include-INCLUDE-DIR-x2F-package-mk"><a href="#8-3-include-INCLUDE-DIR-x2F-package-mk" class="headerlink" title="8.3.include $(INCLUDE_DIR)&#x2F;package.mk"></a>8.3.include $(INCLUDE_DIR)&#x2F;package.mk</h2><p>跟上面的 include $(TOPDIR)&#x2F;rules.mk 是一样的。就是把这个文件包含进来。</p>
+<p>INCLUDE_DIR这个变量在 rules.mk 里已经定义了：</p>
+<p>那就是 SDK&#x2F;include&#x2F;package.mk 文件了，打开看看。</p>
+<p>主要有以下几个功能：</p>
+<h3 id="（1）它会配置默认的变量"><a href="#（1）它会配置默认的变量" class="headerlink" title="（1）它会配置默认的变量"></a>（1）它会配置默认的变量</h3><p>如果某个变量我们没有在上一部分里定义，那里在这个文件里，它就会被指定为默认值，比如：</p>
+<p>上面的用 ?&#x3D; 来表示给未定义的变量赋默认值。比如，如果没有指定 PKG_MD5SUM，那么就默认为 unknow。</p>
+<h3 id="（2）推导其它变量"><a href="#（2）推导其它变量" class="headerlink" title="（2）推导其它变量"></a>（2）推导其它变量</h3><p>根据上部分用户自定义的 PKG_XXXX 变量推导出更多相关的变量。</p>
+<p>比如：</p>
+<p>虽然我没有看过相关的手册，根据多年的从业经验也能看出上面的意思来。</p>
+<p>#如果定义了宏，就…ifdef 宏名…endif #如果宏相等ifeq (宏1,宏2)…endif strip $宏名   #将宏对应的值去除前后的空白字符 VAR +&#x3D; xxxx  #在变量 VAR 后面追加 xxxx</p>
+<p>我猜大概就是这样，如果不对请指正。</p>
+<p>再比如如下：</p>
+<p>就这样，它为我们提供了大量有价值的变量。</p>
+<h3 id="（3）包含其它mk文件"><a href="#（3）包含其它mk文件" class="headerlink" title="（3）包含其它mk文件"></a>（3）包含其它mk文件</h3><h3 id="（4）定义默认宏"><a href="#（4）定义默认宏" class="headerlink" title="（4）定义默认宏"></a>（4）定义默认宏</h3><p>在 Makefile 中，宏的定义格式是：</p>
+<p>define XXX&#x2F;xxxx&lt;宏的实体…&gt;endef</p>
+<p>package.mk会把大部分需要的宏都定义好。理想情况下，用户只需要定义好了 PKG_XXX 之后，不需要再自定义宏，默认的宏就可以满足需求。</p>
+<p>比如Build&#x2F;Prepare&#x2F;Default的定义：</p>
+<p>Build&#x2F;Prepare宏是在编译前进行的，是准备工作。</p>
+<p>可以看出，它分了两种情况：</p>
+<p>A，定义了 USE_GIT_TREE，则按git的方式定义。</p>
+<p>B，定义了 USB_SOURCE_DIR，则按源码在本地的方案定义。</p>
+<h3 id="（5）BuildPackage宏"><a href="#（5）BuildPackage宏" class="headerlink" title="（5）BuildPackage宏"></a>（5）BuildPackage宏</h3><p>最重要的一个宏是 BuildPackage。它会在 Makefile 的最后一行被引用。它的实现也就是在 package.mk 文件里。如下为其源码：</p>
+<p>define BuildPackage$(Build&#x2F;IncludeOverlay)$(eval $(Package&#x2F;Default))  #定义在package-defaults.mk文件里$(eval $(Package&#x2F;$(1)))    #调用用户自定义的 Package&#x2F;&lt;包名&gt; 宏 ifdef DESCRIPTION$$(error DESCRIPTION:&#x3D; is obsolete, use Package&#x2F;PKG_NAME&#x2F;description)endif #检查有没有定义 Package&#x2F;&lt;包名&gt;&#x2F;description宏，如果没有定义，则以TITLE默认定义一个ifndef Package&#x2F;$(1)&#x2F;descriptiondefine Package&#x2F;$(1)&#x2F;description$(TITLE)endefendif BUILD_PACKAGES +&#x3D; $(1)$(STAMP_PREPARED): $$(if $(QUILT)$(DUMP),,$(call find_library_dependencies,$(DEPENDS))) #检查 TITLE, CATEGORY, SECTION, VERSION 是否定义，如果没有定义则报错$(foreach FIELD, TITLE CATEGORY SECTION VERSION,ifeq ($($(FIELD)),)$$(error Package&#x2F;$(1) is missing the $(FIELD) field)endif) #如果有定义DUMP，那就引入Dumpinfo&#x2F;Package宏的内部。#如果没有，那么就引用 Packaget&#x2F;&lt;包名&gt;&#x2F;targets里面的每一个target，如果没有定义Packaget&#x2F;&lt;包名&gt;&#x2F;targets宏，那么将PKG_TARGETS里的每个target取出来，#如果也没有定义PKG_TARGETS，那就默认ipkg作为target。将每一个target，引用 BuildTarget&#x2F;$(target)。$(if $(DUMP), $(Dumpinfo&#x2F;Package), $(foreach target, $(if $(Package&#x2F;$(1)&#x2F;targets),$(Package&#x2F;$(1)&#x2F;targets), $(if $(PKG_TARGETS),$(PKG_TARGETS), ipkg) ), $(BuildTarget&#x2F;$(target)) ) )$(if $(PKG_HOST_ONLY)$(DUMP),,$(call Build&#x2F;DefaultTargets,$(1)))endef</p>
+<p>总结一下语法：</p>
+<p>$() 表示要执行的一条语句</p>
+<p>$(if 条件, 成立执行, 失败执行)    if条件分支</p>
+<p>$(foreach 变量, 成员列表, 执行体)  成员遍历语句</p>
+<p>可以看出，语句是可以嵌套使用的。</p>
+<p>$(N) 表示第N个参数</p>
+<h2 id="8-4-自定义宏"><a href="#8-4-自定义宏" class="headerlink" title="8.4.自定义宏"></a>8.4.自定义宏</h2><h3 id="必须定义的宏"><a href="#必须定义的宏" class="headerlink" title="必须定义的宏"></a>必须定义的宏</h3><p>我定要为我们的package定义特定的宏：</p>
+<p>Package&#x2F;&lt;包名&gt;  #包的参数</p>
+<p>在 Package&#x2F;&lt;包名&gt; 宏中定义与包相关的信息。</p>
+<p>如Package&#x2F;helloworld宏：</p>
+<table>
+<thead>
+<tr>
+<th>12345</th>
+<th>define Package&#x2F;helloworldSECTION:&#x3D;utilsCATEGORY:&#x3D;UtilitiesTITLE:&#x3D;Helloworld — prints a snarky messageendef</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>除了上面所列的 SECTION，CATEGORY，TITLE变量外，还可以定义：</p>
+<p>SECTION   – 包的种类</p>
+<p>CATEGORY   – 显示在menuconfig的哪个目录下</p>
+<p>TITLE    – 简单的介绍</p>
+<p>DESCRIPTION – (deprecated) 对包详细的介绍</p>
+<p>URL – 源码所在的网络路径</p>
+<p>MAINTAINER  – (required for new packages) 维护者是谁（出错了联系谁）</p>
+<p>DEPENDS   – (optional) 需要依事的包，See <a target="_blank" rel="noopener" href="http://wiki.openwrt.org/doc/devel/packages#dependencytypes">below</a> for the syntax.</p>
+<p>USERID    – (optional) a username:groupname pair to create at package installation time.</p>
+<p>【PKG_VERSION宏缺失时报错】：</p>
+<p>OpenWrt Developers Team <a href="mailto:&#111;&#112;&#101;&#x6e;&#119;&#114;&#116;&#x2d;&#x64;&#x65;&#118;&#101;&#108;&#64;&#111;&#x70;&#101;&#x6e;&#119;&#x72;&#116;&#46;&#x6f;&#x72;&#x67;">&#111;&#112;&#101;&#x6e;&#119;&#114;&#116;&#x2d;&#x64;&#x65;&#118;&#101;&#108;&#64;&#111;&#x70;&#101;&#x6e;&#119;&#x72;&#116;&#46;&#x6f;&#x72;&#x67;</a></p>
+<p>@@</p>
+<p>Makefile:53: *** Package&#x2F;exfat is missing the VERSION field. Stop.</p>
+<h3 id="可选定义的宏"><a href="#可选定义的宏" class="headerlink" title="可选定义的宏"></a>可选定义的宏</h3><p>其它的宏可以选择性地定义，通常没必要自己重写。但有些情况，package.mk中默认的宏不能满足我们的需求。这时，我们就需要自己重定义宏。</p>
+<p>比如，我们在为helloworld写Makefile时，我们要求在编译之前，将 SDK&#x2F;package&#x2F;helloworld&#x2F;src&#x2F; 路径下的文件复制到 PKG_BUILD_DIR 所指定的目录下。</p>
+<p>于是我们重新定义Build&#x2F;Prepare宏：</p>
+<p><a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/411942">?</a></p>
+<table>
+<thead>
+<tr>
+<th>1234</th>
+<th>define Build&#x2F;Preparemkdir -p $(PKG_BUILD_DIR)$(CP) .&#x2F;src&#x2F;* $(PKG_BUILD_DIR)&#x2F;endef</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如此以来，在我们 make V&#x3D;s 时，make工具会在编译之前执行 Build&#x2F;Prepare 宏里的命令。</p>
+<p>再比如，我们要指定包的安装方法：</p>
+<p><a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/411942">?</a></p>
+<table>
+<thead>
+<tr>
+<th>1234</th>
+<th>define Package&#x2F;helloworld&#x2F;install$(INSTALL_DIR) $(1)&#x2F;bin$(INSTALL_BIN) $(PKG_BUILD_DIR)&#x2F;helloworld $(1)&#x2F;bin&#x2F;endef</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>上面的这个宏就是指定了包的安装过程。其中 INSTALL_DIR 定义在 rules.mk 文件里。</p>
+<p>INSTALL_DIR &#x3D; install -d -m0755</p>
+<p>INSTALL_BIN &#x3D; install -m0755</p>
+<p>$(1)为第一个参数是.&#x2F;configure时的–prefix参数，通常为””</p>
+<p>展开之后就是：</p>
+<p>define Package&#x2F;helloworld&#x2F;installinstall -d -m0755 &#x2F;bininstall -m0755 $(PKG_BUILD_DIR)&#x2F;helloworld &#x2F;bin&#x2F;endef</p>
+<p>它的意思就一目了然了。</p>
+<p>除了上面所列举的这两个宏外，在官网上也说明了其它可选的宏：</p>
+<h5 id="Package-x2F-conffiles-optional"><a href="#Package-x2F-conffiles-optional" class="headerlink" title="Package&#x2F;conffiles (optional)"></a>Package&#x2F;conffiles (optional)</h5><p>由该包安装的配置文件的列表，一行一个文件。</p>
+<h5 id="Package-x2F-description"><a href="#Package-x2F-description" class="headerlink" title="Package&#x2F;description"></a>Package&#x2F;description</h5><p>对包描述的纯文本</p>
+<h5 id="Build-x2F-Prepare-optional"><a href="#Build-x2F-Prepare-optional" class="headerlink" title="Build&#x2F;Prepare (optional)"></a>Build&#x2F;Prepare (optional)</h5><p>A set of commands to unpack and patch the sources. You may safely leave this undefined.</p>
+<h5 id="Build-x2F-Configure-optional"><a href="#Build-x2F-Configure-optional" class="headerlink" title="Build&#x2F;Configure (optional)"></a>Build&#x2F;Configure (optional)</h5><p>You can leave this undefined if the source doesn’t use configure or has a normal config script, otherwise you can put your own commands here or use “$(call Build&#x2F;Configure&#x2F;Default,)” as above to pass in additional arguments for a standard configure script.</p>
+<h5 id="Build-x2F-Compile-optional"><a href="#Build-x2F-Compile-optional" class="headerlink" title="Build&#x2F;Compile (optional)"></a>Build&#x2F;Compile (optional)</h5><p>How to compile the source; in most cases you should leave this undefined, because then the default is used, which calls make. If you want to pass special arguments to make, use e.g. “$(call Build&#x2F;Compile&#x2F;Default,FOO&#x3D;bar)</p>
+<h5 id="Build-x2F-Install-optional"><a href="#Build-x2F-Install-optional" class="headerlink" title="Build&#x2F;Install (optional)"></a>Build&#x2F;Install (optional)</h5><p>How to install the compiled source. The default is to call make install. Again, to pass special arguments or targets, use $(call Build&#x2F;Install&#x2F;Default,install install-foo) Note that you need put all the needed make arguments here. If you just need to add something to the “install” argument, don’t forget the ‘install’ itself.</p>
+<h5 id="Build-x2F-InstallDev-optional"><a href="#Build-x2F-InstallDev-optional" class="headerlink" title="Build&#x2F;InstallDev (optional)"></a>Build&#x2F;InstallDev (optional)</h5><p>For things needed to compile packages against it (static libs, header files), but that are of no use on the target device.</p>
+<h5 id="Package-x2F-install"><a href="#Package-x2F-install" class="headerlink" title="Package&#x2F;install"></a>Package&#x2F;install</h5><p>A set of commands to copy files into the ipkg which is represented by the $(1) directory. As source you can use relative paths which will install from the unpacked and compiled source, or $(PKG_INSTALL_DIR) which is where the files in the Build&#x2F;Install step above end up.</p>
+<h5 id="Package-x2F-preinst"><a href="#Package-x2F-preinst" class="headerlink" title="Package&#x2F;preinst"></a>Package&#x2F;preinst</h5><p>The actual text of the script which is to be executed before installation. Dont forget to include the #!&#x2F;bin&#x2F;sh. If you need to abort installation have the script return false.</p>
+<h5 id="Package-x2F-postinst"><a href="#Package-x2F-postinst" class="headerlink" title="Package&#x2F;postinst"></a>Package&#x2F;postinst</h5><p>The actual text of the script which is to be executed after installation. Dont forget to include the #!&#x2F;bin&#x2F;sh.</p>
+<h5 id="Package-x2F-prerm"><a href="#Package-x2F-prerm" class="headerlink" title="Package&#x2F;prerm"></a>Package&#x2F;prerm</h5><p>The actual text of the script which is to be executed before removal. Dont forget to include the #!&#x2F;bin&#x2F;sh. If you need to abort removal have the script return false.</p>
+<h5 id="Package-x2F-postrm"><a href="#Package-x2F-postrm" class="headerlink" title="Package&#x2F;postrm"></a>Package&#x2F;postrm</h5><p>The actual text of the script which is to be executed after removal. Dont forget to include the #!&#x2F;bin&#x2F;sh.</p>
+<p>之所以有些宏是以”Package&#x2F;”开头，有的又以”Build&#x2F;”，是因为在一个Makefile里生成多个包。OpenWrt默认认为一个 Makefile里定义一个包，但我们也可以根据需要将其拆分成多个。所以说，如果我们只希望编译一次，那么只要有一系列的”Build&#x2F;”的宏定义就可 以了。但是，我们也可以通过添加多个”Package&#x2F;”宏定义，并调用 BuildPackage，来创建多个包。</p>
+<h2 id="8-5-使之生效"><a href="#8-5-使之生效" class="headerlink" title="8.5.使之生效"></a>8.5.使之生效</h2><p>在Makefile的最后一行是：</p>
+<p>$(eval $(call BuildPackage,helloworld))</p>
+<p>最重要的 BuildPackage定义在 package.mk 文件里。见上面 BuildPackage 宏定义。</p>
+<h2 id="8-6-添加新编译选项"><a href="#8-6-添加新编译选项" class="headerlink" title="8.6.添加新编译选项"></a>8.6.添加新编译选项</h2><p>比如dibbler软件包的编译，需要编译C++代码，需要使用-Istdc++选项，可以在dibbler编译Makefile中添加TAGET_CXXFLAGS +&#x3D;-Istdc++ 即可。</p>
+<h1 id="9-openwrt主Makafile解析"><a href="#9-openwrt主Makafile解析" class="headerlink" title="9.openwrt主Makafile解析"></a>9.openwrt主Makafile解析</h1><p>其他相关参考：<a target="_blank" rel="noopener" href="http://blog.csdn.net/suiyuan19840208/article/details/25737323/">http://blog.csdn.net/suiyuan19840208/article/details/25737323/</a></p>
+<p>原文地址：<a target="_blank" rel="noopener" href="http://www.right.com.cn/forum/thread-73443-1-1.html">http://www.right.com.cn/forum/thread-73443-1-1.html</a></p>
+<p>本文是本人对OpenWrt的Makefile的理解，并非转载。<br>OpenWrt是一个典型的嵌入式Linux工程，了解OpenWrt的Makefile的工作过程对提高嵌入式Linux工程的开发能力有极其重要意义。<br>OpenWrt的主Makefile文件只有100行，可以简单分为三部分，1<del>17行为前导部分，19</del>31为首次执行部分，33~101为再次执行部分。<br>前导部分<br>CURDIR为make默认变量，默认值为当前目录。<br>前导部分主要把变量TOPDIR赋值为当前目录，把变量LC_ALL、LANG赋值为C，并使用变量延伸指示符export，把上述三个变量延伸到下层Makefile。<br>使用文件使用指示符include引入$(TOPDIR)&#x2F;include&#x2F;host.mk。在OpenWrt的主Makefile文件使用了多次 include指示符，说明主Makefile文件被拆分成多个文件，被拆分的文件放在不同的目录。拆分的目的是明确各部分的功能，而且增加其灵活性。<br>在前导部分比较费解的是使用world目标，在makefile中基本规则为：<br>TARGETS : PREREQUISITES<br>COMMAND<br>…<br>即makefile规则由目标、依赖、命令三部分组成，在OpenWrt的主Makefile文件的第一个目标world没有依赖和命令。它主要起到指示 当make命令不带目标时所要执行的目标，没有设定依赖和命令部分表明此目标在此后将会有其他依赖关系或命令。world目标的命令需要进一步参 考$(TOPDIR)&#x2F;include&#x2F;toplevel.mk和主Makefile文件的再次执行部分。<br>首次执行部分<br>OPENWRT_BUILD是区分首次执行与再次执行的变量。在首次执行时使用强制赋值指示符override把OPENWRT_BUILD赋值为1，并 使用变量延伸指示符export把OPENWRT_BUILD延伸。在OPENWRT_BUILD使用强制赋值指示符override意味着make命令 行可能引入OPENWRT_BUILD参数。<br>引入$(TOPDIR)&#x2F;include&#x2F;debug.mk、$(TOPDIR)&#x2F;include&#x2F;depends.mk、$(TOPDIR) &#x2F;include&#x2F;toplevel.mk三个文件，由于TOPDIR是固定的，所以三个文件也是固定的。其中$(TOPDIR)&#x2F;include &#x2F;toplevel.mk的135行%::有效解释首次执行时world目标的规则。<br>再次执行部分<br>引入rules.mk、$(INCLUDE_DIR)&#x2F;depends.mk、$(INCLUDE_DIR)&#x2F;subdir.mk、target &#x2F;Makefile、package&#x2F;Makefile、tools&#x2F;Makefile、toolchain&#x2F;Makefile七个文 件，rules.mk没有目录名，即引入与主Makefile文件目录相同的rules.mk。在rules.mk定义了INCLUDE_DIR 为$(TOPDIR)&#x2F;include，所以$(INCLUDE_DIR)&#x2F;depends.mk实际上与首次执行时引入的$(TOPDIR) &#x2F;include&#x2F;depends.mk是同一个文件。<br>四个子目录下的Makefile实际上是不能独立执行。主要利用$(INCLUDE_DIR)&#x2F;subdir.mk动态建立规则，诸 如$(toolchain&#x2F;stamp-install)目标是靠$(INCLUDE_DIR)&#x2F;subdir.mk的stampfile函数动态建立。 在package&#x2F;Makefile动态建立了$(package&#x2F; stamp-prereq)、$(package&#x2F; stamp-cleanup)、$(package&#x2F; stamp-compile)、$(package&#x2F; stamp-install)、$(package&#x2F; stamp-rootfs-prepare)目标。<br>定义一些使用变量命名的目标，其变量的赋值位置在$(INCLUDE_DIR)&#x2F;subdir.mk的stampfile函数中。目标只有依赖关系，可能 说明其工作顺序，在$(INCLUDE_DIR)&#x2F;subdir.mk的stampfile函数中有进一步说明其目标执行的命令，并为目标建立一个空文 件，即使用变量命名的目标为真实的文件。<br>定义一些使用固定的目标规则。<br>其中：clean是清除编译结果的目标，清除$(BUILD_DIR) $(BIN_DIR) $(BUILD_LOG_DIR)三个目录的用意是十分明确。暂时不知道为什么执行make target&#x2F;linux&#x2F;clean。<br>dirclean是删除所有编译过程产生的目录和文件的目标，执行dirclean目标依赖于clean，因此将执行clean目标所执行的命令，然后删 除$(STAGING_DIR) $(STAGING_DIR_HOST) $(STAGING_DIR_TOOLCHAIN) $(TOOLCHAIN_DIR) $(BUILD_DIR_HOST) $(BUILD_DIR_TOOLCHAIN)目录，以及删除$(TMP_DIR)目录。上述目录的变量均在rules.mk定义。好像删除 staging_dir目录就意味着删除staging_dir目录下的所有子目录，不知道为什么要强调删除$(STAGING_DIR_HOST) $(STAGING_DIR_TOOLCHAIN) $(TOOLCHAIN_DIR)目录。同样删除builde_dir目录就意味着删除builde_dir目录下的所有子目录，不知道为什么要强调删 除$(BUILD_DIR_TOOLCHAIN)目录。<br>tmp&#x2F;.prereq_packages目标是对所需软件包的预处理。目标依赖于.config，即执行make menuconfig后将会进行一次所需软件包的预处理。不知什么原因在编译前删除tmp目录，执行时无法建立tmp&#x2F;.prereq_packages 文件。<br>prereq应该是预请求目标，在OpenWrt执行Makefile时好像都要先执行prereq目标。<br>prepare应该是准备目标，是world依赖的一个伪目标。依赖于文件.config和$(tools&#x2F;stamp-install) $(toolchain&#x2F;stamp-install)目标。<br>world就是编译的目标。依赖于prepare为目标和前面提到的变量命名目标。采用取消隐含规则方式执行package&#x2F;index目标。package&#x2F;index目标在package&#x2F;Makefile的92行定义。<br>package&#x2F;symlinks和package&#x2F;symlinks-install是更新或安装软件包来源的目标，使用$(SCRIPT_DIR)&#x2F;feeds脚本文件完成。<br>package&#x2F;symlinks-clean是清除软件包来源的目标，也是使用$(SCRIPT_DIR)&#x2F;feeds脚本文件完成。<br>最后使用伪目标.PHONY说明clean dirclean prereq prepare world package&#x2F;symlinks package&#x2F;symlinks-install package&#x2F;symlinks-clean属于伪目标。通过伪目标说明可以知道可以执行的目标。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>Openwrt官网<a target="_blank" rel="noopener" href="http://wiki.openwrt.org/start">http://wiki.openwrt.org/start</a></p>
+<p>软件包相关：<a target="_blank" rel="noopener" href="https://dev.openwrt.org/browser/branches/packages_10.03.2?order=name">https://dev.openwrt.org/browser/branches/packages_10.03.2?order=name</a></p>
+<p>关于包的依赖问题：<a target="_blank" rel="noopener" href="http://wiki.openwrt.org/doc/devel/dependencies">http://wiki.openwrt.org/doc/devel/dependencies</a></p>
+<h1 id="问题记录："><a href="#问题记录：" class="headerlink" title="问题记录："></a>问题记录：</h1><h2 id="（1）【close】在移植exfat驱动到openwrt时遇到如下问题："><a href="#（1）【close】在移植exfat驱动到openwrt时遇到如下问题：" class="headerlink" title="（1）【close】在移植exfat驱动到openwrt时遇到如下问题："></a>（1）【close】在移植exfat驱动到openwrt时遇到如下问题：</h2><p>nickli@NewRouterDev:qsdk$ make package&#x2F;exfat&#x2F;{clean,prepare,compile,install} V&#x3D;99</p>
+<p>Collecting package info: done</p>
+<p>make[1]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk’</p>
+<p>make[2]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;package&#x2F;exfat’</p>
+<p>Makefile:56: warning: overriding commands for target &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat’</p>
+<p>Makefile:56: warning: ignoring old commands for target &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat’</p>
+<p>Makefile:56: warning: overriding commands for target &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat’</p>
+<p>Makefile:56: warning: ignoring old commands for target &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat’</p>
+<p>rm -f &#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;staging_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;stamp&#x2F;.exfat _installed</p>
+<p>bash: line 2: [: packages&#x2F;exfat: binary operator expected</p>
+<p>rm -f &#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;bin&#x2F;ipq806x&#x2F;packages&#x2F;exfat_*</p>
+<p>rm -f &#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;staging_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;packages&#x2F;exfat .list &#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;staging_dir&#x2F;host&#x2F;packages&#x2F;exfat .list</p>
+<p>rm -rf &#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat</p>
+<p>make[2]: Leaving directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;package&#x2F;exfat’</p>
+<p>make[1]: Leaving directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk’</p>
+<p>make[1]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk’</p>
+<p>make[2]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;package&#x2F;exfat’</p>
+<p>Makefile:56: *** target file &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;exfat’ has both : and :: entries. Stop.</p>
+<p>make[2]: Leaving directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;package&#x2F;exfat’</p>
+<p>make[1]: *** [package&#x2F;exfat&#x2F;prepare] Error 2</p>
+<p>make[1]: Leaving directory &#96;&#x2F;home&#x2F;nickli&#x2F;puma_sdk&#x2F;qualcomm_sdk&#x2F;qsdk’</p>
+<p>make: *** [package&#x2F;exfat&#x2F;prepare] Error 2</p>
+<p>问题原因：在Makefile中版本号变量后面多了个空格。</p>
+<p>PKG_NAME:&#x3D;exfat</p>
+<p>PKG_VERSION:&#x3D;0.9.5$space_char</p>
+<p>PKG_RELEASE:&#x3D;1</p>
+<p>解决方法：将版本号后面的空格去掉</p>
+<p>结果：问题解决。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://forum.openwrt.org/viewtopic.php?id=20353">https://forum.openwrt.org/viewtopic.php?id=20353</a></p>
+<h2 id="（2）【close】SDK修改目录名称后无法继续编译问题解决"><a href="#（2）【close】SDK修改目录名称后无法继续编译问题解决" class="headerlink" title="（2）【close】SDK修改目录名称后无法继续编译问题解决"></a>（2）【close】SDK修改目录名称后无法继续编译问题解决</h2><p>问题现象：check 了一份openwrt的SDK，执行编译之后又重新修改了该SDK的名称，导致后续再编译时无法编译。</p>
+<p>原因：有些编译器是动态编译生成的，但是make clean之后编译器不会重新编译，其路径与绝对路径有关，修改名称后无法找到相关编译器。</p>
+<p>解决方法：进入SDK根目录执行make distclean，将所有编译记录完整清除即可。</p>
+<p>结果：问题解决（应该有更加优化的方法，即删除其中交叉编译链相关内容，后续有时间再解决）</p>
+<h2 id="（3）【close】编译单个模块软件时，提示缺少C库"><a href="#（3）【close】编译单个模块软件时，提示缺少C库" class="headerlink" title="（3）【close】编译单个模块软件时，提示缺少C库"></a>（3）【close】编译单个模块软件时，提示缺少C库</h2><p>编译单个模块软件时，在最后一步执行打包操作时提示缺少libc.so.6而无法打包，信息如下：</p>
+<p>Package skysoft_net6scan is missing dependencies for the following libraries:</p>
+<p>libc.so.6</p>
+<p>原因：编译单个模块时，缺少目标平台相同的libc.so.6文件。</p>
+<p>解决方法：</p>
+<p>参考：<a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/411944">http://my.oschina.net/hevakelcj/blog/411944</a></p>
+<p>真正解决问题的参考：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/liushannet/p/3895092.html">http://www.cnblogs.com/liushannet/p/3895092.html</a></p>
+<p>查看依赖文件：</p>
+<p>nickli@NewRouterDev:qsdk$ readelf -d build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;skysoft_net6scan&#x2F;net6scan</p>
+<p>Dynamic section at offset 0x2e28 contains 24 entries:</p>
+<p>Tag    Type             Name&#x2F;Value</p>
+<p>0x0000000000000001 (NEEDED)       Shared library: [libc.so.6]</p>
+<p>0x000000000000000c (INIT)        0x400c28</p>
+<p>0x000000000000000d (FINI)        0x401ad0</p>
+<p>0x0000000000000019 (INIT_ARRAY)     0x602e10</p>
+<p>0x000000000000001b (INIT_ARRAYSZ)    8 (bytes)</p>
+<p>0x000000000000001a (FINI_ARRAY)     0x602e18</p>
+<p>0x000000000000001c (FINI_ARRAYSZ)    8 (bytes)</p>
+<p>0x000000006ffffef5 (GNU_HASH)      0x400298</p>
+<p>实际解决方法：</p>
+<p>先检查系统里面有没有这个库存在,如果没有,安装 (在&#x2F;lib &#x2F;lib64 等目录找)<br>之后添加库openwrt的编译环境<br>修改 libc.provides 平台不同,可能目录不同,find .&#x2F;stagging_dir -name libc.provides 下<br>一般在 stagging_dir&#x2F;target-mipsel_r2_uClibc-0.9.33.2&#x2F;pkginfo&#x2F;libc.provides<br>底部添加<br>libc.so.6<br>或其他需要的库,编译时候会把这个so转为openwrt平台的库</p>
+<p>相关命令：</p>
+<p>1332 find &#x2F;lib* -name “libc.so.6”</p>
+<p>1333 find .&#x2F;staging_dir&#x2F; -name libc.provides</p>
+<p>1334 vim .&#x2F;staging_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;pkginfo&#x2F;libc.provides</p>
+<p>在该文件末尾添加libc.so.6后保存并退出，之后执行编译：</p>
+<p>1335 make package&#x2F;skysoft_net6scan&#x2F;{clean,prepare,compile,install} V&#x3D;99</p>
+<p>能正常打包了！</p>
+<p>结果：问题解决。</p>
+<h2 id="（4）【close】编译的模块无法在opentwr系统中运行"><a href="#（4）【close】编译的模块无法在opentwr系统中运行" class="headerlink" title="（4）【close】编译的模块无法在opentwr系统中运行"></a>（4）【close】编译的模块无法在opentwr系统中运行</h2><p>root@rt4230w:~# &#x2F;sbin&#x2F;net6scan</p>
+<p>&#x2F;sbin&#x2F;net6scan: line 1: syntax error: unexpected “(”</p>
+<p>问题原因：在编译的模块Makefile中将编译器写死成了gcc，而实际上目标平台为arm需要使用交叉编译器。</p>
+<p>解决方法：修改源码内的makefile，将gcc 改成$(CC)，结果如下：</p>
+<p>CFLAGS +&#x3D; -Wall -D_GNU_SOURCE net6scan : main.o func.o$(CC) $(CFLAGS) -o net6scan main.o func.omain.o : main.c$(CC) $(CFLAGS) -c main.cfunc.o : func.c$(CC) $(CFLAGS) -c func.cclean:rm -rf ip6scan *.o</p>
+<p>结果：问题解决</p>
+<h2 id="（5）【close】在原odhcp6c源码中增加了log-c-log-h文件后，编译时出现如下问题："><a href="#（5）【close】在原odhcp6c源码中增加了log-c-log-h文件后，编译时出现如下问题：" class="headerlink" title="（5）【close】在原odhcp6c源码中增加了log.c log.h文件后，编译时出现如下问题："></a>（5）【close】在原odhcp6c源码中增加了log.c log.h文件后，编译时出现如下问题：</h2><p>make[3]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13′</p>
+<p>make[4]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13′</p>
+<p>make[5]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13′</p>
+<p>make[5]: Leaving directory &#96;&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13′</p>
+<p>make[5]: Entering directory &#96;&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13′</p>
+<p>[ 16%] Building C object CMakeFiles&#x2F;odhcp6c.dir&#x2F;src&#x2F;odhcp6c.c.o</p>
+<p>[ 33%] Building C object CMakeFiles&#x2F;odhcp6c.dir&#x2F;src&#x2F;log.c.o</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c: In function ‘_get_time’:</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c:117:9: error: missing initializer [-Werror&#x3D;missing-field-initializers]</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c:117:9: error: (near initialization for ‘tv.tv_usec’) [-Werror&#x3D;missing-field-initializers]</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c:118:9: error: missing initializer [-Werror&#x3D;missing-field-initializers]</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c:118:9: error: (near initialization for ‘time_value.tm_min’) [-Werror&#x3D;missing-field-initializers]</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c: In function ‘debug_log_print’:</p>
+<p>&#x2F;home&#x2F;nickli&#x2F;cascade_sdk_new_platform&#x2F;qualcomm_sdk&#x2F;qsdk&#x2F;build_dir&#x2F;target-arm_v7-a_uClibc-0.9.33.2_eabi&#x2F;odhcp6c-2015-07-13&#x2F;src&#x2F;log.c:140:51: error: comparison between signed and unsigned integer expressions [-Werror&#x3D;sign-compare]</p>
+<p>cc1: all warnings being treated as errors</p>
+<p>分析：error: missing initializer [-Werror&#x3D;missing-field-initializers]，应该是编译程序时将警告当错误了，提示这里需要初始化，而实际上一时间没有 看出哪儿来执行正确的初始化，所以从取消掉这种警告机制着手解决。</p>
+<p>解决办法：修改编译目录内的(build_dirvim) CMakeLists.txt文件，将-Werror改为-Wno-missing-field-initializers，如下：</p>
+<p>8 #add_definitions(-D_GNU_SOURCE -Wall -Werror -Wextra -pedantic)</p>
+<p>9 add_definitions(-D_GNU_SOURCE -Wall –Wno-missing-field-initializers -Wextra -pedantic)</p>
+<p>结果：问题解决。</p>
+<p>小结：</p>
+<p>（1）-Werror 选线会将警告升级为错误来报告</p>
+<p>（2）odhcp6c源码编译采用了Cmake而没有使用我们一般使用的方式——在src目录内写一份Makefile文件来编译文件，所以其规则文件都在和src目录同级的CMakeLists.txt文件中。可以学习了解一下CMake机制。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.wwang.pw">XiaoWan💦</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.wwang.pw/post/openwrt-docs.html">https://blog.wwang.pw/post/openwrt-docs.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.wwang.pw" target="_blank">时光's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenWRT/">OpenWRT</a></div><div class="post_share"><div class="social-share" data-image="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/982257.1hk8iymuua80.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/hiwifi.html"><img class="prev-cover" src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/saonv.1j87964cttz4.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">极路由系列刷老毛子固件后搜不到WiFi的解决办法</div></div></a></div><div class="next-post pull-right"><a href="/post/openwrt-docs1.html"><img class="next-cover" src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/949379.2eki0la5kps0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OpenWrt常用命令详解</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/时光.54dv9r8g4dk0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">XiaoWan💦</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaowansm5/"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xiaowansm5/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xiaowansm@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://wpa.qq.com/msgrd?v=3&amp;uin=85151535" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/xiaowan_sm" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://pan.wwang.pw/" target="_blank" title="网盘"><i class="fa-solid fa-cloud-arrow-down"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果你在使用中遇到问题，可以加QQ群或TG群进行反馈<div class="social-button"><a class="button--animated" href="https://ai.wwang.eu.org/" rel="external nofollow noreferrer" target="_blank">ChatGPT镜像站🤖</a> <a class="button--animated" href="https://jq.qq.com/?_wv=1027&k=iChIlJ4q" rel="external nofollow noreferrer" target="_blank">QQ2群👍</a><a class="button--animated" href="https://t.me/xiaowansm" rel="external nofollow noreferrer" target="_blank">TG群👍</a></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenWRT%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">OpenWRT基本知识整理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-OpenWRT%E8%99%9A%E6%8B%9F%E7%B3%BB%E7%BB%9F%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">1.OpenWRT虚拟系统准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%BC%96%E8%AF%91openwrt%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1.1.编译openwrt虚拟机系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E5%87%86%E5%A4%87%E6%BA%90%E7%A0%81"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1.1 准备源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E5%87%86%E5%A4%87%E6%BA%90%E7%A0%81%E5%8C%85"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.1.2 准备源码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E7%BC%96%E8%AF%91%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">1.1.3 编译配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.4.</span> <span class="toc-text">1.1.4 编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.安装虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.2.1.新建虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2.2.修改虚拟机配置文件：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">2.配置使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%AE%BE%E7%BD%AEroot%E5%AF%86%E7%A0%81"><span class="toc-number">3.1.</span> <span class="toc-text">2.1.设置root密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">2.2.网络配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%85%B3%E4%BA%8Essh"><span class="toc-number">3.3.</span> <span class="toc-text">2.3.关于ssh</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">3.软件安装方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85ipk%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-number">4.1.</span> <span class="toc-text">3.1.本地安装ipk软件包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8F%8A%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">3.2.在线安装软件及设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E8%AE%BE%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1.设置软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2.安装软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85"><span class="toc-number">4.2.3.</span> <span class="toc-text">3.2.3.直接安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%81%9A%E8%BD%AF%E4%BB%B6%E6%BA%90%E4%BB%A5%E5%AE%89%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text">3.3.使用本地服务器做软件源以安装自定义软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEvsftp%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.3.1.在编译服务器上配置vsftp服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E4%BF%AE%E6%94%B9openwrt%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.3.2.修改openwrt在线安装软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3%E6%9B%B4%E6%96%B0opkg"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3.3更新opkg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85ipk%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.3.3.通过命令安装ipk软件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-openwrt-SDK%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">4.openwrt SDK源码目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-number">5.1.</span> <span class="toc-text">4.1.源码下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-OpenWRT%E7%9A%84feeds"><span class="toc-number">5.2.</span> <span class="toc-text">4.2.OpenWRT的feeds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-OpenWrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">5.3.</span> <span class="toc-text">4.3.OpenWrt源码目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="toc-number">5.4.</span> <span class="toc-text">4.4.基本命令介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%94%A8%E6%88%B7%E5%B1%82%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">5.用户层模块开发方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-SDK%E5%87%86%E5%A4%87"><span class="toc-number">6.1.</span> <span class="toc-text">5.1.SDK准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%B7%BB%E5%8A%A0%E6%A8%A1%E5%9D%97%E4%BB%A3%E7%A0%81"><span class="toc-number">6.2.</span> <span class="toc-text">5.2.添加模块代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%A8%A1%E5%9D%97%E7%A8%8B%E5%BA%8F%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">6.3.</span> <span class="toc-text">5.3.模块程序源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91Makefile"><span class="toc-number">6.4.</span> <span class="toc-text">5.4.源码编译Makefile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-ipK%E5%8C%85%E5%88%B6%E4%BD%9C%E8%A7%84%E5%88%99Makefile"><span class="toc-number">6.5.</span> <span class="toc-text">5.5.ipK包制作规则Makefile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-%E7%BC%96%E8%AF%91%E6%A8%A1%E5%9D%97"><span class="toc-number">6.6.</span> <span class="toc-text">5.6.编译模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-ipk%E5%8C%85%E5%88%B6%E4%BD%9C"><span class="toc-number">6.7.</span> <span class="toc-text">5.7.ipk包制作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8-%E5%AE%89%E8%A3%85%E6%B5%8B%E8%AF%95"><span class="toc-number">6.8.</span> <span class="toc-text">5.8.安装测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">6.内核模块开发方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%BB%BA%E7%AB%8B%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">7.1.</span> <span class="toc-text">6.1.建立工作目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E8%BF%9B%E5%85%A5example%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%88%9B%E5%BB%BAMakefile%E6%96%87%E4%BB%B6%E5%92%8C%E4%BB%A3%E7%A0%81%E8%B7%AF%E5%BE%84"><span class="toc-number">7.2.</span> <span class="toc-text">6.2.进入example目录，创建Makefile文件和代码路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E8%BF%9B%E5%85%A5src%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81%E8%B7%AF%E5%BE%84%E5%92%8C%E7%9B%B8%E5%85%B3%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">7.3.</span> <span class="toc-text">6.3.进入src目录，创建代码路径和相关源文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E5%9B%9E%E5%88%B0OpenWrt%E6%BA%90%E7%A0%81%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="toc-number">7.4.</span> <span class="toc-text">6.4.回到OpenWrt源码根目录下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E5%9C%A8OpenWrt%E7%B3%BB%E7%BB%9F%E9%87%8C%E9%9D%A2%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%94%A8opkg%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8%E4%BA%86%E3%80%82"><span class="toc-number">7.5.</span> <span class="toc-text">6.5.在OpenWrt系统里面就可以用opkg下载使用了。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-openwrt-Makefile%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90"><span class="toc-number">8.</span> <span class="toc-text">7.openwrt Makefile框架分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-openwrt%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">8.1.</span> <span class="toc-text">7.1.openwrt目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-main-Makefile"><span class="toc-number">8.2.</span> <span class="toc-text">7.2.main Makefile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91"><span class="toc-number">8.2.1.</span> <span class="toc-text">第一个逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%80%BB%E8%BE%91"><span class="toc-number">8.2.2.</span> <span class="toc-text">第二逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stampfile"><span class="toc-number">8.2.3.</span> <span class="toc-text">stampfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E5%8F%98%E9%87%8F"><span class="toc-number">8.2.4.</span> <span class="toc-text">目录变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-kernel-%E7%BC%96%E8%AF%91%EF%BC%9A"><span class="toc-number">8.3.</span> <span class="toc-text">7.3.kernel 编译：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-%E7%94%9F%E6%88%90firmware"><span class="toc-number">8.4.</span> <span class="toc-text">7.4.生成firmware</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86vmlinux-Image-x2F-BuildKernel"><span class="toc-number">8.4.1.</span> <span class="toc-text">处理vmlinux: Image&#x2F;BuildKernel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lzma%E5%8E%8B%E7%BC%A9%E5%86%85%E6%A0%B8"><span class="toc-number">8.4.2.</span> <span class="toc-text">lzma压缩内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MkImage"><span class="toc-number">8.4.3.</span> <span class="toc-text">MkImage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#copy"><span class="toc-number">8.4.4.</span> <span class="toc-text">copy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-%E5%88%B6%E4%BD%9Csquashfs%EF%BC%8C%E7%94%9F%E6%88%90-bin-call-Image-x2F-mkfs-x2F-squashfs"><span class="toc-number">8.5.</span> <span class="toc-text">7.5.制作squashfs，生成.bin: $(call Image&#x2F;mkfs&#x2F;squashfs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-Openwrt-SDK%E4%B8%ADMakefile%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93"><span class="toc-number">8.6.</span> <span class="toc-text">7.6.Openwrt_SDK中Makefile相关总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-1CURDIR%E5%8F%98%E9%87%8F"><span class="toc-number">8.6.1.</span> <span class="toc-text">7.6.1CURDIR变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-2%E7%A9%BA%E6%A0%BC%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">8.6.2.</span> <span class="toc-text">7.6.2空格的表示方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-3%E8%B0%83%E7%94%A8makefile%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">8.6.3.</span> <span class="toc-text">7.6.3调用makefile中的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-4-%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="toc-number">8.6.4.</span> <span class="toc-text">7.6.4.其他相关内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1make-%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">8.6.4.1.</span> <span class="toc-text">2.1make 的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2%E5%B5%8C%E5%A5%97%E6%89%A7%E8%A1%8Cmake"><span class="toc-number">8.6.4.2.</span> <span class="toc-text">2.2嵌套执行make</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8package%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84Makefile"><span class="toc-number">8.6.4.3.</span> <span class="toc-text">2.在package目录中的Makefile:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-call%E5%87%BD%E6%95%B0"><span class="toc-number">8.6.4.3.1.</span> <span class="toc-text">2.1.call函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-eval%E5%87%BD%E6%95%B0"><span class="toc-number">8.6.4.3.2.</span> <span class="toc-text">2.2.eval函数</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E8%BD%AF%E4%BB%B6%E5%8C%85Makefile%E8%A7%A3%E6%9E%90"><span class="toc-number">9.</span> <span class="toc-text">8.软件包Makefile解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-include-TOPDIR-x2F-rules-mk"><span class="toc-number">9.1.</span> <span class="toc-text">8.1.include $(TOPDIR)&#x2F;rules.mk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E8%87%AA%E5%AE%9A%E4%B9%89-PKG-XXXX-%E5%8F%98%E9%87%8F"><span class="toc-number">9.2.</span> <span class="toc-text">8.2.自定义 PKG_XXXX 变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-include-INCLUDE-DIR-x2F-package-mk"><span class="toc-number">9.3.</span> <span class="toc-text">8.3.include $(INCLUDE_DIR)&#x2F;package.mk</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%AE%83%E4%BC%9A%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">9.3.1.</span> <span class="toc-text">（1）它会配置默认的变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%8E%A8%E5%AF%BC%E5%85%B6%E5%AE%83%E5%8F%98%E9%87%8F"><span class="toc-number">9.3.2.</span> <span class="toc-text">（2）推导其它变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%8C%85%E5%90%AB%E5%85%B6%E5%AE%83mk%E6%96%87%E4%BB%B6"><span class="toc-number">9.3.3.</span> <span class="toc-text">（3）包含其它mk文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%AE%9A%E4%B9%89%E9%BB%98%E8%AE%A4%E5%AE%8F"><span class="toc-number">9.3.4.</span> <span class="toc-text">（4）定义默认宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89BuildPackage%E5%AE%8F"><span class="toc-number">9.3.5.</span> <span class="toc-text">（5）BuildPackage宏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AE%8F"><span class="toc-number">9.4.</span> <span class="toc-text">8.4.自定义宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E9%A1%BB%E5%AE%9A%E4%B9%89%E7%9A%84%E5%AE%8F"><span class="toc-number">9.4.1.</span> <span class="toc-text">必须定义的宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%AE%9A%E4%B9%89%E7%9A%84%E5%AE%8F"><span class="toc-number">9.4.2.</span> <span class="toc-text">可选定义的宏</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-conffiles-optional"><span class="toc-number">9.4.2.0.1.</span> <span class="toc-text">Package&#x2F;conffiles (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-description"><span class="toc-number">9.4.2.0.2.</span> <span class="toc-text">Package&#x2F;description</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Build-x2F-Prepare-optional"><span class="toc-number">9.4.2.0.3.</span> <span class="toc-text">Build&#x2F;Prepare (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Build-x2F-Configure-optional"><span class="toc-number">9.4.2.0.4.</span> <span class="toc-text">Build&#x2F;Configure (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Build-x2F-Compile-optional"><span class="toc-number">9.4.2.0.5.</span> <span class="toc-text">Build&#x2F;Compile (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Build-x2F-Install-optional"><span class="toc-number">9.4.2.0.6.</span> <span class="toc-text">Build&#x2F;Install (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Build-x2F-InstallDev-optional"><span class="toc-number">9.4.2.0.7.</span> <span class="toc-text">Build&#x2F;InstallDev (optional)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-install"><span class="toc-number">9.4.2.0.8.</span> <span class="toc-text">Package&#x2F;install</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-preinst"><span class="toc-number">9.4.2.0.9.</span> <span class="toc-text">Package&#x2F;preinst</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-postinst"><span class="toc-number">9.4.2.0.10.</span> <span class="toc-text">Package&#x2F;postinst</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-prerm"><span class="toc-number">9.4.2.0.11.</span> <span class="toc-text">Package&#x2F;prerm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Package-x2F-postrm"><span class="toc-number">9.4.2.0.12.</span> <span class="toc-text">Package&#x2F;postrm</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-%E4%BD%BF%E4%B9%8B%E7%94%9F%E6%95%88"><span class="toc-number">9.5.</span> <span class="toc-text">8.5.使之生效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6-%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="toc-number">9.6.</span> <span class="toc-text">8.6.添加新编译选项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-openwrt%E4%B8%BBMakafile%E8%A7%A3%E6%9E%90"><span class="toc-number">10.</span> <span class="toc-text">9.openwrt主Makafile解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">11.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">问题记录：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E3%80%90close%E3%80%91%E5%9C%A8%E7%A7%BB%E6%A4%8Dexfat%E9%A9%B1%E5%8A%A8%E5%88%B0openwrt%E6%97%B6%E9%81%87%E5%88%B0%E5%A6%82%E4%B8%8B%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">12.1.</span> <span class="toc-text">（1）【close】在移植exfat驱动到openwrt时遇到如下问题：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E3%80%90close%E3%80%91SDK%E4%BF%AE%E6%94%B9%E7%9B%AE%E5%BD%95%E5%90%8D%E7%A7%B0%E5%90%8E%E6%97%A0%E6%B3%95%E7%BB%A7%E7%BB%AD%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">12.2.</span> <span class="toc-text">（2）【close】SDK修改目录名称后无法继续编译问题解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E3%80%90close%E3%80%91%E7%BC%96%E8%AF%91%E5%8D%95%E4%B8%AA%E6%A8%A1%E5%9D%97%E8%BD%AF%E4%BB%B6%E6%97%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91C%E5%BA%93"><span class="toc-number">12.3.</span> <span class="toc-text">（3）【close】编译单个模块软件时，提示缺少C库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E3%80%90close%E3%80%91%E7%BC%96%E8%AF%91%E7%9A%84%E6%A8%A1%E5%9D%97%E6%97%A0%E6%B3%95%E5%9C%A8opentwr%E7%B3%BB%E7%BB%9F%E4%B8%AD%E8%BF%90%E8%A1%8C"><span class="toc-number">12.4.</span> <span class="toc-text">（4）【close】编译的模块无法在opentwr系统中运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E3%80%90close%E3%80%91%E5%9C%A8%E5%8E%9Fodhcp6c%E6%BA%90%E7%A0%81%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%BA%86log-c-log-h%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">12.5.</span> <span class="toc-text">（5）【close】在原odhcp6c源码中增加了log.c log.h文件后，编译时出现如下问题：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ax1800pro.html" title="京东云无线宝亚瑟AX1800Pro低版本免拆刷机"><img src="http://p9.qhimg.com/bdr/__85/t0103f1a8d4363c057c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="京东云无线宝亚瑟AX1800Pro低版本免拆刷机"/></a><div class="content"><a class="title" href="/post/ax1800pro.html" title="京东云无线宝亚瑟AX1800Pro低版本免拆刷机">京东云无线宝亚瑟AX1800Pro低版本免拆刷机</a><time datetime="2026-06-21T02:21:16.000Z" title="发表于 2026-06-21 10:21:16">2026-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/modem.html" title="OpenWrt下访问光猫教程"><img src="http://p18.qhimg.com/bdr/__85/t0168b76cbdd242e94a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenWrt下访问光猫教程"/></a><div class="content"><a class="title" href="/post/modem.html" title="OpenWrt下访问光猫教程">OpenWrt下访问光猫教程</a><time datetime="2024-08-04T00:21:16.000Z" title="发表于 2024-08-04 08:21:16">2024-08-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/dd-op.html" title="用 dd 命令快速更换 OpenWrt 固件"><img src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/933852.6x12cq9cfjk0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="用 dd 命令快速更换 OpenWrt 固件"/></a><div class="content"><a class="title" href="/post/dd-op.html" title="用 dd 命令快速更换 OpenWrt 固件">用 dd 命令快速更换 OpenWrt 固件</a><time datetime="2024-07-30T00:21:16.000Z" title="发表于 2024-07-30 08:21:16">2024-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ql.html" title="每日签到集合 签到盒青龙版"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_39_1_202208120739397.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日签到集合 签到盒青龙版"/></a><div class="content"><a class="title" href="/post/ql.html" title="每日签到集合 签到盒青龙版">每日签到集合 签到盒青龙版</a><time datetime="2024-03-27T02:21:16.000Z" title="发表于 2024-03-27 10:21:16">2024-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Airplay2.html" title="OpenWrt带你畅享AirPlay 2无损音乐"><img src="http://p9.qhimg.com/bdr/__85/t0153df2c1ccb1f5c1a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenWrt带你畅享AirPlay 2无损音乐"/></a><div class="content"><a class="title" href="/post/Airplay2.html" title="OpenWrt带你畅享AirPlay 2无损音乐">OpenWrt带你畅享AirPlay 2无损音乐</a><time datetime="2024-03-07T02:21:16.000Z" title="发表于 2024-03-07 10:21:16">2024-03-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 <i style="color:#FF6A6A" class="fa fa-heartbeat"></i> XiaoWan💦</div><div class="footer_custom_text"><span id="jinrishici-sentence">正在加载今日诗词....</span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> <br>
+<a target="_blank" href="https://pan.wwang.pw"><i class="fa fa-cloud" aria-hidden="true"></i> 固件仓库 </a>  • <a target="_blank" href="https://shop.wwang.pw/"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 小商店 </a>  • <a target="_blank" href="https://music.wwang.eu.org/"><i class="fa fa-music" aria-hidden="true"></i> 音乐库 </a>  • <a target="_blank" href="https://t.me/xiaowansm"><i class="fa-brands fa-telegram"></i> TG群</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://koo.wwang.pw',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://koo.wwang.pw',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/838145.74o2pn4l6440.jpg" alt="https://jsd.cdn.zzko.cn/gh/xiaowansm5/img@master/ecy/838145.74o2pn4l6440.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2023-03-08</span><a class="blog-slider__title" href="post/op-vip.html">OpenWrt固件定制服务</a><div class="blog-slider__text">OpenWrt固件私人定制服务，定制专属您的固件。</div><a class="blog-slider__button" href="post/op-vip.html">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_37_5_202208120737459.jpg" alt="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2022/08/12_7_37_5_202208120737459.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2022-08-06</span><a class="blog-slider__title" href="post/op.html">OpenWrt基础使用教程</a><div class="blog-slider__text">OpenWrt基础使用教程，简洁易懂</div><a class="blog-slider__button" href="post/op.html">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="http://p16.qhimg.com/bdr/__85/t013d1246605bed9df6.jpg" alt="http://p16.qhimg.com/bdr/__85/t013d1246605bed9df6.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2022-09-06</span><a class="blog-slider__title" href="post/padavan.html">Padavan【老毛子】固件基础使用教程</a><div class="blog-slider__text">Padavan老毛子固件基础使用教程</div><a class="blog-slider__button" href="post/padavan.html">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '3d926102a85f40e2a9583ae69e9f0517';
+  var gaud_map_key = 'bca731ccbc9006e0d63ac3e2ba3a8a55';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
