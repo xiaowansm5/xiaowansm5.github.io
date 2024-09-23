@@ -33,6 +33,33 @@
     
     
     <entry>
+      <title>诺基亚贝尔AX3000(EA0326GMP)刷机教程</title>
+      <link href="/post/EA0326GMP.html"/>
+      <url>/post/EA0326GMP.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote><p>刷机文件和固件下载：</p><p><a href="https://pan.wwang.pw/%F0%9F%94%A5OpenWrt_LEAN/%E8%AF%BA%E5%9F%BA%E4%BA%9A%E8%B4%9D%E5%B0%94AX3000">https://pan.wwang.pw/%F0%9F%94%A5OpenWrt_LEAN/%E8%AF%BA%E5%9F%BA%E4%BA%9A%E8%B4%9D%E5%B0%94AX3000</a></p><p>如下载地址失效，请加群获取</p></blockquote><h2 id="刷机步骤："><a href="#刷机步骤：" class="headerlink" title="刷机步骤："></a>刷机步骤：</h2><h3 id="开启SSH"><a href="#开启SSH" class="headerlink" title="开启SSH"></a>开启SSH</h3><ol><li>进入路由器管理页面<br>电脑网线连接lan口，浏览器输入ip地址进入配置页面 管理ip: 192.168.10.1 输入密码登录 <img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/Typora/202405200758188.png" alt="img"></li><li>导入配置<br>进入【备份和恢复】菜单，选择<code>EA0326GMP_SSH.tar.gz</code>文件导入 导入后设备会重启，大概3分钟左右后设备重启完成，可以通过ssh工具进入路由器后台</li></ol><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/Typora/202405200759353.png" alt="img"></p><p>这个步骤的原理很简单，就是修改了系统中配置文件，该配置文件用于控制系统中ssh服务器开关，系统重启后会读取该配置， 发现配置开了之后会自动启动ssh服务。</p><h3 id="刷入uboot"><a href="#刷入uboot" class="headerlink" title="刷入uboot"></a>刷入uboot</h3><p>使用MobaXterm或者winscp工具，协议选择scp，用户名为root，密码为空</p><p>将uboot文件上传到路由器后台的&#x2F;tmp目录，文件名称为: <code>mt7981_nokia_ea0326gmp-fip-fixed-parts.bin</code></p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/Typora/202405200759317.png" alt="img"></p><p>计算uboot md5<br>为了防止文件错误，最好计算一下uboot的md5，如果文件错误，会导致路由器变砖 如果md5不对请停止下面的操作 输入<code>md5sum /tmp/mt7981_nokia_ea0326gmp-fip-fixed-parts.bin</code>命令可以查看md5</p><p>md5应该和刷机包说明中的md5一致，写入uboot</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mtd write /tmp/mt7981_nokia_ea0326gmp-fip-fixed-parts.bin FIP</span><br></pre></td></tr></table></figure><p>命令成功的输出应该和教程图片中的一致</p><p><img src="https://cdn.jsdelivr.net/gh/xiaowansm5/img@master/Typora/202405200759727.png" alt="img"></p><h3 id="刷入OpenWrt固件"><a href="#刷入OpenWrt固件" class="headerlink" title="刷入OpenWrt固件"></a>刷入OpenWrt固件</h3><ol><li><p>修改网卡ip，手动设置电脑网卡ip为192.168.1.22，子网掩码为255.255.255.0</p><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/09/9_19_39_42_202409091939224.png" alt="image-20240909153110544"></p></li><li><p>进入uboot web页面，按住mesh按键不松手，再拔插电源，大概10s左右后松开mesh按键，然后打开浏览器，输入192.168.1.1进入uboot的web页面</p></li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/09/9_19_39_45_202409091939417.png" alt="image-20240909153159592"></p><ol start="3"><li><p>点浏览，immortalwrt源码固件选factory.bin文件刷入，LEAN大佬源码编译的固件选sysupgrade.bin文件即可，再点Upload，继续点Update，等待两分钟即可。</p><p>可以通过该界面随意切换固件，不用担心变砖了。<br><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/09/9_19_39_52_202409091939876.png" alt="image-20240909153424223"></p></li><li><p>将网卡ip恢复成自动获取，然后在浏览器输入192.168.5.1进入管理页面，密码是password，刷机成功。</p></li></ol><p><img src="https://gitlab.com/xiaowansm/img/-/raw/main/pictures/2024/09/9_19_39_47_202409091939597.png" alt="image-20240909154208400"></p><h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ul><li><code>https://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=8350171</code></li><li><code>https://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=8351029</code></li></ul><h2 id="uboot来源："><a href="#uboot来源：" class="headerlink" title="uboot来源："></a>uboot来源：</h2><p><a href="https://github.com/hanwckf/bl-mt798x">https://github.com/hanwckf/bl-mt798x</a></p><h2 id="购买路由器"><a href="#购买路由器" class="headerlink" title="购买路由器"></a>购买路由器</h2><p>小店已上架同配置的路由器，刷好固件再发货，不愿意折腾的可以下单。</p><p>购买链接：<a href="https://shop.wwang.pw/">https://shop.wwang.pw/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 路由器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> 贝尔AX3000 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安博通ABT-ASR3000刷机指南</title>
       <link href="/post/ABT-ASR3000.html"/>
       <url>/post/ABT-ASR3000.html</url>
